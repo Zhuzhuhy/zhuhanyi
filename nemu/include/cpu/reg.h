@@ -22,10 +22,10 @@ typedef struct {
 	} gpr[8];
 
 	/* Do NOT change the order of the GPRs' definitions. */
-
+union{
 	uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 
-  union{	swaddr_t eip;};
+  	swaddr_t eip;};
 
 } CPU_state;
 
