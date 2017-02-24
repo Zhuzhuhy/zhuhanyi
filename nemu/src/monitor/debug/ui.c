@@ -77,7 +77,7 @@ static int cmd_info(char *args) {
 	}
 	printf("eip :%08x %d \n",cpu.eip,cpu.eip);
 	}
-	else printf("Error");
+	else printf("Error\n");
 	return 0;
 }
 
