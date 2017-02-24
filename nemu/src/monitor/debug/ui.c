@@ -63,7 +63,7 @@ static int cmd_si(char *args) {
     int num;	
     str = strtok(args," ");
     num = atoi(str);
-    if(num < 0 ) printf("Error");
+    if(num < 0 ) printf("Error\n");
 	else if(num == -1) cpu_exec(-1);
 	else  cpu_exec(num);
 	return 0;
