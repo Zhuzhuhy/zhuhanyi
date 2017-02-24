@@ -72,10 +72,10 @@ static int cmd_info(char *args) {
 	ch = strtok(args," ");
 	if(strcmp(ch,"r") == 0){
  	while(i < 8){   
-		printf("%s :%08x \n",regsl[i],cpu.gpr[i]._32);
+		printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
 		i++;
 	}
-	printf("eip :%08x \n",cpu.eip);
+	printf("eip :%08x %d \n",cpu.eip,cpu.eip);
 	}
 	else printf("Error");
 	return 0;
