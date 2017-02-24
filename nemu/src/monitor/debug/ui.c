@@ -75,7 +75,7 @@ static int cmd_info(char *args) {
 		printf("%s :%08x \n",regsl[i],cpu.gpr[i]._32);
 		i++;
 	}
-	printf("eip:%08x \n",cpu.eip);
+	printf("eip: %08x \n",cpu.eip);
 	}
 	else printf("Error");
 	return 0;
