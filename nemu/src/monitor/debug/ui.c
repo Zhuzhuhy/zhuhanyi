@@ -35,6 +35,8 @@ static int cmd_c(char *args) {
 static int cmd_q(char *args) {
 	return -1;
 }
+static int cmd_si(char *args);
+/*static int cmd_info(char *args);*/
 
 static int cmd_help(char *args);
 
@@ -46,13 +48,34 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
-
+	{ "si","Step Mode Execution",cmd_si },
+/*	{ "info","Print",cmd_info },*/
+/*	{ "x","Memory scan",cmd_x },*/
 	/* TODO: Add more commands */
 
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
+static int cmd_si(char *args) {
+
+    char *str;
+    int num;	
+    str = strtok(args," ");
+    num = atoi(str);
+    if(num < 0 ) printf("Error");
+	else if(num == -1) cpu_exec(-1);
+	else  cpu_exec(num);
+	return 0;
+}	
+/*static int cmd_info(char *args) {
+	char *ch;
+	ch = strtok(arge," ");
+	if(strcmp(ch,'r') == 0) printf("%x \n",*(volatile unsigned int *)(map_base+0x38));
+	else printf("Error");
+	return 0;
+}
+*/
 static int cmd_help(char *args) {
 	/* extract the first argument */
 	char *arg = strtok(NULL, " ");
