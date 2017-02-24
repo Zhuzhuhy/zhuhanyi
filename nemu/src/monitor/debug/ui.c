@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-
 void cpu_exec(uint32_t);
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
@@ -36,8 +35,7 @@ static int cmd_q(char *args) {
 	return -1;
 }
 static int cmd_si(char *args);
-/*static int cmd_info(char *args);*/
-
+static int cmd_info(char *args);
 static int cmd_help(char *args);
 
 static struct {
@@ -49,7 +47,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si","Step Mode Execution",cmd_si },
-/*	{ "info","Print",cmd_info },*/
+	{ "info","Print",cmd_info },
 /*	{ "x","Memory scan",cmd_x },*/
 	/* TODO: Add more commands */
 
@@ -68,14 +66,14 @@ static int cmd_si(char *args) {
 	else  cpu_exec(num);
 	return 0;
 }	
-/*static int cmd_info(char *args) {
+static int cmd_info(char *args) {
 	char *ch;
-	ch = strtok(arge," ");
-	if(strcmp(ch,'r') == 0) printf("%x \n",*(volatile unsigned int *)(map_base+0x38));
+	ch = strtok(args," ");
+	if(strcmp(ch,"r") == 0) printf("%d \n",(int)ch);
 	else printf("Error");
 	return 0;
 }
-*/
+
 static int cmd_help(char *args) {
 	/* extract the first argument */
 	char *arg = strtok(NULL, " ");
@@ -83,19 +81,19 @@ static int cmd_help(char *args) {
 
 	if(arg == NULL) {
 		/* no argument given */
-		for(i = 0; i < NR_CMD; i ++) {
+ 		for(i = 0; i < NR_CMD; i ++) {
 			printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
 		}
-	}
+ 	}
 	else {
 		for(i = 0; i < NR_CMD; i ++) {
 			if(strcmp(arg, cmd_table[i].name) == 0) {
 				printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
 				return 0;
 			}
-		}
+  		}
 		printf("Unknown command '%s'\n", arg);
-	}
+ 	}
 	return 0;
 }
 
