@@ -69,7 +69,7 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
 	char *ch;
 	ch = strtok(args," ");
-	if(strcmp(ch,"r") == 0) printf("%d \n",(int)ch);
+	if(strcmp(ch,"r") == 0) printf("%x \n",(int)ch);
 	else printf("Error");
 	return 0;
 }
