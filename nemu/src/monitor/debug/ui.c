@@ -36,6 +36,7 @@ static int cmd_q(char *args) {
 }
 static int cmd_si(char *args);
 static int cmd_info(char *args);
+static int cmd_x(char *args);
 static int cmd_help(char *args);
 
 static struct {
@@ -48,7 +49,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si","Step Mode Execution",cmd_si },
 	{ "info","Print",cmd_info },
-/*	{ "x","Memory scan",cmd_x },*/
+	{ "x","Memory scan",cmd_x },
 	/* TODO: Add more commands */
 
 };
@@ -81,6 +82,22 @@ static int cmd_info(char *args) {
 	return 0;
 }
 
+
+static int cmd_x(char *args){
+     char *locate_start,*locate_len;
+	 int  num,count = 0,locate,num_s;
+	 locate_len = strtok(args," ");
+	 locate_start = strtok(args," ");
+     num = atoi(locate_len);
+	 num_s = atoi(locate_start);
+ 	 while(count < num){
+     locate = swaddr_read(num_s,count);
+	 printf("%02x",locate);
+	 count++;
+	 }
+	 return 0;
+}
+
 static int cmd_help(char *args) {
 	/* extract the first argument */
 	char *arg = strtok(NULL, " ");
@@ -90,17 +107,17 @@ static int cmd_help(char *args) {
 		/* no argument given */
   		for(i = 0; i < NR_CMD; i ++) {
 			printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
-		}
- 	}
+ 		}
+  	}
 	else {
  		for(i = 0; i < NR_CMD; i ++) {
  			if(strcmp(arg, cmd_table[i].name) == 0) {
 				printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
 				return 0;
 			}
-  		}
+   		}
 		printf("Unknown command '%s'\n", arg);
-  	}
+   	}
 	return 0;
 }
 
