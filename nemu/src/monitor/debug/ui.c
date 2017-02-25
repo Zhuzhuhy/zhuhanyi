@@ -91,7 +91,7 @@ static int cmd_x(char *args){
      num = atoi(locate_len);
 	 num_s = atoi(locate_start);
  	 while(count < num){
-     locate = swaddr_read(num_s,count);
+     locate = swaddr_read(num_s,num_s + count);
 	 printf("%02x",locate);
 	 count++;
 	 }
