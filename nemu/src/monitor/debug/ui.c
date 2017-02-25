@@ -95,8 +95,9 @@ static int cmd_x(char *args){
      locate = swaddr_read(num_s,2);
 	 printf("%02x  ",locate);
 	 count++;
-	 if(count == 4) printf("\n");
+	 if(count == 5) printf("\n");
 	 }
+	 printf("\n");
 	 return 0;
 }
 
