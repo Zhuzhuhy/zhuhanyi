@@ -92,7 +92,7 @@ static int cmd_x(char *args){
 	 sscanf(locate_start,"%x",&num_s);
 	 printf("start addr:%s  len:%d\n",locate_start,num);
  	 while(count < num){
-     locate = swaddr_read(num_s,2);
+     locate = swaddr_read(num_s,4);
 	 printf("%02x  ",locate);
 	 count++;
 	 if(count == 5) printf("\n");
