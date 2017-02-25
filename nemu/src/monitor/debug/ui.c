@@ -85,26 +85,19 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args){
      char *locate_start,*locate_len;
-	 int  num, num_s,count = 0,locate_count = 0,locate;
+	 int  num, num_s,count = 0,locate;
 	 locate_len = strtok(args," ");
 	 locate_start = strtok(NULL," ");
      num = atoi(locate_len);
 	 sscanf(locate_start,"%x",&num_s); /*turn string to locate*/
 	 printf("start addr:%s  len:%d\n",locate_start,num);
- 	 while(locate_count < num){
-	 printf("%x :",num_s);
  	 while(count < num){
-	           count++;
-               locate = swaddr_read(num_s,1);/*return virtual memory*/
-	           printf("%02x  ",locate);
-	           if(count == 5) printf("\n");
-	         }
+  	 locate = swaddr_read(num_s,1);/*return virtual memory*/
+	 printf("%02x  ",locate);
+     if(count == 5) printf("\n");       
 	 num_s++;
-	 count = 0;
-	 locate_count++;
-	 printf("\n");
+	 count++;
 	 }
-	 printf("\n");
 	 return 0;
 }
 
