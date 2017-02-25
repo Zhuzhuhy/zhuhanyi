@@ -96,7 +96,10 @@ static int cmd_x(char *args){
 	 printf("%02x  ",locate);
 	 num_s++;
 	 count++;
-     if(count == 5) printf("\n");       
+     if(count%5 == 0) {
+		 printf("%02x : ",num_s);
+		 printf("\n");       
+	 }
 	 }
 	 printf("\n");
 	 return 0;
