@@ -93,13 +93,13 @@ static int cmd_x(char *args){
 	 printf("start addr:%s  len:%d\n",locate_start,num);
  	 while(count < num){
   	 locate = swaddr_read(num_s,1);/*return virtual memory*/
-	 printf("%02x  ",locate);
-	 num_s++;
-	 count++;
      if(count%5 == 0) {
 		 printf("%02x : ",num_s);
 		 printf("\n");       
 	 }
+	 printf("%02x  ",locate);
+	 num_s++;
+	 count++;
 	 }
 	 printf("\n");
 	 return 0;
