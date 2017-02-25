@@ -85,7 +85,7 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args){
      char *locate_start,*locate_len;
-	 int  num, num_s,count = 2,locate;
+	 int  num, num_s,count = 0,locate;
 	 locate_len = strtok(args," ");
 	 locate_start = strtok(NULL," ");
      num = atoi(locate_len);
