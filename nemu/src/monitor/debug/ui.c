@@ -94,7 +94,7 @@ static int cmd_x(char *args){
  	 while(count < num){
   	 locate = swaddr_read(num_s,1);/*return virtual memory*/
      if(count%5 == 0) 
-		 printf("%02x : ",num_s);
+		 printf("\n%02x : ",num_s);
 	 printf("%02x  ",locate);
 	 num_s++;
 	 count++;
