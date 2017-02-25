@@ -98,6 +98,7 @@ static int cmd_x(char *args){
 	 num_s++;
 	 count++;
 	 }
+	 printf("\n");
 	 return 0;
 }
 
