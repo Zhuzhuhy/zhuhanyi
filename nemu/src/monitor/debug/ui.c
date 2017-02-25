@@ -85,16 +85,17 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args){
      char *locate_start,*locate_len;
-	 int  num,count = 0,locate,num_s;
+	 int  num, num_s;
 	 locate_len = strtok(args," ");
 	 locate_start = strtok(args," ");
      num = atoi(locate_len);
 	 num_s = atoi(locate_start);
  	/* while(count < num){*/
-     locate = swaddr_read(num_s,num + count);
+/*     locate = swaddr_read(num_s,num + count);
 	 printf("%02x",locate);
-	/* count++;
+	 count++;
 	 }*/
+	 printf("%d\t%02x", num,num_s);
 	 return 0;
 }
 
