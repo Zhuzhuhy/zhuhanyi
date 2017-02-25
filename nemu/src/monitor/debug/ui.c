@@ -91,7 +91,7 @@ static int cmd_x(char *args){
      num = atoi(locate_len);
 	 sscanf(locate_start,"%x",&num_s);
 	 printf("start addr:%s  len:%d\n",locate_start,num);
- 	 while(count < num){
+ 	 while(count <= num){
      locate = swaddr_read(num_s,2);
 	 printf("%02x  ",locate);
 	 count++;
