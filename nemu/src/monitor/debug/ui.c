@@ -87,7 +87,7 @@ static int cmd_x(char *args){
      char *locate_start,*locate_len;
 	 int  num, num_s,count = 0,locate;
 	 locate_len = strtok(args," ");
-	 locate_start = strtok(args," ");
+	 locate_start = strtok(NULL," ");
      num = atoi(locate_len);
 	 num_s = atoi(locate_start);
 	 printf("start addr:%s  len:%d\n",locate_start,num);
