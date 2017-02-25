@@ -60,8 +60,8 @@ static int cmd_si(char *args) {
 
     char *str;
     int num;	
-    str = strtok(args," ");
-    num = atoi(str);
+    str = strtok(args," ");/*strtok() cut off*/
+    num = atoi(str);/*turn number*/
 	if(num == -1) cpu_exec(-1);
 	else if(num < 0 ) printf("Error\n");
 	else  cpu_exec(num);
@@ -74,7 +74,7 @@ static int cmd_info(char *args) {
 	if(strcmp(ch,"r") == 0){
  	while(i < 8){   
 		printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
-		i++;
+		i++;/*cpu_state,reg.h*/
 	}
 	printf("eip :%08x %d \n",cpu.eip,cpu.eip);
 	}
@@ -89,10 +89,10 @@ static int cmd_x(char *args){
 	 locate_len = strtok(args," ");
 	 locate_start = strtok(NULL," ");
      num = atoi(locate_len);
-	 sscanf(locate_start,"%x",&num_s);
+	 sscanf(locate_start,"%x",&num_s); /*turn string to locate*/
 	 printf("start addr:%s  len:%d\n",locate_start,num);
  	 while(count < num){
-     locate = swaddr_read(num_s,1);
+     locate = swaddr_read(num_s,1);/*return virtual memory*/
 	 printf("%02x  ",locate);
 	 count++;
 	 num_s++;
