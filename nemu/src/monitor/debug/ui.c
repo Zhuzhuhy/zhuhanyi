@@ -93,8 +93,9 @@ static int cmd_x(char *args){
 	 printf("start addr:%02x  len:%d\n",num_s,num);
  	 while(count < num){
      locate = swaddr_read(num_s,2);
-	 printf("%02x",locate);
+	 printf("%02x  ",locate);
 	 count++;
+	 if(count == 4) printf("\n");
 	 }
 	 return 0;
 }
