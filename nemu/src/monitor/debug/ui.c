@@ -89,7 +89,7 @@ static int cmd_x(char *args){
 	 locate_len = strtok(args," ");
 	 locate_start = strtok(NULL," ");
      num = atoi(locate_len);
-	 num_s = atoi(locate_start);
+	 sscanf(locate_start,"%x",&num_s);
 	 printf("start addr:%s  len:%d\n",locate_start,num);
      locate = swaddr_read(num_s,2);
  	 while(count < num){
