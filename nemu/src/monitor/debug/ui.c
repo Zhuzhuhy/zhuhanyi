@@ -102,6 +102,7 @@ static int cmd_x(char *args){
 	 num_s++;
 	 count = 0;
 	 locate_count++;
+	 printf("\n");
 	 }
 	 printf("\n");
 	 return 0;
