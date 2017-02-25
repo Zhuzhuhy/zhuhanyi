@@ -90,11 +90,11 @@ static int cmd_x(char *args){
 	 locate_start = strtok(args," ");
      num = atoi(locate_len);
 	 num_s = atoi(locate_start);
- 	 while(count < num){
-     locate = swaddr_read(num_s,num_s + count);
+ 	/* while(count < num){*/
+     locate = swaddr_read(num_s,num + count);
 	 printf("%02x",locate);
-	 count++;
-	 }
+	/* count++;
+	 }*/
 	 return 0;
 }
 
