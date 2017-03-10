@@ -71,8 +71,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i=0;
-	int j=0;
+	int i=0,j;
 	regmatch_t pmatch;
 	nr_token = 0;
     
@@ -81,9 +80,10 @@ static bool make_token(char *e) {
    			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
-
+          
 			Log("\nmatch rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
-			
+		        position += substr_len;
+
   				/* TODO: Now a new token is recognized with rules[i]. Add codes 
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
@@ -112,18 +112,19 @@ static bool make_token(char *e) {
 /*                    case hex:
                    tokens[nr_token].type = hex;
                     break;
-*/					case dec:
-					for(j=0;substr_start+j != NULL;j++)
+*/			 		case dec:
+					j=0;
+					while(substr_start+j != NULL){
 				    	tokens[nr_token].str[j] = substr_start[j];
+						j++;
+					}
 					tokens[nr_token].str[j] = '\0';
 					printf("%s",tokens[nr_token].str);
 					break;
 					default: panic("please implement me");
    		 		}
-
-				break;
-    			
         nr_token ++;
+		break;
 			}
  		}
  
