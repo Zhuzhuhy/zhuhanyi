@@ -37,7 +37,7 @@ static struct rule {
 	{"\\(",'('},                    // left bracket
 	{"\\)",')'},                    // right bracket
 
-    {"[0-9]{1,10}",dec},                   // decimalist
+    {"[0-9]{1,10}",dec}                  // decimalist
 /*	{"0x[0-9A-Fa-f]{0,8}",hex}*/            // hex
 };
 
