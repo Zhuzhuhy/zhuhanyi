@@ -137,21 +137,22 @@ static bool make_token(char *e) {
 }
 
 static bool check_parentheses(p,q){
-   int i;
+   int i=0;
    while(p<=q){
     if(tokens[p].type == '(') i++;
-    if(tokens[p].type == ')') i--;
+	else if(tokens[p].type == ')') i--;
+	else if(tokens[p].type == ')' && i == 0)  return false;
    }
    if(i == 0) return true;
    else return false;
 }
 
 static int eval(int p,int q){
-    if(p > q) {
+     if(p > q) {
 		printf("Bad expression");
 		return false;
-	}
-   	else if(p == q){
+  	}
+    	else if(p == q){
     	 printf("%s",tokens[p].str);
 	     int i,j,sum=0,n=10;
 	     for(i=0;;i++)
@@ -160,7 +161,8 @@ static int eval(int p,int q){
 	     for(i = j;i<=0;i--){
 	     sum = sum + tokens[p].str[i]*n;
 	     n = n*10;
-	     }
+ 
+		 }
 	     return sum;
    } 
  	else if(check_parentheses(p,q) == true)
