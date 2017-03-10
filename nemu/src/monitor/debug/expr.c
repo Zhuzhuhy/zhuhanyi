@@ -90,7 +90,6 @@ static bool make_token(char *e) {
 				 * types of tokens, some extra actions should be performed.
  			 	 */ 
 
-                 printf("aaaaa");
  				switch(rules[i].token_type) { 
 					case '+':
 					tokens[nr_token].type = '+';
@@ -121,8 +120,6 @@ static bool make_token(char *e) {
 						j++;
 				 	}
 					tokens[nr_token].str[j] = '\0';
-					printf("4444");
-					printf("%s",tokens[nr_token].str);
 					break;
 					default: panic("please implement me");
    		 		}
@@ -132,11 +129,10 @@ static bool make_token(char *e) {
  		}
    }
  
-   		if(i == NR_REGEX) {
+   	  	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
-  	 	}
-    
+		}
 
 	return true; 
 }
