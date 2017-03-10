@@ -113,7 +113,7 @@ static bool make_token(char *e) {
                    tokens[nr_token].type = hex;
                     break;
 */					case dec:
-					for(j=0;j<substr_len;j++)
+					for(j=0;substr_start+j != NULL;j++)
 				    	tokens[nr_token].str[j] = substr_start[j];
 					tokens[nr_token].str[j] = '\0';
 					printf("%s",tokens[nr_token].str);
