@@ -114,8 +114,8 @@ static bool make_token(char *e) {
                     break;
 */			 		
 					case dec:
-     					j=0;
-					while(j <= substr_len){
+					j = 0;
+					while(j < substr_len){
 				    	tokens[nr_token].str[j] = substr_start[j];
 						j++;
 				 	}
@@ -124,11 +124,11 @@ static bool make_token(char *e) {
 					default: panic("please implement me");
    		 		}		
 		break;
-	}
+    	}
 			nr_token++;
-		}
+	}
 
-   	  	if(i == NR_REGEX) {
+   	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
