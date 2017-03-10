@@ -10,7 +10,11 @@ enum {
 	NOTYPE = 256, 
 	EQ = 257,
     dec = 258,
-	hex = 259
+	hex = 259,
+	dand = 260,
+	dor = 261,
+	xor = 262,
+
 	/* TODO: Add more token types */
 
 };
@@ -23,7 +27,11 @@ static struct rule {
   	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
  	  */
-
+    {"=",'='},
+	{"<",'<'},
+	{">",'>'},
+	{"\\|",'|'},
+	{"&",'&'},
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
@@ -36,9 +44,13 @@ static struct rule {
 	{"\\^",'^'},             		// ^
 	{"\\(",'('},                    // left bracket
 	{"\\)",')'},                    // right bracket
+    {"&&",dand},
+	{"||",dor},
+	{"!",'!'},
+    
+    {"[0-9]{1,10}",dec},                  // decimalist
+	{"0x[0-9A-Fa-f]{0,8}",hex},            // hex
 
-    {"[0-9]{1,10}",dec}                  // decimalist
-/*	{"0x[0-9A-Fa-f]{0,8}",hex}*/            // hex
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -83,11 +95,11 @@ static bool make_token(char *e) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
           
-         printf("sssss");
-			Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
+	Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
 	 position += substr_len;
-         printf("sssss");
-  				/* TODO: Now a new token is recognized with rules[i]. Add codes 
+
+	 printf("sssss");
+     				/* TODO: Now a new token is recognized with rules[i]. Add codes 
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
  			 	 */ 
@@ -121,7 +133,7 @@ static bool make_token(char *e) {
 					tokens[nr_token].str[j] = '\0';
 					break;
 					default: panic("please implement me");
-   		 		}		
+    		 		}		
 		nr_token++;
 		break;
       	}
