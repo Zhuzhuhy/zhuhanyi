@@ -81,7 +81,7 @@ static bool make_token(char *e) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
           
-			Log("\nmatch rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
+			Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
 		        position += substr_len;
 
   				/* TODO: Now a new token is recognized with rules[i]. Add codes 
@@ -115,10 +115,10 @@ static bool make_token(char *e) {
 */			 		
 					case dec:
 					j=0;
-					while(substr_start+j != NULL){
+					while(j <= substr_len){
 				    	tokens[nr_token].str[j] = substr_start[j];
 						j++;
-					}
+				 	}
 					tokens[nr_token].str[j] = '\0';
 					printf("4444");
 					printf("%s",tokens[nr_token].str);
