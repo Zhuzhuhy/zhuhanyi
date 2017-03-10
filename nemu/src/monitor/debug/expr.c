@@ -124,7 +124,7 @@ static bool make_token(char *e) {
 		nr_token++;
 		break;
       	}
-			printf("8888855");
+			printf("8888855\n");
 	}
 		printf("7777");
    	   	if(i == NR_REGEX) {
