@@ -197,7 +197,7 @@ uint32_t expr(char *e, bool *success) {
 */	
     int num,i;
     for(i =0;i<32;i++)
-		if(tokens[i].type == 0 && tokens[i].str == NULL) break;
+		if(e[i] == '\0') break;
 	num = eval(0,i-1);	
 	*success = true;
 	return num;  

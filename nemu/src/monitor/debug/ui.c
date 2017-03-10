@@ -62,7 +62,6 @@ static int cmd_p(char *args){
 	bool *success=0;
 	char *str;
     str = strtok(args," ");
-	printf("eeee%s",str);
 	int num = expr(str,success);
     if(success) printf("the expression: %d",num);
 	return 0;
