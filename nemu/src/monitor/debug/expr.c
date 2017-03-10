@@ -114,7 +114,7 @@ static bool make_token(char *e) {
                     break;
 */			 		
 					case dec:
-					j=0;
+     					j=0;
 					while(j <= substr_len){
 				    	tokens[nr_token].str[j] = substr_start[j];
 						j++;
