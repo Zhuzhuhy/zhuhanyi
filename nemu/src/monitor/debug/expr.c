@@ -115,11 +115,8 @@ static bool make_token(char *e) {
 */			 		
 					case dec:
 					tokens[nr_token].type = dec;
-					j = 0;
-					while(j < substr_len){
+					for(j=0;j < substr_len;j++)
 				    	tokens[nr_token].str[j] = substr_start[j];
-						j++;
-				 	}
 					tokens[nr_token].str[j] = '\0';
 					break;
 					default: panic("please implement me");
