@@ -133,6 +133,7 @@ static bool make_token(char *e) {
 			return false;
 		}
    }
+   printf("888888:");
 	return true; 
 }
 static bool check_parentheses(p,q){
