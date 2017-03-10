@@ -124,8 +124,9 @@ static bool make_token(char *e) {
 					default: panic("please implement me");
    		 		}
         nr_token ++;
-		break;
 			}
+		break;
+			
  		}
 
    	  	if(i == NR_REGEX) {
