@@ -122,11 +122,10 @@ static bool make_token(char *e) {
 					tokens[nr_token].str[j] = '\0';
 					break;
 					default: panic("please implement me");
-   		 		}
-        nr_token ++;
-			
+   		 		}		
 		break;
-			}
+	}
+			nr_token++;
 		}
 
    	  	if(i == NR_REGEX) {
