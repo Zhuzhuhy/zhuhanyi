@@ -71,7 +71,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i=0,j;
+	int i=0,j=0;
 	regmatch_t pmatch;
 	nr_token = 0;
    
@@ -109,10 +109,9 @@ static bool make_token(char *e) {
 					case ')':
 					tokens[nr_token].type = ')';
 					break;
-/*                    case hex:
-                   tokens[nr_token].type = hex;
-                    break;
-*/			 		
+				 	case hex:
+                    tokens[nr_token].type = hex;
+                    break;			 		
 					case dec:
 					tokens[nr_token].type = dec;
 					for(j=0;j < substr_len;j++)
@@ -121,9 +120,10 @@ static bool make_token(char *e) {
 					break;
 					default: panic("please implement me");
    		 		}		
+		nr_token++;
 		break;
-    	}
-			nr_token++;
+     	}
+		
 	}
 
    	   	if(i == NR_REGEX) {
@@ -131,7 +131,6 @@ static bool make_token(char *e) {
 			return false;
 		}
    }
-   printf("888888:");
 	return true; 
 }
 static bool check_parentheses(p,q){
@@ -194,7 +193,7 @@ uint32_t expr(char *e, bool *success) {
  	}
 	}
 */
-    printf("OK");	
+  	printf("OK");	
     int num,i;
     for(i =0;i<32;i++)
 		if(e[i] == '\0') break;
