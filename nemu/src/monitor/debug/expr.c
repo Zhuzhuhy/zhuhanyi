@@ -194,7 +194,8 @@ uint32_t expr(char *e, bool *success) {
 		tokens[i].type = DEREF;
  	}
 	}
-*/	
+*/
+    printf("OK");	
     int num,i;
     for(i =0;i<32;i++)
 		if(e[i] == '\0') break;
