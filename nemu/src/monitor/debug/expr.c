@@ -72,7 +72,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i=0,j=0;
+	int i,j;
 	regmatch_t pmatch;
 	nr_token = 0;
    
@@ -123,7 +123,8 @@ static bool make_token(char *e) {
    		 		}		
 		nr_token++;
 		break;
-     	}
+      	}
+			printf("8888855");
 	}
 		printf("7777");
    	   	if(i == NR_REGEX) {
