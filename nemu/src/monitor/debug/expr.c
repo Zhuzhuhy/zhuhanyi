@@ -112,13 +112,15 @@ static bool make_token(char *e) {
 /*                    case hex:
                    tokens[nr_token].type = hex;
                     break;
-*/			 		case dec:
+*/			 		
+					case dec:
 					j=0;
 					while(substr_start+j != NULL){
 				    	tokens[nr_token].str[j] = substr_start[j];
 						j++;
 					}
 					tokens[nr_token].str[j] = '\0';
+					printf("4444");
 					printf("%s",tokens[nr_token].str);
 					break;
 					default: panic("please implement me");
