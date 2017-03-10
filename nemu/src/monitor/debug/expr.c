@@ -27,11 +27,11 @@ static struct rule {
   	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
  	  */
-    {"=",'='},
+/*    {"=",'='},
 	{"<",'<'},
 	{">",'>'},
 	{"\\|",'|'},
-	{"&",'&'},
+*/	{"&",'&'},
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
@@ -44,10 +44,10 @@ static struct rule {
 	{"\\^",'^'},             		// ^
 	{"\\(",'('},                    // left bracket
 	{"\\)",')'},                    // right bracket
-    {"&&",dand},
+  /*  {"&&",dand},
 	{"||",dor},
 	{"!",'!'},
-    
+    */
     {"[0-9]{1,10}",dec},                  // decimalist
 	{"0x[0-9A-Fa-f]{0,8}",hex},            // hex
 
