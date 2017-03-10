@@ -35,9 +35,10 @@ static int cmd_q(char *args) {
 	return -1;
 }
 static int cmd_si(char *args);
-static int cmd_info(char *args);
+static int cmd_info(char *args); 
 static int cmd_x(char *args);
 static int cmd_help(char *args);
+static int cmd_p(char *args);
 
 static struct {
 	char *name;
@@ -50,12 +51,22 @@ static struct {
 	{ "si","Step Mode Execution",cmd_si },
 	{ "info","Print",cmd_info },
 	{ "x","Memory scan",cmd_x },
+	{ "p","Expression evaluation",cmd_p },
 	/* TODO: Add more commands */
-
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
+
+static int cmd_p(char *args){
+	bool *success=0;
+	char *str;
+    str = strtok(args," ");
+	printf("eeee%s",str);
+	int num = expr(str,success);
+    if(success) printf("the expression: %d",num);
+	return 0;
+}
 static int cmd_si(char *args) {
 
     char *str;
@@ -137,12 +148,12 @@ void ui_mainloop() {
 
 		/* treat the remaining string as the arguments,
 		 * which may need further parsing
- 		 */
+  		 */
 		char *args = cmd + strlen(cmd) + 1;
  		if(args >= str_end) {
 			args = NULL;
-		}
-
+ 		}
+ 
 #ifdef HAS_DEVICE
 		extern void sdl_clear_event_queue(void);
 		sdl_clear_event_queue();
@@ -157,5 +168,5 @@ void ui_mainloop() {
 		}
 
 		if(i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
- 	}
+  	}
 }
