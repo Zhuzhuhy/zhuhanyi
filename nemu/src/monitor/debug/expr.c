@@ -84,8 +84,8 @@ static bool make_token(char *e) {
 				int substr_len = pmatch.rm_eo;
           
 			Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
-		        position += substr_len;
-				if(e[position] == '\0') break;
+	        if(e[position] == '\0')break;	 
+	 		position += substr_len;
          printf("sssss");
   				/* TODO: Now a new token is recognized with rules[i]. Add codes 
 				 * to record the token in the array ``tokens''. For certain 
@@ -125,15 +125,12 @@ static bool make_token(char *e) {
 		nr_token++;
 		break;
       	}
-			printf("8888855\n");
 	}
-		printf("7777");
    	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
    }
-   printf("aaaaaa");
 	return true; 
 }
 
