@@ -131,8 +131,10 @@ static bool make_token(char *e) {
 			return false;
 		}
    }
+   printf("aaaaaa");
 	return true; 
 }
+
 static bool check_parentheses(p,q){
    int i;
    while(p<=q){
