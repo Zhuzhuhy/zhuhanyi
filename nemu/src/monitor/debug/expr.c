@@ -165,7 +165,6 @@ static bool make_token(char *e) {
 int dominant(int p,int q){
    int i = p;
    int max = 0;
-   Log("ffffffffffffffffffffff");
     while(p<=q){
       if(tokens[p].type != dec || tokens[p].type != hex){
 	     max = p;
@@ -182,7 +181,6 @@ int dominant(int p,int q){
    }
 
 uint32_t eval(int p,int q){
-	Log("1111444444");
         if(p > q) {
 		printf("Bad expression");
 		return 0;
