@@ -184,6 +184,8 @@ int dominant(int p,int q){
    }
 
  int eval(int p,int q){
+	 printf("%d",q);
+	 Log("eval");
       if(p > q) {
 		printf("Bad expression");
 		return 0;
