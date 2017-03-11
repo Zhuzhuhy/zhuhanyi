@@ -157,8 +157,7 @@ static bool make_token(char *e) {
 	else j++;
     p++;
     }
-	 printf("j=%d",j);
-	 printf("q=%d",q);
+	
    if(i == 0 && j-1 != q) return true;
    else return false;
 }
@@ -185,10 +184,9 @@ uint32_t eval(int p,int q){
     	}
  	  else if(p == q){
 		  if(tokens[p].type == dec){
-			  int sum;
-			  sum = atoi(tokens[p].str);
-			 printf("sumsum %d",sum);
-		     return sum;
+			  int n;
+			  n = atoi(tokens[p].str);
+		      return n;
  		  }
 		  else {
 		  int hexnum;
@@ -203,6 +201,7 @@ uint32_t eval(int p,int q){
 		int op;
 		int val1,val2;
 		op = dominant(p , q);
+		printf("%d %d %d",op,p,q);
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
 		printf("op %d val %d  %d\n",op,val1,val2);
