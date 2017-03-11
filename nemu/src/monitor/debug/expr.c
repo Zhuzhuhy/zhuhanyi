@@ -162,32 +162,45 @@ static bool check_parentheses(p,q){
    if(i == 0) return true;
    else return false;
 }
+int dominant(int p,int q){
+   int i = p;
+   int max = 0;
+   while(p<q){
+   if(tokens[p].type != dec){
+	   max = p;
+   for(i=p;i<= p;i++)
+   if(tokens[i].type >= tokens[i+1].type && tokens[p+1].type!=dec)
+     max = p; 
+   }
+   p++;
+}
+   return max;
+   }
 
-
-static int eval(int p,int q){
-	printf("jinlai");
+ int eval(int p,int q){
      if(p > q) {
 		printf("Bad expression");
 		return false;
-  	}
-    	else if(p == q){
-    	 printf("%s",tokens[p].str);
-	     int i,j,sum=0,n=10;
+   	}
+	else if(p == q){
+	     int i,j,sum=0,n=1;
 	     for(i=0;;i++)
          if(tokens[p].str[i]== '\0') break;
 	     j =i-1;
 	     for(i = j;i<=0;i--){
-	     sum = sum + tokens[p].str[i]*n;
+	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
  
-		 }
+	 	 }
+		 Log("%d",sum);
 	     return sum;
-   } 
+    } 
  	else if(check_parentheses(p,q) == true)
             	return eval(p +1,q - 1);
-	else {//dominant operator
-    	int op = tokens[p].type;
-        int val1,val2;   
+ 	else{               //dominant operator
+    	int op;
+        int val1,val2; 
+        op = dominant(p,q);
     	val1 = eval(p, op - 1);
     	val2 = eval(op + 1, q);
    	switch(op){
@@ -206,7 +219,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
     	}
-	Log("iiiii");
 /* 	for(i = 0;i < nr_token; i ++){
  	 if(tokens[i].type == '*' 
 	&& (i == 0||tokens[i - 1].type == dec)){
@@ -216,7 +228,9 @@ uint32_t expr(char *e, bool *success) {
 	}
 */
    	int num;
-	num = eval(0,nr_token-1);	
+	num = eval(0,nr_token-1);
+    printf("%d",num);
+Log("shuchuhzi");	
 	*success = true;
 	return num;  
  	/* TODO: Insert codes to evaluate the expression. */
