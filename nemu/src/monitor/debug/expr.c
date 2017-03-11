@@ -216,6 +216,7 @@ uint32_t eval(int p,int q){
 		int op;
 		int val1,val2;
 		op = dominant(p , q);
+		printf("%d   ",op);
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
 		printf("%d %d %d\t",op,val1,val2);
