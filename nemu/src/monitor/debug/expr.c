@@ -187,9 +187,11 @@ uint32_t eval(int p,int q){
 		 for(i=0;;i++)
 			 if(tokens[p].str[i] == '\0') break;
 		 j = i-1;
-		     for(i=j;i>=0;i--)
+		     for(i=j;i>=0;i--){
              sum = sum+tokens[p].str[i]*n;
 			 n = n*10;
+			 }
+			 printf("sumsum %d",sum);
 		     return sum;
 		  }
 		  else {
