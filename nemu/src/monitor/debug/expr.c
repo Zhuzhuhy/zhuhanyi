@@ -238,6 +238,7 @@ uint32_t expr(char *e, bool *success) {
 	printf("hello");
 	num = eval(0,nr_token-1);
     printf("%d",num);
+	Log("lastlast");
 	*success = true;
 	return num;  
  	/* TODO: Insert codes to evaluate the expression. */
