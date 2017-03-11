@@ -207,7 +207,7 @@ Log("ssssssssssssssssssss");
  	else{               //dominant operator
     	int op;
         int val1,val2; 
-		op = eval(p , q);
+		op = dominant(p , q);
 		val1 = eval(p , op +1);
     	val2 = eval(op + 1, q);
         
