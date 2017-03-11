@@ -204,10 +204,9 @@ int dominant(int p,int q){
  	 	 }
 	     return sum;
         }  
-	  else if(check_parentheses(p,q)== true){
+	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
 	 }
-
  	 else{               //dominant operator
 		int op;
 		int val1,val2;
@@ -251,7 +250,6 @@ uint32_t expr(char *e, bool *success) {
 */
  else{
 	 printf("hello");
-	 Log("expr else");
 	*success = true; 
 	int num;
 	num = eval(0,nr_token-1);
