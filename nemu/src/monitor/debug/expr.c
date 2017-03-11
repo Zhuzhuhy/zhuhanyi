@@ -133,7 +133,8 @@ static bool make_token(char *e) {
 					case rm:
 					case es:
 					case eb:
-					case EQ:	
+					case EQ:
+					case NE:	
 					tokens[nr_token].type = rules[i].token_type;
 					nr_token ++;
 					break;
