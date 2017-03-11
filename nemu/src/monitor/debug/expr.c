@@ -161,6 +161,7 @@ static bool check_parentheses(p,q){
 	else j++;
     p++;
    }
+	printf("%d %d",j,q);
    if(i == 0 && j != q) return true;
    else return false;
 }
