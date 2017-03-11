@@ -167,8 +167,8 @@ static bool check_parentheses(p,q){
 int dominant(int p,int q){
    int i = p;
    int max = 0;
-   while(p<=q){
-   if(tokens[p].type != dec){
+    while(p<=q){
+    if(tokens[p].type != dec){
 	   max = p;
    for(i=0;i+1<= q;i++)
    if(tokens[i].type >= tokens[i+1].type && tokens[i+1].type!=dec)
@@ -176,6 +176,8 @@ int dominant(int p,int q){
    }
    p++;
    }
+   printf("%d",max);
+   Log("ffff");
    return max;
    }
 
@@ -184,7 +186,7 @@ int dominant(int p,int q){
 		printf("Bad expression");
 		return 0;
     	}
- 	 if(p == q){
+	  else if(p == q){
 	     int i=0,j,sum=0,n=1;
          
 	     while(1){
@@ -198,9 +200,10 @@ int dominant(int p,int q){
  	 	 }
 	     return sum;
      }  
- 	if(check_parentheses(p,q))
-            	return eval(p +1,q - 1);
- 	else{               //dominant operator
+	  else	if(check_parentheses(p,q))
+              	return eval(p +1,q - 1);
+
+ 	  else{               //dominant operator
 		int op;
 		int val1,val2;
 		int num; 	
@@ -209,7 +212,7 @@ int dominant(int p,int q){
 		val2 = eval(op + 1, q);
 		printf("op%d val%d %d",op,val1,val2);
 		Log("dftyyyyyfd");
-		switch(tokens[op].type){
+	 	switch(tokens[op].type){
 			case '+':num = val1 + val2; 
                      break;
 			case '-':num = val1 - val2;
