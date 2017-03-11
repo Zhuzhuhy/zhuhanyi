@@ -125,8 +125,8 @@ static bool make_token(char *e) {
 					strcpy(tokens[nr_token].str,substr_start);
 					nr_token++;
 	            	break;
-					default:
-				    break;
+					  default :panic("please implement me");
+				    
          		 		}		
 	           	break;
           	} 
