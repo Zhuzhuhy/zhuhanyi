@@ -242,7 +242,8 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
      	}
-    Log("hello"); 
+    printf("hello"); 
+	Log("fghhgfd");
 	*success = true; 
 	int num;
 	Log("start");
