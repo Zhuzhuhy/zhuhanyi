@@ -1,6 +1,5 @@
 #include "nemu.h"
 #include "stdlib.h"
-#include "stdio.h"
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -184,7 +183,6 @@ int dominant(int p,int q){
    }
 
  int eval(int p,int q){
-	 Log("eval %d",q);
        if(p > q) {
 		printf("Bad expression");
 		return 0;
