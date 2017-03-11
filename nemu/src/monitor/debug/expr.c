@@ -149,7 +149,7 @@ static bool make_token(char *e) {
 
  bool check_parentheses(p,q){
    int i=0,j=0;
-    while(p<=q){
+     while(p<=q){
     if(tokens[p].type == '(' ) i++;
 	if(tokens[p].type == '(' && p != 0 && i == 0) return false; 
 	if(tokens[p].type == ')') i--;
@@ -157,20 +157,22 @@ static bool make_token(char *e) {
 	else j++;
     p++;
     }
+	 printf("j=%d",j);
+	 printf("q=%d",q);
    if(i == 0 && j-1 != q) return true;
    else return false;
 }
 int dominant(int p,int q){
    int i = p;
    int max = 0;
-    while(p<=q){
+     while(p<=q){
       if(tokens[p].type != dec || tokens[p].type != hex){
 	     max = p;
        for(i=0;i<= q;i++){
         if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex)
             max = i; 
-	      }
-         }  
+ 	      }
+          }  
         p++;
        }
    return max;
@@ -187,20 +189,19 @@ uint32_t eval(int p,int q){
 			  sum = atoi(tokens[p].str);
 			 printf("sumsum %d",sum);
 		     return sum;
-		  }
+ 		  }
 		  else {
 		  int hexnum;
 		  sscanf(tokens[p].str,"%x",&hexnum);
 		  return hexnum;
-		  }
-         }  
+ 		  }
+          }  
 	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
-	 } 
+ 	   } 
   	 else{               //dominant operator
 		int op;
 		int val1,val2;
-		int num; 	
 		op = dominant(p , q);
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
@@ -216,16 +217,12 @@ uint32_t eval(int p,int q){
 			case dor:return  val1 || val2;
 			case '^':return  val1 ^ val2;
 			case '%':return  val1 % val2;
-			default: assert(0);
- 		}
-	 
-	printf("%d",num);
-	Log("78954521");
- 	return num;
-	 }
+			default:
+			break;
+ 	     	}
+	}
+	 return 0;
 }
-
-
 uint32_t expr(char *e, bool *success) {
  	if(!make_token(e)) {
 		*success = false;
