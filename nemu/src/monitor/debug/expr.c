@@ -84,7 +84,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i,j;
+	int i;
 	regmatch_t pmatch;
 	nr_token = 0;
    
@@ -128,11 +128,12 @@ static bool make_token(char *e) {
                     tokens[nr_token].type = hex;
                     break;			 		
 					case dec:
-					tokens[nr_token].type = dec;
+					sprintf(tokens[nr_token].str,"%.*s",substr_len,substr_start);
+	/*				tokens[nr_token].type = dec;
 					for(j=0;j < substr_len;j++)
 				    	tokens[nr_token].str[j] = substr_start[j];
 					tokens[nr_token].str[j] = '\0';
-					break;
+	*/				break;
 					default: panic("please implement me");
     		 		}		
 		nr_token++;
