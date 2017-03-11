@@ -233,8 +233,8 @@ uint32_t expr(char *e, bool *success) {
    	int num;
 	printf("hello");
 	num = eval(0,nr_token-1);
-	*success = true;
-	return num;  
+	*success = true;  
  	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
+	return num;
 }
