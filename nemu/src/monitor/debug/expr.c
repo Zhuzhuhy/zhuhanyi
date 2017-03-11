@@ -248,7 +248,7 @@ int dominant(int p,int q){
 	 return k;
 }
 uint32_t eval(int p,int q){
-	    printf("%d",tokens[p+1].type);
+	    printf("%d\n",tokens[p+1].type);
 	    printf("%d",tokens[p+2].type);
         if(p > q) {
 		printf("Bad expression");
