@@ -153,8 +153,8 @@ static bool make_token(char *e) {
 }
 
 static bool check_parentheses(p,q){
-   int i=0;
-   while(p<=q){
+   int i=1;
+    while(p<=q){
     if(tokens[p].type == '(') i++;
 	if(tokens[p].type == ')') i--;
 	if(tokens[p].type == ')' && i == 0)  return false;
@@ -162,7 +162,7 @@ static bool check_parentheses(p,q){
    }
    printf("Ipp");
    Log("ddddddddddd");
-   if(i == 0) return true;
+   if(i == 1) return true;
    else return false;
 }
 int dominant(int p,int q){
@@ -184,9 +184,10 @@ int dominant(int p,int q){
      if(p > q) {
 		printf("Bad expression");
 		return false;
-   	}
+    	}
 	else if(p == q){
 	     int i,j,sum=0,n=1;
+         
 	     for(i=0;;i++)
          if(tokens[p].str[i]== '\0') break;
 	     j =i-1;
@@ -194,11 +195,11 @@ int dominant(int p,int q){
 	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
  
-	 	 }
+ 	 	 }
 		 Log("%d",sum);
 	     return sum;
-    } 
- 	else if(check_parentheses(p,q) == true)
+     } 
+ 	else if(check_parentheses(p,q))
             	return eval(p +1,q - 1);
  	else{               //dominant operator
     	int op;
