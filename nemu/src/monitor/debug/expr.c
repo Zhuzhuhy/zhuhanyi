@@ -256,7 +256,7 @@ uint32_t eval(int p,int q){
 		  sscanf(tokens[p].str,"%x",&hexnum);
 		  return hexnum;
  		  }
-		  else{
+		  if(tokens[p].type == REG){
             int i=0;
 			while(i<8){
 			 if(!strcmp(tokens[p].str,regsl[i]))
