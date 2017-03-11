@@ -242,8 +242,9 @@ uint32_t expr(char *e, bool *success) {
 	}
 */
  else{
+	 printf("hello");
 	*success = true; 
-	int num;
+	int num=0;
 	num = eval(0,nr_token - 1);
     printf("the expression: %d",num);
     return true;	
