@@ -254,7 +254,7 @@ uint32_t expr(char *e, bool *success) {
 	int num;
 	num = eval(0,nr_token-1);
     printf("the expression: %d",num);
-    return true;	
+    return num;	
  	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
 }
