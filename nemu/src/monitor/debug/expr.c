@@ -177,8 +177,6 @@ int dominant(int p,int q){
    p++;
 
 }
-printf("%d",max);
-Log("ssssssssssssssssssss");
    return max;
    }
 
