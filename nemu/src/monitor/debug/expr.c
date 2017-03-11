@@ -36,7 +36,6 @@ static struct rule {
 	{"<",'<'},
 	{"%",'%'},
 	{">",'>'},
-	{"=",'='},
 	{"\\|",'|'},
 	{"&",'&'}, 
 	{" +",	NOTYPE},				// spaces
@@ -288,7 +287,7 @@ uint32_t eval(int p,int q){
 					break;
 	  }
 	  }
-	  if(tokens[p+1].type != tokens[p+2].type && tokens[p+1].type != dec && tokens[p+2].type!= dec)
+	/*  if(tokens[p+1].type != tokens[p+2].type && tokens[p+1].type != dec && tokens[p+2].type!= dec)
 	  {   
 		  val1 = atoi(tokens[p].str);
 		  val2 = atoi(tokens[q].str);
@@ -301,7 +300,7 @@ uint32_t eval(int p,int q){
 				break;
 	  }
 	  }
-		if(op == 0){
+	*/	if(op == 0){
 		val3 = eval(op+1,q);
 		switch(tokens[op].type)
 	  	{
