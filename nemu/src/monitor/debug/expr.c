@@ -88,15 +88,15 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	nr_token = 0;
    
-     while(e[position] != '\0'){	
+      while(e[position] != '\0'){	
 		/* Try all rules one by one. */
-   		for(i = 0; i < NR_REGEX; i ++)  {
+    		for(i = 0; i < NR_REGEX; i ++)  {
     			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
           
 	Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
-	position += substr_len;
+	      position += substr_len;
 
      				/* TODO: Now a new token is recognized with rules[i]. Add codes 
 				 * to record the token in the array ``tokens''. For certain 
@@ -106,8 +106,6 @@ static bool make_token(char *e) {
   				switch(rules[i].token_type) {
 				    case ' ':
 					break;	
-					case '\0':
-					break;
 					case '+':
 					tokens[nr_token].type = '+';
 					break;
@@ -130,18 +128,15 @@ static bool make_token(char *e) {
                     tokens[nr_token].type = hex;
                     break;			 		
 					case dec:
+					tokens[nr_token].type = dec;
 		sprintf(tokens[nr_token].str,"%.*s",substr_len,substr_start);
-	 /*				tokens[nr_token].type = dec;
-					for(j=0;j < substr_len;j++)
-				    	tokens[nr_token].str[j] = substr_start[j];
-					tokens[nr_token].str[j] = '\0';
-	*/				break;
+	            	break;
 					default: panic("please implement me");
-      		 		}		
+       		 		}		
 	    if(rules[i].token_type != ' ')
 		          nr_token++;
 		break;
-       	}
+        	}
  	}
      	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
@@ -159,7 +154,7 @@ static bool check_parentheses(p,q){
 	if(tokens[p].type == ')' && i == 0)  return false;
 	else j++;
     p++;
-   }
+    }
 	printf("%d",j);
 	Log("check");
    if(i == 0 && j-1 != q) return true;
@@ -171,19 +166,19 @@ int dominant(int p,int q){
     while(p<=q){
     if(tokens[p].type != dec){
 	   max = p;
-   for(i=0;i+1<= q;i++)
-   if(tokens[i].type >= tokens[i+1].type && tokens[i+1].type!=dec)
-     max = i; 
-    }
+       for(i=0;i+1<= q;i++)
+            if(tokens[i].type >= tokens[i+1].type && tokens[i+1].type!=dec)
+            max = i; 
+        }
    p++;
-    }
+     }
    printf("%d",max);
    Log("ffff");
    return max;
    }
 
  int eval(int p,int q){
-       if(p > q) {
+        if(p > q) {
 		printf("Bad expression");
 		return 0;
     	}
@@ -193,18 +188,18 @@ int dominant(int p,int q){
  	     while(1){
              if(tokens[p].str[i]== '\0') break;
 			 i++;
- 	 	 }
+ 	  	 }
 	     j =i-1;
- 	      for(i = j;i>=0;i--){
+ 	       for(i = j;i>=0;i--){
 	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
  	 	 }
 	     return sum;
-        }  
+         }  
 	   else if(check_parentheses(p,q)== true){
 		       Log("do it");
               	return eval(p +1,q - 1);
-	 }
+	 } 
  	 else{               //dominant operator
 		int op;
 		int val1,val2;
@@ -214,7 +209,7 @@ int dominant(int p,int q){
 		val2 = eval(op + 1, q);
 		printf("op%d val%d %d",op,val1,val2);
 		Log("dftyyyyyfd");
-	 	switch(tokens[op].type){
+ 	 	switch(tokens[op].type){
 			case '+':num = val1 + val2; 
                      break;
 			case '-':num = val1 - val2;
@@ -228,7 +223,7 @@ int dominant(int p,int q){
 	 
 	printf("%d",num);
 	Log("78954521");
-  	}
+   	}
 	return 0;
 }
 
@@ -236,23 +231,14 @@ int dominant(int p,int q){
 uint32_t expr(char *e, bool *success) {
  	if(!make_token(e)) {
 		*success = false;
-		return false;
+		return 0;
      	}
-/* 	for(i = 0;i < nr_token; i ++){
- 	 if(tokens[i].type == '*' 
-	&& (i == 0||tokens[i - 1].type == dec)){
-	
-		tokens[i].type = DEREF;
- 	}
-	}
-*/
  
-	Log("hello");
 	*success = true; 
 	int num=0;
 	num = eval(0,nr_token-1);
-    Log("the expression: %d",num);
-    return num;	
+    Log("the expression: %d",num);	
  	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
+	return 0;
 }
