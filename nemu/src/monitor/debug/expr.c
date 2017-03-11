@@ -183,14 +183,8 @@ uint32_t eval(int p,int q){
     	}
  	  else if(p == q){
 		  if(tokens[p].type == dec){
-	     int i=0,j,sum=0,n=1;
-		 for(i=0;;i++)
-			 if(tokens[p].str[i] == '\0') break;
-		 j = i-1;
-		     for(i=j;i>=0;i--){
-             sum = sum+tokens[p].str[i]*n;
-			 n = n*10;
-			 }
+			  int sum;
+			  sum = atoi(tokens[p].str);
 			 printf("sumsum %d",sum);
 		     return sum;
 		  }
