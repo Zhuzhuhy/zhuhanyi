@@ -193,12 +193,14 @@ int dominant(int p,int q){
 	     max = p;
           for(i=p;i<= q;i++){
         int a,b;
+        if( tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')'){
         a = sign(tokens[i].type) ;
 		b= sign(tokens[max].type);
-        if(a <= b && tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')')
-            max = i; 
+		  if(a <= b)
+		 	max = i; 
   	       } 
-             } 
+             }
+		} 
 	     
         if(tokens[p+1].type == '(' && p+1 <= q)
         printf("error");
