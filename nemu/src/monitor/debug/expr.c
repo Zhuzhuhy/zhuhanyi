@@ -148,7 +148,6 @@ static bool make_token(char *e) {
 }
 
  bool check_parentheses(p,q){
-   printf("%d %d",p,q);
    if(tokens[p].type == '(' && tokens[q].type == ')') return true;
    /*    while(p<=q){
     if(tokens[p].type == '(' ) i++;
@@ -240,7 +239,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
      	}
-   printf("%d",nr_token); 
     printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
