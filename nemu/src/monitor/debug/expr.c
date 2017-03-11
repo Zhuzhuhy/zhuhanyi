@@ -214,7 +214,8 @@ uint32_t expr(char *e, bool *success) {
  	}
 	}
 */
-    int num;
+    Log("8588");
+   	int num;
 	num = eval(0,nr_token-1);	
 	*success = true;
 	return num;  
