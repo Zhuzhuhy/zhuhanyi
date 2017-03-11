@@ -184,8 +184,7 @@ int dominant(int p,int q){
    }
 
  int eval(int p,int q){
-	 printf("%d",q);
-	 Log("eval");
+	 Log("eval %d",q);
        if(p > q) {
 		printf("Bad expression");
 		return 0;
@@ -252,8 +251,9 @@ uint32_t expr(char *e, bool *success) {
 	Log("hello");
 	*success = true; 
 	int num;
+	Log("%d",nr_token);
 	num = eval(0,nr_token-1);
-    printf("the expression: %d",num);
+    Log("the expression: %d",num);
     return num;	
  	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
