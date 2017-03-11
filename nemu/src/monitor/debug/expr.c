@@ -156,8 +156,9 @@ static bool check_parentheses(p,q){
    int i=0;
    while(p<=q){
     if(tokens[p].type == '(') i++;
-	else if(tokens[p].type == ')') i--;
-	else if(tokens[p].type == ')' && i == 0)  return false;
+	if(tokens[p].type == ')') i--;
+	if(tokens[p].type == ')' && i == 0)  return false;
+    p++;
    }
    if(i == 0) return true;
    else return false;
