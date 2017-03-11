@@ -242,7 +242,7 @@ uint32_t expr(char *e, bool *success) {
     printf("the expression: %d",num);	
 	Log("ddddddddddddddddddddddddddddddddddddddddddd");
  	/* TODO: Insert codes to evaluate the expression. */
-    return num;
+    return 0;
 }
 	panic("please implement me");
 }
