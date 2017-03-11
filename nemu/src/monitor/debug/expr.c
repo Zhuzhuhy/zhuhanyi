@@ -158,7 +158,7 @@ static bool check_parentheses(p,q){
     if(tokens[p].type == '(') i++;
 	if(tokens[p].type == ')') i--;
 	if(tokens[p].type == ')' && i == 0)  return false;
-	if(tokens[p].type == dec) j++;
+	else j++;
     p++;
    }
    if(i == 0 && j != q) return true;
