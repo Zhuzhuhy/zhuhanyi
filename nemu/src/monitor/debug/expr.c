@@ -165,6 +165,7 @@ static bool make_token(char *e) {
 int dominant(int p,int q){
    int i = p;
    int max = 0;
+   Log("ffffffffffffffffffffff");
     while(p<=q){
       if(tokens[p].type != dec || tokens[p].type != hex){
 	     max = p;
