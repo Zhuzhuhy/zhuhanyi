@@ -206,7 +206,7 @@ int dominant(int p,int q){
     	int op;
         int val1,val2; 
 		op = dominant(p , q);
-		val1 = eval(p , op +1);
+		val1 = eval(p , op - 1);
     	val2 = eval(op + 1, q);
         
    	switch(tokens[op].type){
