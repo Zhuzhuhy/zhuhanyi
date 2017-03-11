@@ -148,9 +148,9 @@ static bool make_token(char *e) {
 }
 
  bool check_parentheses(p,q){
-   int i=0,j=0;
+   printf("%d %d",p,q);
    if(tokens[p].type == '(' && tokens[q].type == ')') return true;
- /*    while(p<=q){
+   /*    while(p<=q){
     if(tokens[p].type == '(' ) i++;
 	if(tokens[p].type == '(' && p != 0 && i == 0) return false; 
 	if(tokens[p].type == ')') i--;
@@ -159,8 +159,8 @@ static bool make_token(char *e) {
     p++;
     }
 	
-   */if(i == 0 && j-1 != q) return true;
-   else return false;
+   if(i == 0 && j-1 != q) return true;
+  */ else return false;
 }
 int dominant(int p,int q){
    int i = p,j=0;
@@ -211,7 +211,7 @@ uint32_t eval(int p,int q){
           }  
 	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
- 	   } 
+  	   } 
   	 else{                //dominant operator
 		int op;
 		int val1,val2;
