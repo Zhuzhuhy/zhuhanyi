@@ -175,8 +175,9 @@ int dominant(int p,int q){
      max = i; 
    }
    p++;
-
    }
+   printf("%d",max);
+   Log("ddddddddddddddddddfffffffffffffff");
    return max;
    }
 
