@@ -173,9 +173,9 @@ int dominant(int p,int q){
    for(i=0;i+1<= q;i++)
    if(tokens[i].type >= tokens[i+1].type && tokens[i+1].type!=dec)
      max = i; 
-   }
+    }
    p++;
-   }
+    }
    printf("%d",max);
    Log("ffff");
    return max;
@@ -246,6 +246,7 @@ uint32_t expr(char *e, bool *success) {
 */
  else{
 	 printf("hello");
+	 Log("expr else");
 	*success = true; 
 	int num=0;
 	num = eval(0,nr_token - 1);
