@@ -167,16 +167,16 @@ static bool check_parentheses(p,q){
 int dominant(int p,int q){
    int i = p;
    int max = 0;
-   while(p<q){
+   while(p<=q){
    if(tokens[p].type != dec){
 	   max = p;
-   for(i=p;i<= p;i++)
-   if(tokens[i].type >= tokens[i+1].type && tokens[p+1].type!=dec)
-     max = p; 
+   for(i=0;i+1<= q;i++)
+   if(tokens[i].type >= tokens[i+1].type && tokens[i+1].type!=dec)
+     max = i; 
    }
    p++;
 
-}
+   }
    return max;
    }
 
