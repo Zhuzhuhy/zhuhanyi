@@ -196,7 +196,7 @@ int dominant(int p,int q){
         if( tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')'){
         a = sign(tokens[i].type) ;
 		b= sign(tokens[max].type);
-		  if(a <= b)
+		  if(a >= b)
 		 	max = i; 
   	       } 
              }
