@@ -54,7 +54,7 @@ static struct rule {
 	{"\\|\\|",dor},
 	{"!",'!'}, 
     {"[0-9]{1,10}",dec},                  // decimalist
-	{"0x[0-9A-Fa-f]{0,8}",hex},            // hexi
+	{"0x[0-9A-Fa-f]{1,8}",hex},            // hexi
 	{"\\$[a-z]{2,3}",REG},
 
 };
@@ -94,7 +94,7 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	nr_token = 0;
    
-       while(e[position] != '\0'){	
+        while(e[position] != '\0'){	
 		/* Try all rules one by one. */
      		for(i = 0; i < NR_REGEX; i ++)  {
     			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
@@ -148,10 +148,10 @@ static bool make_token(char *e) {
 					  break;
 					  default :panic("please implement me");
 				    
-           		 		}		
+            		 		}		
 	           	break;
-            	} 
-    	}
+             	} 
+     	}
       	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
