@@ -94,9 +94,9 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	nr_token = 0;
    
-      while(e[position] != '\0'){	
+       while(e[position] != '\0'){	
 		/* Try all rules one by one. */
-    		for(i = 0; i < NR_REGEX; i ++)  {
+     		for(i = 0; i < NR_REGEX; i ++)  {
     			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
@@ -147,11 +147,15 @@ static bool make_token(char *e) {
 					strcpy(tokens[nr_token].str,substr_start);
 					nr_token++;
 	            	break;
+					case REG:
+					  tokens[nr_token].type = rules[i].token_type;
+					  strcpy(tokens[nr_token].str,substr_start);
+					  nr_token++;
 					  default :panic("please implement me");
 				    
-         		 		}		
+          		 		}		
 	           	break;
-          	} 
+           	} 
    	}
      	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
@@ -162,67 +166,76 @@ static bool make_token(char *e) {
 }
 
  bool check_parentheses(p,q){
-   if(tokens[p].type == '(' && tokens[q].type == ')') return true;
+   int i,j=0,a=0;
+
+   if(tokens[p].type == '(' && tokens[q].type == ')') 
+   {
+	   for(i =p+1;i<q;i++)
+	   {
+		  if(tokens[i].type == '(')  j++;
+		  if(tokens[i].type == ')' && j!=0 ) j--;
+		  if(tokens[i].type == ')' && j==0) return false;
+		  else a++;
+	   }
+	   if(j==0 )  return true;
+	   else return false;   
+   }
    else return false;
 }
 int sign(int a){
-char s[]={'(',')','/','*','%','+','-','<','>','&','^','|'};
-int i =0;
-for(i =0;;i++)
-	if(a == s[i]) break;
-return i;
+  int i=0;
+switch(a){
+  case '(':
+  case ')':
+	  i =1;
+	  break;
+  case '!':
+  case '~':
+	  i =2;
+	  break;
+  case '/':
+  case '*':
+  case '%':
+	  i =3;
+	  break;
+  case '+':
+  case '-':
+      i = 4;
+	  break;
+  case '&':
+  case '^':
+  case '|':
+	  i = 5;
+	  break;
+  default:
+		  break;
+  } 
+  return i;
 }
-int dominant(int p,int q){
-   int a,b,temp,h=0,k = p,j=0;
-   int max = 0;
-   int sort[10];
-         while(p<=q){
-           if(tokens[p].type == '('){
-    		   j++;p++;
-  	         while(p<=q){
-	   if(tokens[p].type == '(')
-		   j++;
-	   if(tokens[p].type == ')')
-		   j--;
-	   if(j == 0) break;
-	   p++; 
-	     } 
- 	   } 
-	   if(tokens[p].type == ')')   p++;
-       
-        if(tokens[p+1].type == '(' && p+1 <= q)
-        printf("error");
-	  p++;
-		 }
-		 p = k;
-		
-	 	while(p<=q){
-	   if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
-		sort[h] = sign(tokens[p].type);
-	    h++;
- 	 	}
-	   p++;
- 	 	}
-		while(h<10){
-			sort[h] = 0;
-			h++;
-		}
-		for(a=0;a<10;a++)
-            for(b=0;b<10-1-a;b++)
-			{
-				if(sort[b]<sort[b+1]){
-					temp = sort[b];
-					sort[b] = sort[b+1];
-					sort[b+1] = temp;
-				}
-			
-			}
-		for(a=0;a+1<10;a++)
-			if(sort[a+1] == 0) break;
-	    max = a;
-   return max;
-   }
 
+
+int dominant(int p,int q){
+	int i=p,a=0,b=0,k=0;
+    while(i<=q){    
+	if(tokens[i].type != dec && tokens[p].type != hex) break;
+    i++;
+    }
+     if(tokens[i].type != dec && tokens[p].type !=hex) {
+   		a = sign(tokens[i].type);
+	    k =i;	  
+	 }
+     for(i=i+1;i<=q;i++){
+		 if(tokens[i].type != dec && tokens[p].type !=hex){
+		       b = sign(tokens[i].type);
+	          if(a>=b)
+			  {
+				  k = i;
+				  a = b;
+ 			  }
+ 		 }
+    }
+	 return k;
+}
 uint32_t eval(int p,int q){
         if(p > q) {
 		printf("Bad expression");
@@ -234,20 +247,49 @@ uint32_t eval(int p,int q){
 			  n = atoi(tokens[p].str);
 		      return n;
  		  }
-		  else {
+		  if(tokens[p].type == hex) {
 		  int hexnum;
 		  sscanf(tokens[p].str,"%x",&hexnum);
 		  return hexnum;
  		  }
+		  else{
+            int i=0;
+			while(i<8){
+			 if(!strcmp(tokens[p].str,regsl[i]))
+				 return cpu.gpr[i]._32;
+		 printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
+			i++;
+			}
           }  
+	  }
 	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
   	   } 
   	 else{                //dominant operator
 		int op;
-		int val1,val2;
+		int val1,val2,val3;
 		op = dominant(p , q);
 		printf("%d\n",op);
+		if(op == 0){
+		val3 = eval(op+1,q);
+		switch(tokens[op].type)
+	  	{
+         case '!':return ! val3;
+		 case '*':
+			while(p<=q){
+				if(tokens[p].type == REG) break;
+				p++;
+			}
+		 int num_s;
+		 sscanf(tokens[p].str,"%x",&num_s);
+		 return swaddr_read(num_s,val3);
+		 case '~':return ~ val3;
+		 case '-':return -1 * val3; 
+         default:
+		 break;
+ 		}
+ 		}
+		if(op != 0){
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
 		printf("%d %d\n",val1,val2);
@@ -271,8 +313,9 @@ uint32_t eval(int p,int q){
 			case rm:return val1 << val2;
 			default:
 			break;
- 	      	}
-	}
+	    	}      	
+    	}
+ 	}
 	 return 0;
 }
 uint32_t expr(char *e, bool *success) {
