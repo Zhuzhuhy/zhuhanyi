@@ -84,7 +84,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i;
+	int i,j;
 	regmatch_t pmatch;
 	nr_token = 0;
    
@@ -131,12 +131,14 @@ static bool make_token(char *e) {
                     break;			 		
 					case dec:
 					tokens[nr_token].type = dec;
-		sprintf(tokens[nr_token].str,"%.*s",substr_len,substr_start);
+					for(j=0;j<substr_len;j++)
+						tokens[nr_token].str[j] = substr_start[j];
+					tokens[nr_token].str[j] = '\0';
 	            	break;
 					default: panic("please implement me");
        		 		}		
 		          nr_token++;
-		break;
+	           	break;
         	} 
  	}
      	   	if(i == NR_REGEX) {
@@ -201,7 +203,7 @@ int dominant(int p,int q){
 		       Log("do it");
               	return eval(p +1,q - 1);
 	 } 
- 	 else{               //dominant operator
+  	 else{               //dominant operator
 		int op;
 		int val1,val2;
 		int num; 	
@@ -224,8 +226,8 @@ int dominant(int p,int q){
 	 
 	printf("%d",num);
 	Log("78954521");
-   	}
-	return 0;
+ 	return num;
+	 }
 }
 
 
