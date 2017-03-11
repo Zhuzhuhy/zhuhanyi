@@ -200,24 +200,29 @@ int dominant(int p,int q){
      } 
  	if(check_parentheses(p,q))
             	return eval(p +1,q - 1);
- 	else{               //dominant operator
-    	int op;
-        int val1,val2; 
+	else{               //dominant operator
+		int op;
+		int val1,val2;
+		int num; 	
 		op = dominant(p , q);
 		val1 = eval(p , op - 1);
-    	val2 = eval(op + 1, q);
-   	switch(tokens[op].type){
-	  case '+':return val1 + val2; 
-	  break;
-  	  case '-':return val1 - val2;
-	  break;
-	  case '/':return val1 / val2;
-	  break;
-	  case '*':return val1 * val2;
-	  break;
-	  default: assert(0);
-  	   }
-    }
+		val2 = eval(op + 1, q);
+		switch(tokens[op].type){
+			case '+':num = val1 + val2; 
+					 break;
+			case '-':num = val1 - val2;
+					 break;
+			case '/':num = val1 / val2;
+					 break;
+			case '*':num = val1 * val2;
+					 break;
+			default: assert(0);
+		}
+	 
+	printf("%d",num);
+	Log("doefhgurnceoid");
+	return num;
+	}
 }
 
 
@@ -236,7 +241,6 @@ uint32_t expr(char *e, bool *success) {
 */
  else{
  	 int num;
-	printf("hello");
 	num = eval(0,nr_token-1);
 	*success = true; 
     printf("the expression: %d",num);	
