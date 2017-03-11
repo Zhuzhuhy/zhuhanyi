@@ -147,6 +147,7 @@ static bool make_token(char *e) {
 					  tokens[nr_token].type = rules[i].token_type;
 					  strcpy(tokens[nr_token].str,substr_start);
 					  nr_token++;
+					  break;
 					  default :panic("please implement me");
 				    
            		 		}		
@@ -219,7 +220,7 @@ int dominant(int p,int q){
      if(tokens[i].type != dec && tokens[p].type !=hex) {
    		a = sign(tokens[i].type);
 	    k =i;	  
-	 }
+ 	 }
      for(i=i;i<=q;i++){
 		 if(tokens[i].type != dec && tokens[p].type !=hex){
 		       b = sign(tokens[i].type);
@@ -287,20 +288,7 @@ uint32_t eval(int p,int q){
 					break;
 	  }
 	  }
-	/*  if(tokens[p+1].type != tokens[p+2].type && tokens[p+1].type != dec && tokens[p+2].type!= dec)
-	  {   
-		  val1 = atoi(tokens[p].str);
-		  val2 = atoi(tokens[q].str);
-	      switch(tokens[p+1].type){ 
-		  case EQ: return val1 == val2;
-		  case es: return val1 <= val2;
-		  case eb: return val1 >= val2;
-		  case NE: return val1 != val2;
-	      default:
-				break;
-	  }
-	  }
-	*/	if(op == 0){
+		if(op == 0){
 		val3 = eval(op+1,q);
 		switch(tokens[op].type)
 	  	{
@@ -318,7 +306,7 @@ uint32_t eval(int p,int q){
          default:
 		 break;
  		}
- 		}
+  		}
 		if(op != 0){
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
@@ -334,6 +322,7 @@ uint32_t eval(int p,int q){
 			case  EQ:return  val1 == val2;
 			case  eb:return  val1 >= val2;
 			case  es:return  val1 <= val2;
+			case  NE:return  val1 != val2;
 			case '|':return  val1 | val2; 
 			case dand:return val1 && val2; 
 			case dor:return  val1 || val2;
@@ -345,7 +334,7 @@ uint32_t eval(int p,int q){
 			break;
 	    	}      	
     	}
-  	}
+   	}
 	 return 0;
 }
 uint32_t expr(char *e, bool *success) {
