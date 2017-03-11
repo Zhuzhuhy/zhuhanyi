@@ -173,8 +173,9 @@ for(i =0;;i++)
 return i;
 }
 int dominant(int p,int q){
-   int i = p,j=0;
+   int a,b,temp,h=0,k = p,j=0;
    int max = 0;
+   int sort[10];
          while(p<=q){
            if(tokens[p].type == '('){
     		   j++;p++;
@@ -185,28 +186,40 @@ int dominant(int p,int q){
 		   j--;
 	   if(j == 0) break;
 	   p++; 
-	   
-	   } 
+	     } 
  	   } 
 	   if(tokens[p].type == ')')   p++;
-        if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
-	     max = p;
-          for(i=p;i<= q;i++){
-        int a,b;
-        if( tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')'){
-        a = sign(tokens[i].type) ;
-		b= sign(tokens[max].type);
-		  if(a >= b)
-		 	max = i; 
-  	       } 
-             }
-		} 
-	     
+       
         if(tokens[p+1].type == '(' && p+1 <= q)
         printf("error");
+	  p++;
+		 }
+		 p = k;
 		
+	 	while(p<=q){
+	   if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
+		sort[h] = sign(tokens[p].type);
+	    h++;
+ 	 	}
 	   p++;
- 		}
+ 	 	}
+		while(h<10){
+			sort[h] = 0;
+			h++;
+		}
+		for(a=0;a<10;a++)
+            for(b=0;b<10-1-a;b++)
+			{
+				if(sort[b]<sort[b+1]){
+					temp = sort[b];
+					sort[b] = sort[b+1];
+					sort[b+1] = temp;
+				}
+			
+			}
+		for(a=0;a+1<10;a++)
+			if(sort[a+1] == 0) break;
+	    max = a;
    return max;
    }
 
