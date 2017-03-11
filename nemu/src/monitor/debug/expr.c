@@ -163,24 +163,26 @@ static bool make_token(char *e) {
    else return false;
 }
 int dominant(int p,int q){
-   int i = p,j=0,x=0;
+   int i = p,j=0;
    int max = 0;
        while(p<=q){
-       if(tokens[p].type == '('){
-		   j++;
-	   while(p<=q){
+         if(tokens[p].type == '('){
+    		   j++;p++;
+	         while(p<=q){
 	   if(tokens[p].type == '(')
 		   j++;
 	   if(tokens[p].type == ')')
 		   j--;
 	   if(j == 0) break;
 	   p++; 
-	   x++;
+	   
 	   }
  	   }
+	   if(tokens[p].type == ')')
+		     p++;
        if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
 	     max = p;
-        for(i=x;i<= q;i++){
+        for(i=p;i<= q;i++){
         if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')')
             max = i; 
  	      }
