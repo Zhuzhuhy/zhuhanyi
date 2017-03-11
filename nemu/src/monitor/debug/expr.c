@@ -188,24 +188,25 @@ int dominant(int p,int q){
 		printf("Bad expression");
 		return 0;
     	}
-	  if(p == q){
+	  else if(p == q){
 	     int i=0,j,sum=0,n=1;
          
 	     while(1){
              if(tokens[p].str[i]== '\0') break;
 			 i++;
-	 	 }
+ 	 	 }
 	     j =i-1;
  	      for(i = j;i>=0;i--){
 	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
  	 	 }
 	     return sum;
-     }  
-    	if(check_parentheses(p,q))
+        }  
+	  else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
+	 }
 
- 	  else{               //dominant operator
+ 	 else{               //dominant operator
 		int op;
 		int val1,val2;
 		int num; 	
