@@ -1,6 +1,6 @@
 #include "nemu.h"
 #include "stdlib.h"
-#include <stdlib.h>
+#include "stdio.h"
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -166,6 +166,7 @@ static bool check_parentheses(p,q){
 
 static int eval(int p,int q){
 	printf("jinlai");
+	Log("dddalo");
      if(p > q) {
 		printf("Bad expression");
 		return false;
