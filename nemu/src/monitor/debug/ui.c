@@ -62,8 +62,9 @@ static int cmd_p(char *args){
 	bool *success=0;
 	char *str;
     str = strtok(NULL," ");
-	int num = expr(str,success);
-    if(success) printf("the expression: %d",num);
+	if(expr(str,success) == true)
+                      printf("success");
+	else printf("error");
 	return 0;
 }
 static int cmd_si(char *args) {
