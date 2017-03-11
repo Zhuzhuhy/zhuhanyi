@@ -88,7 +88,7 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	nr_token = 0;
    
-    while(e[position] != '\0'){	
+     while(e[position] != '\0'){	
 		/* Try all rules one by one. */
    		for(i = 0; i < NR_REGEX; i ++)  {
     			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
@@ -137,13 +137,13 @@ static bool make_token(char *e) {
 					tokens[nr_token].str[j] = '\0';
 	*/				break;
 					default: panic("please implement me");
-     		 		}		
+      		 		}		
 	    if(rules[i].token_type != ' ')
 		          nr_token++;
 		break;
-      	}
-	}
-   	   	if(i == NR_REGEX) {
+       	}
+ 	}
+     	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
@@ -202,6 +202,7 @@ int dominant(int p,int q){
 	     return sum;
         }  
 	   else if(check_parentheses(p,q)== true){
+		       Log("do it");
               	return eval(p +1,q - 1);
 	 }
  	 else{               //dominant operator
@@ -248,8 +249,7 @@ uint32_t expr(char *e, bool *success) {
  
 	Log("hello");
 	*success = true; 
-	int num;
-	Log("%d",nr_token);
+	int num=0;
 	num = eval(0,nr_token-1);
     Log("the expression: %d",num);
     return num;	
