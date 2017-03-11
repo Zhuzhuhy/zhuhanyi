@@ -182,7 +182,7 @@ int dominant(int p,int q){
  int eval(int p,int q){
       if(p > q) {
 		printf("Bad expression");
-		assert(0);
+		return 0;
     	}
  	 if(p == q){
 	     int i=0,j,sum=0,n=1;
@@ -197,7 +197,7 @@ int dominant(int p,int q){
 	     n = n*10;
  	 	 }
 	     return sum;
-     } 
+     }  
  	if(check_parentheses(p,q))
             	return eval(p +1,q - 1);
  	else{               //dominant operator
@@ -207,6 +207,8 @@ int dominant(int p,int q){
 		op = dominant(p , q);
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
+		printf("op%d val%d %d",op,val1,val2);
+		Log("dftyyyyyfd");
 		switch(tokens[op].type){
 			case '+':num = val1 + val2; 
                      break;
@@ -217,11 +219,11 @@ int dominant(int p,int q){
 			case '*':num = val1 * val2;
 					 break;
 			default: assert(0);
-		}
+ 		}
 	 
 	printf("%d",num);
 	Log("78954521");
-	}
+ 	}
 	return 0;
 }
 
