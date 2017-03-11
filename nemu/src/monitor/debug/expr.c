@@ -43,6 +43,7 @@ static struct rule {
 	{"<=",es},
 	{">=",eb},
 	{"/",'/'},
+	{"~",'~'},
 	{"-",'-'},
 	{"<<",lm},
 	{">>",rm},
@@ -123,6 +124,7 @@ static bool make_token(char *e) {
 					case '&':
 					case '<':
 					case '>':
+					case '~':
 					case dor:
 					case dand:
 					case lm:
