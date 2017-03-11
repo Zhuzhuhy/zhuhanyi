@@ -273,6 +273,16 @@ uint32_t eval(int p,int q){
 		int op;
 		int val1,val2,val3;
 		op = dominant(p , q);
+		if(tokens[op].type == tokens[op-1].type || tokens[op].type == tokens[op+1].type)
+		{  
+		int count=0;
+		while(p<=q){
+      		if(tokens[op].type == tokens[p].type) count++;
+			p++;
+		}
+		if(count % 2 == 0) return atoi(tokens[q].str);
+		else    return -1*atoi(tokens[q].str);
+		}
       if(tokens[p+1].type == tokens[p+2].type){
 		  val1 = atoi(tokens[p].str);
 		  val2 = atoi(tokens[q].str);
@@ -326,7 +336,7 @@ uint32_t eval(int p,int q){
 			default:
 			break;
 	    	}      	
-    	}
+     	}
    	}
 	 return 0;
 }
