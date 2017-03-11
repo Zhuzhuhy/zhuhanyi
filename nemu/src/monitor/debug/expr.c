@@ -149,6 +149,7 @@ static bool make_token(char *e) {
 
  bool check_parentheses(p,q){
    int i=0,j=0;
+   if(tokens[p].type == '(' && tokens[q].type == ')') return false;
      while(p<=q){
     if(tokens[p].type == '(' ) i++;
 	if(tokens[p].type == '(' && p != 0 && i == 0) return false; 
@@ -164,11 +165,11 @@ static bool make_token(char *e) {
 int dominant(int p,int q){
    int i = p;
    int max = 0;
-     while(p<=q){
-      if(tokens[p].type != dec && tokens[p].type != hex){
+      while(p<=q){
+       if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
 	     max = p;
-       for(i=0;i<= q;i++){
-        if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex)
+        for(i=0;i<= q;i++){
+        if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')')
             max = i; 
  	      }
           }  
@@ -197,7 +198,7 @@ uint32_t eval(int p,int q){
 	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
  	   } 
-  	 else{               //dominant operator
+  	 else{                //dominant operator
 		int op;
 		int val1,val2;
 		op = dominant(p , q);
@@ -216,7 +217,7 @@ uint32_t eval(int p,int q){
 			case '%':return  val1 % val2;
 			default:
 			break;
- 	     	}
+ 	      	}
 	}
 	 return 0;
 }
