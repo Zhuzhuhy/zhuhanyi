@@ -154,10 +154,10 @@ static bool make_token(char *e) {
 int dominant(int p,int q){
    int i = p,j=0;
    int max = 0;
-        while(p<=q){
-          if(tokens[p].type == '('){
+         while(p<=q){
+           if(tokens[p].type == '('){
     		   j++;p++;
- 	         while(p<=q){
+  	         while(p<=q){
 	   if(tokens[p].type == '(')
 		   j++;
 	   if(tokens[p].type == ')')
@@ -168,15 +168,15 @@ int dominant(int p,int q){
 	   } 
  	   } 
 	   if(tokens[p].type == ')')   p++;
-       if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
+        if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
 	     max = p;
-         for(i=p;i<= q;i++){
+          for(i=p;i<= q;i++){
         if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')')
             max = i; 
  	       }
             }
 	     
-       if(tokens[p+1].type == '('){
+        if(tokens[p+1].type == '(' && p+1 <= q){
         printf("error");
        }
 	   p++;
@@ -221,6 +221,8 @@ uint32_t eval(int p,int q){
 			case dor:return  val1 || val2;
 			case '^':return  val1 ^ val2;
 			case '%':return  val1 % val2;
+			case lm:return val1 << val2;
+			case rm:return val1 >> val2;
 			default:
 			break;
  	      	}
@@ -231,7 +233,7 @@ uint32_t expr(char *e, bool *success) {
  	if(!make_token(e)) {
 		*success = false;
 		return 0;
-     	}
+      	}
     printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
