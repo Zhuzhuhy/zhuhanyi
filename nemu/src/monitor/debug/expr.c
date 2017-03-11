@@ -188,7 +188,7 @@ int dominant(int p,int q){
 		printf("Bad expression");
 		return 0;
     	}
-	  else if(p == q){
+	  if(p == q){
 	     int i=0,j,sum=0,n=1;
          
 	     while(1){
@@ -202,7 +202,7 @@ int dominant(int p,int q){
  	 	 }
 	     return sum;
      }  
-	  else	if(check_parentheses(p,q))
+    	if(check_parentheses(p,q))
               	return eval(p +1,q - 1);
 
  	  else{               //dominant operator
@@ -228,7 +228,7 @@ int dominant(int p,int q){
 	 
 	printf("%d",num);
 	Log("78954521");
- 	}
+  	}
 	return 0;
 }
 
