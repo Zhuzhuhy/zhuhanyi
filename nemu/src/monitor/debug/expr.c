@@ -216,6 +216,7 @@ uint32_t eval(int p,int q){
 		op = dominant(p , q);
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
+		printf("%d %d\t",val1,val2);
  	 	switch(tokens[op].type){
 			case '+':return  val1 + val2; 
 			case '-':return  val1 - val2;
