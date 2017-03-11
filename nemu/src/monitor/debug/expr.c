@@ -208,8 +208,6 @@ int dominant(int p,int q){
 		op = dominant(p , q);
 		val1 = eval(p , op - 1);
     	val2 = eval(op + 1, q);
-      printf("%d %d %d",op,val1,val2);
-      Log("fffffffffffff");	  
    	switch(tokens[op].type){
 	  case '+':return val1 + val2;
   	  case '-':return val1 - val2;
@@ -237,8 +235,6 @@ uint32_t expr(char *e, bool *success) {
    	int num;
 	printf("hello");
 	num = eval(0,nr_token-1);
-    printf("%d",num);
-	Log("lastlast");
 	*success = true;
 	return num;  
  	/* TODO: Insert codes to evaluate the expression. */
