@@ -292,13 +292,8 @@ uint32_t eval(int p,int q){
 	  	{
          case '!':return ! val3;
 		 case '*':
-			while(p<=q){
-				if(tokens[p].type == REG) break;
-				p++;
-			}
-		 int num_s;
-		 sscanf(tokens[p].str,"%x",&num_s);
-		 return swaddr_read(num_s,val3);
+		 sscanf(tokens[p].str,"%x",&op);
+		 return swaddr_read(op,val3);
 		 case '~':return ~ val3;
 		 case '-':return -1 * val3; 
          default:
