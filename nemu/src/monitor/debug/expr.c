@@ -149,8 +149,8 @@ static bool make_token(char *e) {
 
  bool check_parentheses(p,q){
    int i=0,j=0;
-   if(tokens[p].type == '(' && tokens[q].type == ')') return false;
-     while(p<=q){
+   if(tokens[p].type == '(' && tokens[q].type == ')') return true;
+ /*    while(p<=q){
     if(tokens[p].type == '(' ) i++;
 	if(tokens[p].type == '(' && p != 0 && i == 0) return false; 
 	if(tokens[p].type == ')') i--;
@@ -159,13 +159,13 @@ static bool make_token(char *e) {
     p++;
     }
 	
-   if(i == 0 && j-1 != q) return true;
+   */if(i == 0 && j-1 != q) return true;
    else return false;
 }
 int dominant(int p,int q){
    int i = p,j=0,x=0;
    int max = 0;
-      while(p<=q){
+       while(p<=q){
        if(tokens[p].type == '('){
 		   j++;
 	   while(p<=q){
@@ -177,7 +177,7 @@ int dominant(int p,int q){
 	   p++; 
 	   x++;
 	   }
-	   }
+ 	   }
        if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
 	     max = p;
         for(i=x;i<= q;i++){
