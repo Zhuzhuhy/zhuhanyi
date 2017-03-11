@@ -176,8 +176,6 @@ int dominant(int p,int q){
    }
    p++;
    }
-   printf("%d",max);
-   Log("ddddddddddddddddddfffffffffffffff");
    return max;
    }
 
@@ -187,15 +185,16 @@ int dominant(int p,int q){
 		return false;
     	}
  	else if(p == q){
-	     int i,j,sum=0,n=1;
+	     int i=0,j,sum=0,n=1;
          
-	     for(i=0;;i++)
-         if(tokens[p].str[i]== '\0') break;
+	     while(1){
+             if(tokens[p].str[i]== '\0') break;
+			 i++;
+		 }
 	     j =i-1;
- 	     for(i = j;i<=0;i--){
+ 	     for(i = j;i>=0;i--){
 	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
- 
  	 	 }
 		 printf("%d",sum);
 		 Log("ddddddddddddddddddddddddddddddd");
