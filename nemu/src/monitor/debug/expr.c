@@ -241,7 +241,9 @@ uint32_t expr(char *e, bool *success) {
 */
  else{
 	*success = true; 
-    printf("the expression: %d",eval(0,nr_token - 1));	
+	int num;
+	num = eval(0,nr_token - 1);
+    printf("the expression: %d",num);	
 	Log("ddddddddddddddddddddddddddddddddddddddddddd");
  	/* TODO: Insert codes to evaluate the expression. */
     return true;
