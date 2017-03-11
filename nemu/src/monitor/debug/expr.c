@@ -101,7 +101,7 @@ static bool make_token(char *e) {
      				/* TODO: Now a new token is recognized with rules[i]. Add codes 
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
- 			 	 */ 
+  			 	 */ 
 
   				switch(rules[i].token_type) {
 				    case ' ':
@@ -110,21 +110,27 @@ static bool make_token(char *e) {
 				    break;	
 					case '+':
 					tokens[nr_token].type = '+';
+					tokens[nr_token].str[0] = '\0';
 					break;
 					case '-':
 					tokens[nr_token].type = '-';
+					tokens[nr_token].str[0] = '\0';
 					break;
 					case '*':
 					tokens[nr_token].type = '*';
+					tokens[nr_token].str[0] = '\0';
 					break;
 					case '/':
 					tokens[nr_token].type = '/';
+					tokens[nr_token].str[0] = '\0';
 					break;
 					case '(':
 					tokens[nr_token].type = '(';
+					tokens[nr_token].str[0] = '\0';
 					break;
 					case ')':
 					tokens[nr_token].type = ')';
+					tokens[nr_token].str[0] = '\0';
 					break;
 				 	case hex:
                     tokens[nr_token].type = hex;
@@ -136,16 +142,16 @@ static bool make_token(char *e) {
 					tokens[nr_token].str[j] = '\0';
 	            	break;
 					default: panic("please implement me");
-       		 		}		
+        		 		}		
 		          nr_token++;
 	           	break;
-        	} 
- 	}
+         	} 
+  	}
      	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
-   }
+    }
 	return 0; 
 }
 
@@ -238,11 +244,11 @@ uint32_t expr(char *e, bool *success) {
      	}
     Log("hello"); 
 	*success = true; 
-	int num=0;
+	int num;
 	Log("start");
 	num = eval(0,nr_token-1);
     Log("the expression: %d",num);	
  	/* TODO: Insert codes to evaluate the expression. */
-	panic("please implement me");
+  //panic("please implement me");
 	return 0;
 }
