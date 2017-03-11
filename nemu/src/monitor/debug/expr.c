@@ -103,47 +103,36 @@ static bool make_token(char *e) {
 				 * types of tokens, some extra actions should be performed.
   			 	 */ 
 
-  				switch(rules[i].token_type) {
+  	 			switch(rules[i].token_type) {
 				    case ' ':
-					break;
 				    case 0:
 				    break;	
 					case '+':
-					tokens[nr_token].type = '+';
-					tokens[nr_token].str[0] = '\0';
-					break;
 					case '-':
-					tokens[nr_token].type = '-';
-					tokens[nr_token].str[0] = '\0';
-					break;
 					case '*':
-					tokens[nr_token].type = '*';
-					tokens[nr_token].str[0] = '\0';
-					break;
 					case '/':
-					tokens[nr_token].type = '/';
-					tokens[nr_token].str[0] = '\0';
-					break;
 					case '(':
-					tokens[nr_token].type = '(';
-					tokens[nr_token].str[0] = '\0';
-					break;
 					case ')':
-					tokens[nr_token].type = ')';
+					case '!':
+					case '|':
+					case '&':
+					case dand:
+					case dor:
+					case xor:
+					tokens[nr_token].type = rules[i].token_type;
 					tokens[nr_token].str[0] = '\0';
+					nr_token ++;
 					break;
-				 	case hex:
-                    tokens[nr_token].type = hex;
-                    break;			 		
+				 	case hex:			 		
 					case dec:
-					tokens[nr_token].type = dec;
+					tokens[nr_token].type = rules[i].token_type;
 					for(j=0;j<substr_len;j++)
 						tokens[nr_token].str[j] = substr_start[j];
 					tokens[nr_token].str[j] = '\0';
+					nr_token++;
 	            	break;
 					default: panic("please implement me");
         		 		}		
-		          nr_token++;
 	           	break;
          	} 
   	}
