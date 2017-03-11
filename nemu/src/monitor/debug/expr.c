@@ -163,7 +163,7 @@ static bool check_parentheses(p,q){
    }
 	printf("%d %d",j,q);
 	Log("dddd");
-   if(i == 0 && j != q) return true;
+   if(i == 0 && j-1 != q) return true;
    else return false;
 }
 int dominant(int p,int q){
