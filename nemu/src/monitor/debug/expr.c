@@ -174,8 +174,9 @@ int dominant(int p,int q){
         if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')')
             max = i; 
  	       }
-            }  
-       if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type == '(' && tokens[p].type == ')'){
+            }
+	     
+       if(tokens[p+1].type == '('){
         printf("error");
        }
 	   p++;
