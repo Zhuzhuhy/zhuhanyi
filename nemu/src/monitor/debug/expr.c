@@ -1,8 +1,7 @@
 #include "nemu.h"
+#include "stdio.h"
 #include "stdlib.h"
-/* We use the POSIX regex functions to process regular expressions.
- * Type 'man regex' for more information about POSIX regex functions.
- */
+ //Type 'man regex' for more information about POSIX regex functions.
 #include <sys/types.h>
 #include <regex.h>
 
@@ -13,8 +12,8 @@ enum {
 	hex = 259,
 	dand = 260,
 	dor = 261,
-	xor = 262,
-
+    eb = 263,
+	es = 264,
 	/* TODO: Add more token types */
 
 };
@@ -27,14 +26,17 @@ static struct rule {
   	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
  	  */
-/*    {"=",'='},
+    {"=",'='},
 	{"<",'<'},
+	{"%",'%'},
 	{">",'>'},
 	{"\\|",'|'},
-*/	{"&",'&'},
+	{"&",'&'}, 
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
+	{"<=",es},
+	{">=",eb},
 	{"/",'/'},
 	{"-",'-'},
     {"\\[",'['},	              	// [ 
@@ -44,10 +46,9 @@ static struct rule {
 	{"\\^",'^'},             		// ^
 	{"\\(",'('},                    // left bracket
 	{"\\)",')'},                    // right bracket
-  /*  {"&&",dand},
+    {"&&",dand},
 	{"||",dor},
-	{"!",'!'},
-    */
+	{"!",'!'}, 
     {"[0-9]{1,10}",dec},                  // decimalist
 	{"0x[0-9A-Fa-f]{0,8}",hex},            // hex
 
@@ -114,11 +115,12 @@ static bool make_token(char *e) {
 					case '(':
 					case ')':
 					case '!':
+					case '%':
+					case '^':
 					case '|':
 					case '&':
 					case dand:
 					case dor:
-					case xor:
 					tokens[nr_token].type = rules[i].token_type;
 					tokens[nr_token].str[0] = '\0';
 					nr_token ++;
@@ -141,13 +143,14 @@ static bool make_token(char *e) {
 			return false;
 		}
     }
-	return 0; 
+	return true; 
 }
 
 static bool check_parentheses(p,q){
    int i=0,j=0;
     while(p<=q){
-    if(tokens[p].type == '(') i++;
+    if(tokens[p].type == '(' ) i++;
+	if(tokens[p].type == '(' && p != 0 && i == 0) return false; 
 	if(tokens[p].type == ')') i--;
 	if(tokens[p].type == ')' && i == 0)  return false;
 	else j++;
@@ -162,14 +165,15 @@ int dominant(int p,int q){
    int i = p;
    int max = 0;
     while(p<=q){
-    if(tokens[p].type != dec){
-	   max = p;
-       for(i=0;i+1<= q;i++)
-            if(tokens[i].type >= tokens[i+1].type && tokens[i+1].type!=dec)
+      if(tokens[p].type != dec || tokens[p].type != hex){
+	     max = p;
+       for(i=0;i<= q;i++){
+        if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex)
             max = i; 
-        }
-   p++;
-     }
+	      }
+         }  
+        p++;
+       }
    printf("%d",max);
    Log("ffff");
    return max;
@@ -181,21 +185,23 @@ int dominant(int p,int q){
 		return 0;
     	}
  	  else if(p == q){
+		  if(tokens[p].type == dec){
 	     int i=0,j,sum=0,n=1;
-         
- 	     while(1){
-             if(tokens[p].str[i]== '\0') break;
-			 i++;
- 	  	 }
-	     j =i-1;
- 	       for(i = j;i>=0;i--){
-	     sum = sum + (tokens[p].str[i] - '0')*n;
-	     n = n*10;
- 	 	 }
-	     return sum;
+		 for(i=0;;i++)
+			 if(tokens[p].str[i] == '\0') break;
+		 j = i-1;
+		     for(i=j;i>=0;i--)
+             sum = sum+tokens[p].str[i]*n;
+			 n = n*10;
+		     return sum;
+		  }
+		  else {
+		  int hexnum;
+		  sscanf(tokens[p].str,"%x",&hexnum);
+		  return hexnum;
+		  }
          }  
 	   else if(check_parentheses(p,q)== true){
-		       Log("do it");
               	return eval(p +1,q - 1);
 	 } 
   	 else{               //dominant operator
@@ -208,14 +214,16 @@ int dominant(int p,int q){
 		printf("op%d val%d %d",op,val1,val2);
 		Log("dftyyyyyfd");
  	 	switch(tokens[op].type){
-			case '+':num = val1 + val2; 
-                     break;
-			case '-':num = val1 - val2;
-					 break;
-			case '/':num = val1 / val2;
-					 break;
-			case '*':num = val1 * val2;
-					 break;
+			case '+':return  val1 + val2; 
+			case '-':return  val1 - val2;
+			case '/':return  val1 / val2;
+			case '*':return  val1 * val2;
+			case '&':return  val1 & val2;
+			case '|':return  val1 | val2; 
+			case dand:return  val1 && val2; 
+			case dor:return  val1 || val2;
+			case '^':return  val1 ^ val2;
+			case '%':return  val1 % val2;
 			default: assert(0);
  		}
 	 
@@ -239,6 +247,6 @@ uint32_t expr(char *e, bool *success) {
 	num = eval(0,nr_token-1);
     Log("the expression: %d",num);	
  	/* TODO: Insert codes to evaluate the expression. */
-  //panic("please implement me");
+  panic("please implement me");
 	return 0;
 }
