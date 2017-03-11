@@ -165,7 +165,7 @@ int dominant(int p,int q){
    int i = p;
    int max = 0;
      while(p<=q){
-      if(tokens[p].type != dec || tokens[p].type != hex){
+      if(tokens[p].type != dec && tokens[p].type != hex){
 	     max = p;
        for(i=0;i<= q;i++){
         if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex)
