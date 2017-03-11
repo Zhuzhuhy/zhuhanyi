@@ -166,7 +166,6 @@ static bool check_parentheses(p,q){
 
 static int eval(int p,int q){
 	printf("jinlai");
-	Log("dddalo");
      if(p > q) {
 		printf("Bad expression");
 		return false;
