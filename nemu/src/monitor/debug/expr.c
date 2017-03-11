@@ -157,8 +157,6 @@ static bool make_token(char *e) {
 	else j++;
     p++;
     }
-	printf("%d",j);
-	Log("check");
    if(i == 0 && j-1 != q) return true;
    else return false;
 }
