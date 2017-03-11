@@ -88,10 +88,10 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	nr_token = 0;
    
-   while(e[position] != '\0'){	
+    while(e[position] != '\0'){	
 		/* Try all rules one by one. */
-  		for(i = 0; i < NR_REGEX; i ++)  {
-   			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+   		for(i = 0; i < NR_REGEX; i ++)  {
+    			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
           
@@ -131,13 +131,13 @@ static bool make_token(char *e) {
                     break;			 		
 					case dec:
 		sprintf(tokens[nr_token].str,"%.*s",substr_len,substr_start);
-	/*				tokens[nr_token].type = dec;
+	 /*				tokens[nr_token].type = dec;
 					for(j=0;j < substr_len;j++)
 				    	tokens[nr_token].str[j] = substr_start[j];
 					tokens[nr_token].str[j] = '\0';
 	*/				break;
 					default: panic("please implement me");
-    		 		}		
+     		 		}		
 	    if(rules[i].token_type != ' ')
 		          nr_token++;
 		break;
@@ -162,7 +162,9 @@ static bool check_parentheses(p,q){
    else return false;
 }
 
+
 static int eval(int p,int q){
+	printf("jinlai");
      if(p > q) {
 		printf("Bad expression");
 		return false;
@@ -203,7 +205,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
     	}
-	printf("5555");
 /* 	for(i = 0;i < nr_token; i ++){
  	 if(tokens[i].type == '*' 
 	&& (i == 0||tokens[i - 1].type == dec)){
@@ -212,11 +213,8 @@ uint32_t expr(char *e, bool *success) {
  	}
 	}
 */
-  	Log("OK");	
-    int num,i;
-    for(i =0;i<32;i++)
-		if(e[i] == '\0') break;
-	num = eval(0,i-1);	
+    int num;
+	num = eval(0,nr_token-1);	
 	*success = true;
 	return num;  
  	/* TODO: Insert codes to evaluate the expression. */
