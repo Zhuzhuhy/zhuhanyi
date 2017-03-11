@@ -153,16 +153,15 @@ static bool make_token(char *e) {
 }
 
 static bool check_parentheses(p,q){
-   int i=1;
+   int i=0,j=0;
     while(p<=q){
     if(tokens[p].type == '(') i++;
 	if(tokens[p].type == ')') i--;
 	if(tokens[p].type == ')' && i == 0)  return false;
+	if(tokens[p].type == dec) j++;
     p++;
    }
-   printf("Ipp");
-   Log("ddddddddddd");
-   if(i == 1) return true;
+   if(i == 0 && j != q) return true;
    else return false;
 }
 int dominant(int p,int q){
