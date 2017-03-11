@@ -227,7 +227,7 @@ int dominant(int p,int q){
      for(i=i+1;i<=q;i++){
 		 if(tokens[i].type != dec && tokens[p].type !=hex){
 		       b = sign(tokens[i].type);
-	          if(a>=b)
+	          if(b>=a)
 			  {
 				  k = i;
 				  a = b;
