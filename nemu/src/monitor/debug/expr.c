@@ -207,10 +207,14 @@ int dominant(int p,int q){
 		val1 = eval(p , op - 1);
     	val2 = eval(op + 1, q);
    	switch(tokens[op].type){
-	  case '+':return val1 + val2;
+	  case '+':return val1 + val2; 
+	  break;
   	  case '-':return val1 - val2;
+	  break;
 	  case '/':return val1 / val2;
+	  break;
 	  case '*':return val1 * val2;
+	  break;
 	  default: assert(0);
   	   }
     }
