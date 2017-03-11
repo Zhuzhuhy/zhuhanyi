@@ -85,7 +85,7 @@ int nr_token;
 
 static bool make_token(char *e) {
 	int position = 0;
-	int i,j;
+	int i;
 	regmatch_t pmatch;
 	nr_token = 0;
    
@@ -105,9 +105,6 @@ static bool make_token(char *e) {
   			 	 */ 
 
   	 			switch(rules[i].token_type) {
-				    case ' ':
-				    case 0:
-				    break;	
 					case '+':
 					case '-':
 					case '*':
@@ -128,21 +125,20 @@ static bool make_token(char *e) {
 				 	case hex:			 		
 					case dec:
 					tokens[nr_token].type = rules[i].token_type;
-					for(j=0;j<substr_len;j++)
-						tokens[nr_token].str[j] = substr_start[j];
-					tokens[nr_token].str[j] = '\0';
+					strcpy(tokens[nr_token].str,substr_start);
 					nr_token++;
 	            	break;
-					default: panic("please implement me");
-        		 		}		
+					default:
+				    break;
+         		 		}		
 	           	break;
-         	} 
-  	}
+          	} 
+   	}
      	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
-		}
-    }
+ 		}
+     }
 	return true; 
 }
 
