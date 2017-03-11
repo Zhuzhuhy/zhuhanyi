@@ -180,9 +180,9 @@ int dominant(int p,int q){
    }
 
  int eval(int p,int q){
-     if(p > q) {
+      if(p > q) {
 		printf("Bad expression");
-		return false;
+		assert(0);
     	}
  	 if(p == q){
 	     int i=0,j,sum=0,n=1;
@@ -209,7 +209,7 @@ int dominant(int p,int q){
 		val2 = eval(op + 1, q);
 		switch(tokens[op].type){
 			case '+':num = val1 + val2; 
-					 break;
+                     break;
 			case '-':num = val1 - val2;
 					 break;
 			case '/':num = val1 / val2;
@@ -221,8 +221,8 @@ int dominant(int p,int q){
 	 
 	printf("%d",num);
 	Log("78954521");
-	return num;
 	}
+	return 0;
 }
 
 
