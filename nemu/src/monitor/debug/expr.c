@@ -17,6 +17,7 @@ enum {
 	es = 264,
 	lm = 265,
 	rm = 266,
+	NE = 269,
 	DEREF = 267,
 	REG = 268,
 	/* TODO: Add more token types */
@@ -43,6 +44,7 @@ static struct rule {
 	{"<=",es},
 	{">=",eb},
 	{"/",'/'},
+	{"!=",NE},
 	{"~",'~'},
 	{"-",'-'},
 	{"<<",lm},
@@ -284,9 +286,20 @@ uint32_t eval(int p,int q){
 		 default:
 					break;
 	  }
-	  
 	  }
-	  
+	  if(tokens[p+1].type != tokens[p+2].type && tokens[p+1].type != dec && tokens[p+2].type!= dec)
+	  {   
+		  val1 = atoi(tokens[p].str);
+		  val2 = atoi(tokens[q].str);
+	      switch(tokens[p+1].type){ 
+		  case EQ: return val1 == val2;
+		  case es: return val1 <= val2;
+		  case eb: return val1 >= val2;
+		  case NE: return val1 != val2;
+	      default:
+				break;
+	  }
+	  }
 		if(op == 0){
 		val3 = eval(op+1,q);
 		switch(tokens[op].type)
