@@ -133,10 +133,9 @@ static bool make_token(char *e) {
 	            	break;
 					default: panic("please implement me");
        		 		}		
-	    if(rules[i].token_type != ' ')
 		          nr_token++;
 		break;
-        	}
+        	} Log("ffinshi");
  	}
      	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
