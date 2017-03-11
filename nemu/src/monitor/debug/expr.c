@@ -149,25 +149,15 @@ static bool make_token(char *e) {
 
  bool check_parentheses(p,q){
    if(tokens[p].type == '(' && tokens[q].type == ')') return true;
-   /*    while(p<=q){
-    if(tokens[p].type == '(' ) i++;
-	if(tokens[p].type == '(' && p != 0 && i == 0) return false; 
-	if(tokens[p].type == ')') i--;
-	if(tokens[p].type == ')' && i == 0)  return false;
-	else j++;
-    p++;
-    }
-	
-   if(i == 0 && j-1 != q) return true;
-  */ else return false;
+   else return false;
 }
 int dominant(int p,int q){
    int i = p,j=0;
    int max = 0;
-       while(p<=q){
-         if(tokens[p].type == '('){
+        while(p<=q){
+          if(tokens[p].type == '('){
     		   j++;p++;
-	         while(p<=q){
+ 	         while(p<=q){
 	   if(tokens[p].type == '(')
 		   j++;
 	   if(tokens[p].type == ')')
@@ -175,19 +165,21 @@ int dominant(int p,int q){
 	   if(j == 0) break;
 	   p++; 
 	   
-	   }
- 	   }
-	   if(tokens[p].type == ')')
-		     p++;
+	   } 
+ 	   } 
+	   if(tokens[p].type == ')')   p++;
        if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type != '(' && tokens[p].type != ')'){
 	     max = p;
-        for(i=p;i<= q;i++){
+         for(i=p;i<= q;i++){
         if(tokens[i].type >= tokens[max].type && tokens[i].type!=dec && tokens[i].type != hex && tokens[p].type !='('&&tokens[p].type !=')')
             max = i; 
- 	      }
-          }  
-        p++;
+ 	       }
+            }  
+       if(tokens[p].type != dec && tokens[p].type != hex && tokens[p].type == '(' && tokens[p].type == ')'){
+        printf("error");
        }
+	   p++;
+		}
    return max;
    }
 
