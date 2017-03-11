@@ -131,9 +131,11 @@ static bool make_token(char *e) {
 					case eb:
 					case EQ:	
 					if(rules[i+1].token_type == rules[i].token_type){
-						if(rules[i].token_type == '<')
+		              if(rules[i].token_type == '<' )
 						   tokens[nr_token].type = lm;
-						else   tokens[nr_token].type = rm;
+			          if( rules[i].token_type== '&')
+						   tokens[nr_token].type = dand;
+					  else   tokens[nr_token].type = rm;
 						nr_token = nr_token +1;
 					}
 					else{
