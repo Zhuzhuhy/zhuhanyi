@@ -161,8 +161,6 @@ static bool check_parentheses(p,q){
 	else j++;
     p++;
    }
-	printf("%d %d",j,q);
-	Log("dddd");
    if(i == 0 && j-1 != q) return true;
    else return false;
 }
@@ -177,7 +175,10 @@ int dominant(int p,int q){
      max = p; 
    }
    p++;
+
 }
+printf("%d",max);
+Log("ssssssssssssssssssss");
    return max;
    }
 
