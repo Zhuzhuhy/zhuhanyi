@@ -200,7 +200,7 @@ int dominant(int p,int q){
      } 
  	if(check_parentheses(p,q))
             	return eval(p +1,q - 1);
-	else{               //dominant operator
+ 	else{               //dominant operator
 		int op;
 		int val1,val2;
 		int num; 	
@@ -220,6 +220,7 @@ int dominant(int p,int q){
 		}
 	 
 	printf("%d",num);
+	Log("78954521");
 	return num;
 	}
 }
