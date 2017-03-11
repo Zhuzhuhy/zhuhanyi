@@ -232,7 +232,6 @@ uint32_t expr(char *e, bool *success) {
 */
    	int num;
 	printf("hello");
-	Log("aaa");
 	num = eval(0,nr_token-1);
     printf("%d",num);
 	*success = true;
