@@ -1,6 +1,7 @@
 #include "nemu.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include <math.h>
  //Type 'man regex' for more information about POSIX regex functions.
 #include <sys/types.h>
 #include <regex.h>
@@ -221,8 +222,8 @@ uint32_t eval(int p,int q){
 			case dor:return  val1 || val2;
 			case '^':return  val1 ^ val2;
 			case '%':return  val1 % val2;
-			case lm:return val1 << val2;
-			case rm:return val1 >> val2;
+			case lm:return val1 >> val2;
+			case rm:return val1 << val2;
 			default:
 			break;
  	      	}
