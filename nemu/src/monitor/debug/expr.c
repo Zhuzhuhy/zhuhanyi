@@ -236,6 +236,7 @@ uint32_t expr(char *e, bool *success) {
  
 	*success = true; 
 	int num=0;
+	Log("start");
 	num = eval(0,nr_token-1);
     Log("the expression: %d",num);	
  	/* TODO: Insert codes to evaluate the expression. */
