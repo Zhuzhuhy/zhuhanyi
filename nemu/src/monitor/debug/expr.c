@@ -95,7 +95,7 @@ static bool make_token(char *e) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
           
-	Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s,qqqqq", i, rules[i].regex, position,substr_len,substr_len, substr_start);
+	Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position,substr_len,substr_len, substr_start);
 	 position += substr_len;
 
 	 printf("sssss");
@@ -105,7 +105,8 @@ static bool make_token(char *e) {
  			 	 */ 
 
  				switch(rules[i].token_type) {
-				    case ' ':	
+				    case ' ':
+					break;	
 					case '+':
 					tokens[nr_token].type = '+';
 					break;
@@ -128,7 +129,7 @@ static bool make_token(char *e) {
                     tokens[nr_token].type = hex;
                     break;			 		
 					case dec:
-					sprintf(tokens[nr_token].str,"%.*s",substr_len,substr_start);
+		sprintf(tokens[nr_token].str,"%.*s",substr_len,substr_start);
 	/*				tokens[nr_token].type = dec;
 					for(j=0;j < substr_len;j++)
 				    	tokens[nr_token].str[j] = substr_start[j];
@@ -136,7 +137,8 @@ static bool make_token(char *e) {
 	*/				break;
 					default: panic("please implement me");
     		 		}		
-		nr_token++;
+	    if(rules[i].token_type != ' ')
+		          nr_token++;
 		break;
       	}
 	}
