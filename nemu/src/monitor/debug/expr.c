@@ -182,6 +182,7 @@ int dominant(int p,int q){
    }
 
 uint32_t eval(int p,int q){
+	Log("1111444444");
         if(p > q) {
 		printf("Bad expression");
 		return 0;
