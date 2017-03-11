@@ -187,18 +187,19 @@ Log("ssssssssssssssssssss");
 		printf("Bad expression");
 		return false;
     	}
-	else if(p == q){
+ 	else if(p == q){
 	     int i,j,sum=0,n=1;
          
 	     for(i=0;;i++)
          if(tokens[p].str[i]== '\0') break;
 	     j =i-1;
-	     for(i = j;i<=0;i--){
+ 	     for(i = j;i<=0;i--){
 	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
  
  	 	 }
-		 Log("%d",sum);
+		 printf("%d",sum);
+		 Log("ddddddddddddddddddddddddddddddd");
 	     return sum;
      } 
  	else if(check_parentheses(p,q))
@@ -206,12 +207,11 @@ Log("ssssssssssssssssssss");
  	else{               //dominant operator
     	int op;
         int val1,val2; 
-        op = dominant(p,q);
-		printf("%d",op);
-		Log("opopopop");
-    	val1 = eval(p, op - 1);
+		op = eval(p , q);
+		val1 = eval(p , op +1);
     	val2 = eval(op + 1, q);
-   	switch(op){
+        
+   	switch(tokens[op].type){
 	  case '+':return val1 + val2;
   	  case '-':return val1 - val2;
 	  case '/':return val1 / val2;
