@@ -136,7 +136,7 @@ static bool make_token(char *e) {
 			          if( rules[i].token_type== '&')
 						   tokens[nr_token].type = dand;
 					  else   tokens[nr_token].type = rm;
-						nr_token = nr_token +1;
+						nr_token = nr_token +2;
 					}
 					else{
 					tokens[nr_token].type = rules[i].token_type;
