@@ -226,7 +226,7 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
      	}
 
-    printf("the expression: %d",eval(0,nr_token-1));	
+    printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
 	return 0;
