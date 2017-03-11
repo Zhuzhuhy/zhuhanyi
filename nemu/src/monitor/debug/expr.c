@@ -173,8 +173,6 @@ int dominant(int p,int q){
          }  
         p++;
        }
-   printf("%d",max);
-   Log("ffff");
    return max;
    }
 
@@ -210,7 +208,7 @@ uint32_t eval(int p,int q){
 		op = dominant(p , q);
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
-		printf("op%d val%d %d",op,val1,val2);
+		printf("op %d val %d  %d",op,val1,val2);
 		Log("dftyyyyyfd");
  	 	switch(tokens[op].type){
 			case '+':return  val1 + val2; 
