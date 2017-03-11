@@ -212,7 +212,7 @@ uint32_t expr(char *e, bool *success) {
  	}
 	}
 */
-  	printf("OK");	
+  	Log("OK");	
     int num,i;
     for(i =0;i<32;i++)
 		if(e[i] == '\0') break;
