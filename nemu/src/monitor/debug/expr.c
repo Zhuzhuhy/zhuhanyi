@@ -130,18 +130,8 @@ static bool make_token(char *e) {
 					case es:
 					case eb:
 					case EQ:	
-					if(rules[i+1].token_type == rules[i].token_type){
-		              if(rules[i].token_type == '<' )
-						   tokens[nr_token].type = lm;
-			          if( rules[i].token_type== '&')
-						   tokens[nr_token].type = dand;
-					  else   tokens[nr_token].type = rm;
-						nr_token = nr_token +2;
-					}
-					else{
 					tokens[nr_token].type = rules[i].token_type;
 					nr_token ++;
-					}
 					break;
 				 	case hex:			 		
 					case dec:
@@ -155,15 +145,15 @@ static bool make_token(char *e) {
 					  nr_token++;
 					  default :panic("please implement me");
 				    
-          		 		}		
+           		 		}		
 	           	break;
-           	} 
-   	}
-     	   	if(i == NR_REGEX) {
+            	} 
+    	}
+      	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
  		}
-     }
+      }
 	return true; 
 }
 
@@ -248,8 +238,6 @@ int dominant(int p,int q){
 	 return k;
 }
 uint32_t eval(int p,int q){
-	    printf("%d\n",tokens[p+1].type);
-	    printf("%d",tokens[p+2].type);
         if(p > q) {
 		printf("Bad expression");
 		return 0;
@@ -282,7 +270,21 @@ uint32_t eval(int p,int q){
 		int op;
 		int val1,val2,val3;
 		op = dominant(p , q);
-		
+      if(tokens[p+1].type == tokens[p+2].type){
+		  val1 = atoi(tokens[p].str);
+		  val2 = atoi(tokens[q].str);
+	  switch(tokens[p+1].type){
+		  case '&': return val1 && val2;
+		  case '|': return val1 || val2;
+		  case '=': return val1 == val2;
+		  case '<': return val1 << val2;
+		  case '>': return val1 >> val2;
+		 default:
+					break;
+	  }
+	  
+	  }
+	  
 		if(op == 0){
 		val3 = eval(op+1,q);
 		switch(tokens[op].type)
@@ -328,7 +330,7 @@ uint32_t eval(int p,int q){
 			break;
 	    	}      	
     	}
- 	}
+  	}
 	 return 0;
 }
 uint32_t expr(char *e, bool *success) {
