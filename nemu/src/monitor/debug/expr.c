@@ -14,6 +14,10 @@ enum {
 	dor = 261,
     eb = 263,
 	es = 264,
+	lm = 265,
+	rm = 266,
+	DEREF = 267,
+	REG = 268,
 	/* TODO: Add more token types */
 
 };
@@ -39,15 +43,18 @@ static struct rule {
 	{">=",eb},
 	{"/",'/'},
 	{"-",'-'},
+	{"<<",lm},
+	{">>",rm},
 	{"\\*",'*'},                    // *
 	{"\\^",'^'},             		// ^
 	{"\\(",'('},                    // left bracket
 	{"\\)",')'},                    // right bracket
     {"&&",dand},
-	{"||",dor},
+	{"\\|\\|",dor},
 	{"!",'!'}, 
     {"[0-9]{1,10}",dec},                  // decimalist
-	{"0x[0-9A-Fa-f]{0,8}",hex},            // hex
+	{"0x[0-9A-Fa-f]{0,8}",hex},            // hexi
+	{"\\$[a-z]{2,3}",REG},
 
 };
 
@@ -115,8 +122,9 @@ static bool make_token(char *e) {
 					case '&':
 					case dor:
 					case dand:
+					case lm:
+					case rm:
 					tokens[nr_token].type = rules[i].token_type;
-					tokens[nr_token].str[0] = '\0';
 					nr_token ++;
 					break;
 				 	case hex:			 		
@@ -139,7 +147,7 @@ static bool make_token(char *e) {
 	return true; 
 }
 
-static bool check_parentheses(p,q){
+ bool check_parentheses(p,q){
    int i=0,j=0;
     while(p<=q){
     if(tokens[p].type == '(' ) i++;
@@ -172,7 +180,7 @@ int dominant(int p,int q){
    return max;
    }
 
- int eval(int p,int q){
+uint32_t eval(int p,int q){
         if(p > q) {
 		printf("Bad expression");
 		return 0;
