@@ -54,7 +54,7 @@ static struct rule {
 	{"\\|\\|",dor},
 	{"!",'!'}, 
     {"[0-9]{1,10}",dec},                  // decimalist
-	{"0x[0-9A-Fa-f]{1,8}",hex},            // hexi
+	{"0x[0-9a-fA-F]{1,8}",hex},            // hexi
 	{"\\$[a-z]{2,3}",REG},
 
 };
