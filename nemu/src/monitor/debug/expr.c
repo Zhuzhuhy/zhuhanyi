@@ -230,8 +230,13 @@ uint32_t eval(int p,int q){
 			case '/':return  val1 / val2;
 			case '*':return  val1 * val2;
 			case '&':return  val1 & val2;
+			case '<':return  val1 < val2;
+			case '>':return  val1 > val2;
+			case  EQ:return  val1 == val2;
+			case  eb:return  val1 >= val2;
+			case  es:return  val1 <= val2;
 			case '|':return  val1 | val2; 
-			case dand:return  val1 && val2; 
+			case dand:return val1 && val2; 
 			case dor:return  val1 || val2;
 			case '^':return  val1 ^ val2;
 			case '%':return  val1 % val2;
