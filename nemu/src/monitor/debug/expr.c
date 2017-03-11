@@ -238,8 +238,8 @@ int dominant(int p,int q){
 uint32_t expr(char *e, bool *success) {
  	if(!make_token(e)) {
 		*success = false;
-		return 0;
-    	}
+		return false;
+     	}
 /* 	for(i = 0;i < nr_token; i ++){
  	 if(tokens[i].type == '*' 
 	&& (i == 0||tokens[i - 1].type == dec)){
@@ -249,7 +249,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 */
  
-	printf("hello");
+	Log("hello");
 	*success = true; 
 	int num;
 	num = eval(0,nr_token-1);
