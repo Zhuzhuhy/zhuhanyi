@@ -220,7 +220,6 @@ int dominant(int p,int q){
 		}
 	 
 	printf("%d",num);
-	Log("doefhgurnceoid");
 	return num;
 	}
 }
