@@ -248,12 +248,14 @@ int dominant(int p,int q){
 	 return k;
 }
 uint32_t eval(int p,int q){
+	    printf("%d",tokens[p+1].type);
+	    printf("%d",tokens[p+2].type);
         if(p > q) {
 		printf("Bad expression");
 		return 0;
-    	}
+     	}
  	  else if(p == q){
-		  if(tokens[p].type == dec){
+ 		  if(tokens[p].type == dec){
 			  int n;
 			  n = atoi(tokens[p].str);
 		      return n;
