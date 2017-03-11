@@ -160,6 +160,8 @@ static bool check_parentheses(p,q){
 	if(tokens[p].type == ')' && i == 0)  return false;
     p++;
    }
+   printf("Ipp");
+   Log("ddddddddddd");
    if(i == 0) return true;
    else return false;
 }
