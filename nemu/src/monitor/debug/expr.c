@@ -196,8 +196,6 @@ int dominant(int p,int q){
 	     sum = sum + (tokens[p].str[i] - '0')*n;
 	     n = n*10;
  	 	 }
-		 printf("%d",sum);
-		 Log("ddddddddddddddddddddddddddddddd");
 	     return sum;
      } 
  	else if(check_parentheses(p,q))
