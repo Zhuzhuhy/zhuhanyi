@@ -217,7 +217,8 @@ int dominant(int p,int q){
     }
      if(tokens[i].type != dec && tokens[p].type !=hex) {
    		a = sign(tokens[i].type);
-	    k =i;	  
+	    k =i;	 
+	   printf("wek=%d",k);	
  	 }
       for(i=i;i<=q;i++){
  		 if(tokens[i].type != dec && tokens[p].type !=hex){
