@@ -276,7 +276,7 @@ uint32_t eval(int p,int q){
    	 else{                //dominant operator
 		int op;
 		int val1,val2,val3;
-//		printf("%d %d",p,q);
+		printf("%d %d",p,q);
 		op = dominant(p , q);
 		if(tokens[op].type == tokens[op-1].type || tokens[op].type == tokens[op+1].type)
 		{ 	
