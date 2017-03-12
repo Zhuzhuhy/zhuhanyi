@@ -169,6 +169,7 @@ static bool make_token(char *e) {
 	   {
 		  if(tokens[i].type == '(')  j++;
 		  if(tokens[i].type == ')' && j!=0 ) j--;
+		  if(tokens[i].type == ')' && j==0 && a==i) return true;
 		  if(tokens[i].type == ')' && j==0) return false;
 		  else a++;
 	   }
