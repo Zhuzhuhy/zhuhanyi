@@ -211,28 +211,29 @@ switch(a){
 
 int dominant(int p,int q){
 	int i=p,a=0,b=0,k=0;
-    while(i<=q){    
+     while(i<=q){    
 	if(tokens[i].type != dec && tokens[p].type != hex) break;
     i++;
     }
-     if(tokens[i].type != dec && tokens[p].type !=hex) {
+      if(tokens[i].type != dec && tokens[p].type !=hex) {
    		a = sign(tokens[i].type);
 	    k =i;	 	
  	 }
-      for(i=i;i<=q;i++){
- 		 if(tokens[i].type != dec && tokens[p].type !=hex){
+	  printf("first %d",k);
+       for(i=i;i<=q;i++){
+  		 if(tokens[i].type != dec && tokens[p].type !=hex){
 		       b = sign(tokens[i].type);
 			 if(tokens[i].type == '(')
-			 { 
+ 			 { 
 				 while(i<=q)
-				 {
+ 				 {
 				if(tokens[i].type == ')')		  break;
 				i++;
  	     		  }
 			 
  			 }
 	          if(b>=a)
-			  {
+ 			  {
 				  k = i;
 				  a = b;
   			  }
@@ -275,7 +276,7 @@ uint32_t eval(int p,int q){
 		int op;
 		int val1,val2,val3;
 		op = dominant(p , q);
-		printf("%d",op);
+		
 		if(tokens[op].type == tokens[op-1].type || tokens[op].type == tokens[op+1].type)
 		{ 	
 		int count=0,j=0;
@@ -355,7 +356,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
       	}
-	printf("n  %d",nr_token);
     printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
