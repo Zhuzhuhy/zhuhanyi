@@ -274,6 +274,7 @@ uint32_t eval(int p,int q){
 		int op;
 		int val1,val2,val3;
 		op = dominant(p , q);
+		printf("%d",op);
 		if(tokens[op].type == tokens[op-1].type || tokens[op].type == tokens[op+1].type)
 		{ 	
 		int count=0,j=0;
