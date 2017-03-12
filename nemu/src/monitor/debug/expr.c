@@ -210,18 +210,17 @@ switch(a){
 
 
 int dominant(int p,int q){
-	int i=p,a=0,b=0,k=0;
+	int i=0,a=0,b=0,k=0;
      while(i<=q){    
-	if(tokens[i].type != dec && tokens[p].type != hex) break;
+	if(tokens[i].type != dec && tokens[i].type != hex) break;
     i++;
     }
-      if(tokens[i].type != dec && tokens[p].type !=hex) {
+      if(tokens[i].type != dec && tokens[i].type !=hex) {
    		a = sign(tokens[i].type);
 	    k =i;	 	
  	 }
-	  printf("first %d",k);
        for(i=i;i<=q;i++){
-  		 if(tokens[i].type != dec && tokens[p].type !=hex){
+  		 if(tokens[i].type != dec && tokens[i].type !=hex){
 		       b = sign(tokens[i].type);
 			 if(tokens[i].type == '(')
  			 { 
@@ -239,7 +238,7 @@ int dominant(int p,int q){
   			  }
  		 }
     }
-	 printf("k=%d",k);
+
 	 return k;
 }
 uint32_t eval(int p,int q){
