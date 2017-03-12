@@ -220,7 +220,7 @@ int dominant(int p,int q){
 	    k =i;	 	
  	 }
 
-       for(i=i;i<=q;i++){
+       while(i<=q){
   		 if(tokens[i].type != dec && tokens[i].type !=hex){
 		       b = sign(tokens[i].type);
 			 if(tokens[i].type == '(')
@@ -238,6 +238,7 @@ int dominant(int p,int q){
 				  a = b;
   			  }
  		 }
+		 i++;
     }
      printf("kkk=%d",k);
 	 return k;
