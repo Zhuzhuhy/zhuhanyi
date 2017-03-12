@@ -148,15 +148,15 @@ static bool make_token(char *e) {
 					  break;
 					  default :panic("please implement me");
 				    
-            		 		}		
+             		 		}		
 	           	break;
-             	} 
-     	}
+              	} 
+      	}
       	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
  		}
-      }
+       }
 	return true; 
 }
 
@@ -174,7 +174,7 @@ static bool make_token(char *e) {
 	   }
 	   if(j==0 )  return true;
 	   else return false;   
-   }
+    }
    else return false;
 }
 int sign(int a){
@@ -219,8 +219,8 @@ int dominant(int p,int q){
    		a = sign(tokens[i].type);
 	    k =i;	  
  	 }
-     for(i=i;i<=q;i++){
-		 if(tokens[i].type != dec && tokens[p].type !=hex){
+      for(i=i;i<=q;i++){
+ 		 if(tokens[i].type != dec && tokens[p].type !=hex){
 		       b = sign(tokens[i].type);
 			 if(tokens[i].type == '(')
 			 { 
@@ -228,14 +228,14 @@ int dominant(int p,int q){
 				 {
 				if(tokens[i].type == ')')		  break;
 				i++;
-	     		  }
+ 	     		  }
 			 
-			 }
+ 			 }
 	          if(b>=a)
 			  {
 				  k = i;
 				  a = b;
- 			  }
+  			  }
  		 }
     }
 	 return k;
@@ -244,9 +244,9 @@ uint32_t eval(int p,int q){
         if(p > q) {
 		printf("Bad expression");
 		return 0;
-     	}
- 	  else if(p == q){
- 		  if(tokens[p].type == dec){
+      	}
+  	  else if(p == q){
+  		  if(tokens[p].type == dec){
 			  int n;
 			  n = atoi(tokens[p].str);
 		      return n;
@@ -254,21 +254,22 @@ uint32_t eval(int p,int q){
 		  if(tokens[p].type == hex) {
 		  int hexnum;
 		  sscanf(tokens[p].str,"%x",&hexnum);
+			  printf("%x",hexnum);
 		  return hexnum;
- 		  }
-		  if(tokens[p].type == REG){
+   		  }
+ 		  if(tokens[p].type == REG){
             int i=0;
-			while(i<8){
+ 			while(i<8){
 			 if(!strcmp(tokens[p].str,regsl[i]))
 				 return cpu.gpr[i]._32;
 		 printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
 			i++;
 			}
           }  
-	  }
+ 	  }
 	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
-  	   } 
+   	   } 
   	 else{                //dominant operator
 		int op;
 		int val1,val2,val3;
@@ -280,7 +281,7 @@ uint32_t eval(int p,int q){
       		if(tokens[op].type == tokens[p].type) count++;
 			else j++;
 			p++;
-		}
+ 		}
 		if(j<=1){
 		if(count % 2 == 0) return atoi(tokens[q].str);
 		else    return -1*atoi(tokens[q].str);
@@ -289,7 +290,7 @@ uint32_t eval(int p,int q){
 		if(count % 2 == 0) return atoi(tokens[p].str)+atoi(tokens[q].str);
         //many kinds
 		}
-		}
+ 		}
       if(tokens[p+1].type == tokens[p+2].type){
 		  val1 = atoi(tokens[p].str);
 		  val2 = atoi(tokens[q].str);
@@ -303,7 +304,7 @@ uint32_t eval(int p,int q){
 					break;
 	  }
 	  }
-		if(op == 0){
+ 		if(op == 0){
 		val3 = eval(op+1,q);
 		switch(tokens[op].type)
 	  	{
@@ -342,9 +343,9 @@ uint32_t eval(int p,int q){
 			case rm:return val1 << val2;
 			default:
 			break;
-	    	}      	
-     	}
-   	}
+	     	}      	
+        	}
+    	}
 	 return 0;
 }
 uint32_t expr(char *e, bool *success) {
