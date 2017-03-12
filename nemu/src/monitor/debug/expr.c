@@ -169,7 +169,7 @@ static bool make_token(char *e) {
 	   {
 		  if(tokens[i].type == '(')  j++;
 		  if(tokens[i].type == ')' && j!=0 ) j--;
-		  if(tokens[i].type == ')' && j==0 && a==i-1) return false;
+		  if(tokens[i].type == ')' && j==0 && a==i-1) return true;
 		  if(tokens[i].type == ')' && j==0) return false;
 		  else a++;
 	   }
@@ -215,8 +215,8 @@ int dominant(int p,int q){
       while(i<=q){    
 	if(tokens[i].type != dec && tokens[i].type != hex) break;
     i++;
-    }
-      if(tokens[i].type != dec && tokens[i].type !=hex) {
+     }
+       if(tokens[i].type != dec && tokens[i].type !=hex) {
    		a = sign(tokens[i].type);
 	    k =i;	 	
  	 }
@@ -225,23 +225,23 @@ int dominant(int p,int q){
   		 if(tokens[i].type != dec && tokens[i].type !=hex){
 		       b = sign(tokens[i].type);
 			 if(tokens[i].type == '(')
- 			 { 
+ 	 		 { 
 				 while(i<=q)
  				 {
 				if(tokens[i].type == ')')		  break;
 				i++;
- 	     		  }
+ 	      		  }
 			 
  			 }
 	          if(b>=a)
  			  {
 				  k = i;
 				  a = b;
-  			  }
- 		 }
+  	 		  }
+  		 }
 		 i++;
-    }
-     printf("kkk=%d",k);
+     }
+//     printf("kkk=%d",k);
 	 return k;
 }
 uint32_t eval(int p,int q){
@@ -254,7 +254,7 @@ uint32_t eval(int p,int q){
 			  int n;
 			  n = atoi(tokens[p].str);
 		      return n;
- 		  }
+  		  }
 		  if(tokens[p].type == hex) {
 		  int hexnum;
 		  sscanf(tokens[p].str,"%x",&hexnum);
@@ -269,11 +269,11 @@ uint32_t eval(int p,int q){
 			i++;
 			}
           }  
- 	  }
-	   else if(check_parentheses(p,q)== true){
+  	  }
+ 	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
    	   } 
-  	 else{                //dominant operator
+   	 else{                //dominant operator
 		int op;
 		int val1,val2,val3;
 		printf("%d %d",p,q);
@@ -290,15 +290,15 @@ uint32_t eval(int p,int q){
 		if(count % 2 == 0) return atoi(tokens[q].str);
 		else    return -1*atoi(tokens[q].str);
 		}
-		else{
+ 		else{
 		if(count % 2 == 0) return atoi(tokens[p].str)+atoi(tokens[q].str);
         //many kinds
 		}
- 		}
+  		}
       if(tokens[p+1].type == tokens[p+2].type){
-		  val1 = atoi(tokens[p].str);
+ 		  val1 = atoi(tokens[p].str);
 		  val2 = atoi(tokens[q].str);
-	  switch(tokens[p+1].type){
+ 	  switch(tokens[p+1].type){
 		  case '&': return val1 && val2;
 		  case '|': return val1 || val2;
 		  case '=': return val1 == val2;
@@ -307,7 +307,7 @@ uint32_t eval(int p,int q){
 		 default:
 					break;
 	  }
-	  }
+ 	  }
  		if(op == 0){
 		val3 = eval(op+1,q);
 		switch(tokens[op].type)
@@ -320,12 +320,12 @@ uint32_t eval(int p,int q){
 		 case '-':return -1 * val3; 
          default:
 		 break;
- 		}
   		}
+   		}
 		if(op != 0){
 		val1 = eval(p , op - 1);
 		val2 = eval(op + 1, q);
-	    printf("%d %d %d\n",op,val1,val2);
+//	    printf("%d %d %d\n",op,val1,val2);
  	 	switch(tokens[op].type){
 			case '+':return  val1 + val2; 
 			case '-':return  val1 - val2;
@@ -347,8 +347,8 @@ uint32_t eval(int p,int q){
 			case rm:return val1 << val2;
 			default:
 			break;
-	     	}      	
-        	}
+ 	     	}      	
+         	}
     	}
 	 return 0;
 }
