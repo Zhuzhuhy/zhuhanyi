@@ -238,6 +238,7 @@ int dominant(int p,int q){
   			  }
  		 }
     }
+	 printf("k=%d",k);
 	 return k;
 }
 uint32_t eval(int p,int q){
