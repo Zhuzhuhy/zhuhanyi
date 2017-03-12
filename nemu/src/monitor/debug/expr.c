@@ -211,7 +211,7 @@ switch(a){
 
 int dominant(int p,int q){
 	int i=0,a=0,b=0,k=0;
-     while(i<=q){    
+      while(i<=q){    
 	if(tokens[i].type != dec && tokens[i].type != hex) break;
     i++;
     }
@@ -219,6 +219,7 @@ int dominant(int p,int q){
    		a = sign(tokens[i].type);
 	    k =i;	 	
  	 }
+
        for(i=i;i<=q;i++){
   		 if(tokens[i].type != dec && tokens[i].type !=hex){
 		       b = sign(tokens[i].type);
@@ -273,8 +274,8 @@ uint32_t eval(int p,int q){
   	 else{                //dominant operator
 		int op;
 		int val1,val2,val3;
+		printf("%d %d",p,q);
 		op = dominant(p , q);
-	    printf("%d",op);	
 		if(tokens[op].type == tokens[op-1].type || tokens[op].type == tokens[op+1].type)
 		{ 	
 		int count=0,j=0;
