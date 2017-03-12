@@ -217,8 +217,7 @@ int dominant(int p,int q){
     }
      if(tokens[i].type != dec && tokens[p].type !=hex) {
    		a = sign(tokens[i].type);
-	    k =i;	 
-	   printf("wek=%d",k);	
+	    k =i;	 	
  	 }
       for(i=i;i<=q;i++){
  		 if(tokens[i].type != dec && tokens[p].type !=hex){
@@ -356,6 +355,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
       	}
+	printf("n  %d",nr_token);
     printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
