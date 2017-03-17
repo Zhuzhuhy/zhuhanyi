@@ -41,6 +41,7 @@ int set_watchpoint(char *e){
 WP *new;
 new = new_wp();
 new->e = e;
+printf("%s",new->e);
 if(head == NULL)
 {
    	head = new;
