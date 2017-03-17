@@ -7,6 +7,10 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 void cpu_exec(uint32_t);
+int set_watchpoint(char *e);
+bool delete_watchpoint(int NO);
+bool scan_watchpoint();
+bool delete_all();
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -39,6 +43,8 @@ static int cmd_info(char *args);
 static int cmd_x(char *args);
 static int cmd_help(char *args);
 static int cmd_p(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
 
 static struct {
 	char *name;
@@ -52,11 +58,38 @@ static struct {
 	{ "info","Print",cmd_info },
 	{ "x","Memory scan",cmd_x },
 	{ "p","Expression evaluation",cmd_p },
+	{ "w","Set a watchpoint",cmd_w},
+	{ "d","Delete a watchpoint",cmd_d},
 	/* TODO: Add more commands */
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
 
+static int cmd_w(char *arge){
+	char *str;
+	str = strtok(NULL," ");
+	if(set_watchpoint(str) == 0)  printf("set success\n");
+	else      printf("Error\n");
+	return 0;
+}
+static int cmd_d(char *arge){
+  char *str;
+  str = strtok(NULL," ");
+if(str[0] >=0 && str[0]<=9){
+  int num;
+  sscanf(str,"%d",&num);
+  if(delete_watchpoint(num)) printf("Delete %d watchpoint\n",num);
+  else printf("Error\n");
+  }
+else{
+	if(strcmp(str,"all") == 0){
+      if(delete_all()) printf("Delete all\n");
+      else  printf("Error\n");
+ 	}
+	else printf("Error\n");
+} 
+return 0;
+}
 
 static int cmd_p(char *args){
 	bool *success=0;
@@ -84,8 +117,12 @@ static int cmd_info(char *args) {
  	while(i < 8){   
 		printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
 		i++;/*cpu_state,reg.h*/
-	}
+  	}
 	printf("eip :%08x %d \n",cpu.eip,cpu.eip);
+    	}
+	else if(strcmp(ch,"w")==0) {
+		          if(scan_watchpoint()) printf("print success\n");
+	              else printf("Error\n");
 	}
 	else printf("Error\n");
 	return 0;
@@ -107,7 +144,7 @@ static int cmd_x(char *args){
 	 printf("%02x  ",locate);
 	 num_s++;
 	 count++;
-	 }
+ 	 }
 	 printf("\n");
 	 return 0;
 }

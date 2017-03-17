@@ -8,7 +8,7 @@
  * You can modify this value as you want.
  */
 #define MAX_INSTR_TO_PRINT 11
-
+bool scan_watchpoint();
 int nemu_state = STOP;
 
 int exec(swaddr_t);
@@ -73,8 +73,11 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-
-
+        if(scan_watchpoint()) {
+			printf("WATCHPOINT!\n");
+			nemu_state = STOP;  
+		}	
+        
 		if(nemu_state != RUNNING) { return; }
 	}
 
