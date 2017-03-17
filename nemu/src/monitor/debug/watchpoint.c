@@ -45,10 +45,11 @@ int set_watchpoint(char *e){
 
  bool compare_wp(WP* new){
   int num_s,locate;
+  bool *success = 0;
   sscanf(new->e,"%x",&num_s);
   locate = swaddr_read(num_s,1);
   new->new_value = locate;
-	  cpu_exec(1);
+	  expr(new->e,success);
 	  sscanf(new->e,"%x",&num_s);
 	  locate = swaddr_read(num_s,1);
       if(locate != new->new_value) {
