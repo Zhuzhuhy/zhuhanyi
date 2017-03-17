@@ -261,16 +261,27 @@ uint32_t eval(int p,int q){
 		  return hexnum;
    		  }
  		  if(tokens[p].type == REG){
-            int i=0;
- 			while(i<8){
-			 if(!strcmp(tokens[p].str,regsl[i]))
-				 return cpu.gpr[i]._32;
-		 printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
-			i++;
-			}
-          printf("eip:%08x\n",cpu.eip);
-          }  
+            if(strcmp(tokens[p].str,"$eip")==0)
+				  return cpu.eip;
+		    	  
+            if(strcmp(tokens[p].str,"$eax")==0)
+				  return cpu.eax;
+            if(strcmp(tokens[p].str,"$ecx")==0)
+				  return cpu.ecx;
+            if(strcmp(tokens[p].str,"$edx")==0)
+				  return cpu.edx;
+            if(strcmp(tokens[p].str,"$ebx")==0)
+				  return cpu.ebx;
+            if(strcmp(tokens[p].str,"$esp")==0)
+				  return cpu.esp;
+            if(strcmp(tokens[p].str,"$ebp")==0)
+				  return cpu.ebp;
+            if(strcmp(tokens[p].str,"$esi")==0)
+				  return cpu.esi;
+            if(strcmp(tokens[p].str,"$edi")==0)
+				  return cpu.edi;
   	  }
+	  }
  	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
    	   } 
