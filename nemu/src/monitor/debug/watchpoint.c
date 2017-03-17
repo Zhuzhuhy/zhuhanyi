@@ -32,6 +32,23 @@ if(free_ == NULL)
      	assert(0);
 p = free_;
 free_ = p -> next;
+if(head == NULL)
+{
+   	head->next = p;
+	p = NULL;
+}
+else {
+WP *q;
+q = head->next;
+while(q){
+  if(q == NULL) break;
+  q = q->next;
+}
+if(q == NULL){
+   q->next = p;
+   p = NULL;
+}
+}
 return p;
 }
 
