@@ -148,11 +148,11 @@ static bool make_token(char *e) {
 					  break;
 					  default :panic("please implement me");
 				    
-             		 		}		
+              		 		}		
 	           	break;
-              	} 
-      	}
-      	   	if(i == NR_REGEX) {
+               	} 
+       	}
+       	   	if(i == NR_REGEX) {
  		printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
  		}
@@ -369,8 +369,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
       	}
-	printf("%d",nr_token);
-    printf("the expression: %d\n",eval(0,nr_token-1));	
+  printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
 	return 0;

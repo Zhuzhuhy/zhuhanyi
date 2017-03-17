@@ -62,17 +62,17 @@ if(q->next == NULL){
   return 0;
 }
 
- bool compare_wp(WP* new){
-  bool *success = 0 ;
-  new->old_value = expr(new->e,success);
-  new->new_value = expr(new->e,success);	
-       if(new->old_value != new->new_value) {
-		  new->old_value = new->new_value;
-		  new->new_value = expr(new->e,success);
-		  return true;
-    	   }  
-	  else   return false;
-}
+bool compare_wp(WP* new){
+	bool *success = 0 ;
+	new->old_value = expr(new->e,success);
+	new->new_value = expr(new->e,success);	
+	if(new->old_value != new->new_value) {
+		new->old_value = new->new_value;
+		new->new_value = expr(new->e,success);
+		return true;
+	}  
+	else   return false;
+ }
  static void free_wp(WP *wp){
 WP* p;
 p = free_;
