@@ -34,20 +34,21 @@ p = free_;
 free_ = p -> next;
 if(head == NULL)
 {
-   	head->next = p;
-	p = NULL;
+   	head = p;
+	head->next = NULL;
+	p = head;
 }
 else {
 WP *q;
-q = head->next;
-while(q){
-  if(q == NULL) break;
+q = head;
+while(q->next){
+  if(q->next == NULL) break;
   q = q->next;
 }
-if(q == NULL){
+if(q->next == NULL){
    q->next = p;
-   p = NULL;
-}
+   p->next = NULL;
+} 
 }
 return p;
 }
@@ -64,7 +65,7 @@ int set_watchpoint(char *e){
   bool *success = 0 ;
   new->old_value = expr(new->e,success);
   new->new_value = expr(new->e,success);	
-      if(new->old_value != new->new_value) {
+       if(new->old_value != new->new_value) {
 		  new->old_value = new->new_value;
 		  new->new_value = expr(new->e,success);
 		  return true;
@@ -106,7 +107,7 @@ return false;
 
 bool delete_all(){
   WP* p;
-    while(head->next!= NULL){
+     while(head->next!= NULL){
   p = head->next;
   head->next = p->next;
   free_wp(p);
@@ -124,9 +125,9 @@ void list_watchpoint(WP* list){
 
 bool scan_watchpoint(){
  WP* p;
- p = head->next;
+ p = head;
  printf("come");
- while(p){
+  while(p){
  if(p->e != NULL)
 	 if(compare_wp(p)) list_watchpoint(p); return true;
  p = p->next;
