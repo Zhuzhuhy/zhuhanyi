@@ -73,7 +73,7 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-//		printf("commmmmmmmmmmmmmm");
+		printf("commmmmmmmmmmmmmm");
 //        if(scan_watchpoint()) {
 //			printf("TOUCH WATCHPOINT!\n");
 //			nemu_state = STOP;  
