@@ -268,7 +268,7 @@ uint32_t eval(int p,int q){
 		 printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
 			i++;
 			}
-          printf("%08x\n",cpu.eip);
+          printf("eip:%08x\n",cpu.eip);
           }  
   	  }
  	   else if(check_parentheses(p,q)== true){
