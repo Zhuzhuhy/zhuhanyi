@@ -34,21 +34,20 @@ p = free_;
 free_ = p -> next;
 if(head == NULL)
 {
-   	head = p;
-	head->next = NULL;
-	p = head;
-}
+   	head->next = p;
+	p = NULL;
+ }
 else {
 WP *q;
-q = head;
-while(q->next){
-  if(q->next == NULL) break;
+q = head->next;
+while(q){
+  if(q == NULL) break;
   q = q->next;
 }
-if(q->next == NULL){
+if(q == NULL){
    q->next = p;
-   p->next = NULL;
-} 
+   p = NULL;
+}  
 }
 return p;
 }
@@ -74,13 +73,15 @@ int set_watchpoint(char *e){
 }
 static void free_wp(WP *wp){
 WP* p;
-p = free_->next;
+p = free_;
 while(p->next){
  if(p->next == NULL) break;
  p = p->next;
-}  
+ }  
+if(p->next == NULL){
  p->next = wp;
 wp->next = NULL;
+}
 }
 
 bool delete_watchpoint(int NO){
