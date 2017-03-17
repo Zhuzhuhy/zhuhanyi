@@ -5,7 +5,9 @@
 #define NR_WP 32
 void cpu_exec();
 void ui_mainloop();
+static WP* new_wp();
 
+static void free_wp(WP *wp);
 static WP wp_list[NR_WP];
 static WP *head, *free_;
 
@@ -32,30 +34,30 @@ if(free_ == NULL)
      	assert(0);
 p = free_;
 free_ = p -> next;
-if(head == NULL)
-{
-   	head->next = p;
-	p = NULL;
- }
-else {
-WP *q;
-q = head->next;
-while(q){
-  if(q == NULL) break;
-  q = q->next;
-}
-if(q == NULL){
-   q->next = p;
-   p = NULL;
-}  
-}
 return p;
 }
 
 int set_watchpoint(char *e){
-  WP *new;
-  new = new_wp();
-  new->e = e;
+WP *new;
+new = new_wp();
+new->e = e;
+if(head == NULL)
+{
+   	head = new;
+	new->next = NULL;
+ }
+else {
+WP *q;
+q = head;
+while(q->next){
+  if(q->next == NULL) break;
+  q = q->next;
+}
+if(q->next == NULL){
+   q->next = new;
+   new->next = NULL;
+}
+}
   printf("WATCHPOINT!\n");
   return 0;
 }
@@ -71,14 +73,14 @@ int set_watchpoint(char *e){
     	   }  
 	  else   return false;
 }
-static void free_wp(WP *wp){
+ static void free_wp(WP *wp){
 WP* p;
 p = free_;
 while(p->next){
  if(p->next == NULL) break;
  p = p->next;
  }  
-if(p->next == NULL){
+if (p->next == NULL){
  p->next = wp;
 wp->next = NULL;
 }
@@ -87,9 +89,16 @@ wp->next = NULL;
 bool delete_watchpoint(int NO){
 WP *q;
 WP *p;
-p = head->next;
 q = head;
-while(p->next){
+p = head->next;
+if(q->NO == NO){
+free_wp(head);
+q->old_value = 0;
+q->new_value = 0;
+q->e = NULL;
+head = p;
+}
+while(p){
 	if(p->NO == NO) break;
 	p = p->next;
 	q = q->next;
@@ -104,11 +113,11 @@ if(p->NO == NO){
 } 
 else 
 return false;
-}
+} 
 
-bool delete_all(){
+ bool delete_all(){
   WP* p;
-     while(head->next!= NULL){
+while(head->next!= NULL){
   p = head->next;
   head->next = p->next;
   free_wp(p);
@@ -116,22 +125,32 @@ bool delete_all(){
   p->new_value = 0;
   p->e = NULL;
    }
-  if(head->next == NULL) return true;
+  if(head->next == NULL){
+	  free_wp(head);
+	 head->old_value = 0;
+	 head->new_value = 0;
+     head->e = NULL;
+     head = NULL;	 
+	  return true;
+  }
   else  return false;
 }
 void list_watchpoint(WP* list){
    printf("watchpoint NO:%d\t old_value:%d\t new_value:%d\t expression:%s\n",list->NO,list->old_value,list->new_value,list->e);
-}
+} 
 
 
-bool scan_watchpoint(){
+ bool scan_watchpoint(){
  WP* p;
  p = head;
  printf("come");
   while(p){
  if(p->e != NULL)
-	 if(compare_wp(p)) list_watchpoint(p); return true;
- p = p->next;
-     }
- return false;
+	 if(compare_wp(p)){
+		 list_watchpoint(p); 
+		 return true;
+	 }
+   p = p->next;
+      }
+   return false;
 }
