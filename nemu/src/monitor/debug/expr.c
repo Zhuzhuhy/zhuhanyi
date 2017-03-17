@@ -265,9 +265,10 @@ uint32_t eval(int p,int q){
  			while(i<8){
 			 if(!strcmp(tokens[p].str,regsl[i]))
 				 return cpu.gpr[i]._32;
-		 printf("%s :%08x %d %08x \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32,cpu.eip);
+		 printf("%s :%08x %d \n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
 			i++;
 			}
+          printf("%08x\n",cpu.eip);
           }  
   	  }
  	   else if(check_parentheses(p,q)== true){
