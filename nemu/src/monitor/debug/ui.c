@@ -119,8 +119,8 @@ static int cmd_info(char *args) {
 		i++;/*cpu_state,reg.h*/
   	}
 	printf("eip :%08x %d \n",cpu.eip,cpu.eip);
-    	}
-	else if(strcmp(ch,"w")==0) {
+     	}
+ 	else if(strcmp(ch,"w")==0) {
 		          if(scan_watchpoint()) printf("print success\n");
 	              else printf("Error\n");
 	}

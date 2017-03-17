@@ -44,17 +44,12 @@ int set_watchpoint(char *e){
 }
 
  bool compare_wp(WP* new){
-  int num_s,locate;
-  bool *success = 0;
-  sscanf(new->e,"%x",&num_s);
-  locate = swaddr_read(num_s,1);
-  new->new_value = locate;
-	  expr(new->e,success);
-	  sscanf(new->e,"%x",&num_s);
-	  locate = swaddr_read(num_s,1);
-      if(locate != new->new_value) {
+  bool *success = 0 ;
+  new->old_value = expr(new->e,success);
+  new->new_value = expr(new->e,success);	
+      if(new->old_value != new->new_value) {
 		  new->old_value = new->new_value;
-		  new->new_value = locate;
+		  new->new_value = expr(new->e,success);
 		  return true;
     	   }  
 	  else   return false;
