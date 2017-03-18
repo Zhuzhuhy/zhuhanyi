@@ -75,7 +75,7 @@ static int cmd_w(char *arge){
 static int cmd_d(char *arge){
   char *str;
   str = strtok(NULL," ");
-if(str[0] >=0 && str[0]<=9){
+if(str[0] >='0' && str[0]<='9'){
   int num;
   sscanf(str,"%d",&num);
   if(delete_watchpoint(num)) printf("Delete %d watchpoint\n",num);
