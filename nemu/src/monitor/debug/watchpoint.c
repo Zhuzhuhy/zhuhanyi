@@ -17,7 +17,7 @@ void init_wp_list() {
 		wp_list[i].NO = i;
 		wp_list[i].old_value = 0;
 		wp_list[i].new_value = 0;
-		wp_list[i].e = NULL;
+		wp_list[i].e[0] = '\0' ;
 		wp_list[i].next = &wp_list[i + 1];
   	}
 	wp_list[NR_WP - 1].next = NULL;
@@ -40,24 +40,24 @@ return p;
 int set_watchpoint(char *e){
 WP *new;
 new = new_wp();
-new->e = e;
+strcpy(new->e,e);
 if(head == NULL)
 {
    	head = new;
 	new->next = NULL;
-  }
+    }
 else {
 WP *q;
 q = head->next;
 while(q){
   if(q->next == NULL) break;
   q = q->next;
-}
+ }
 if(q->next == NULL){
    q->next = new;
    new->next = NULL;
-}
 } 
+}  
   printf("WATCHPOINT!\n");
   printf("%s",head->e);
   return 0;
@@ -72,7 +72,7 @@ bool compare_wp(WP* new){
 		new->old_value = new->new_value;
 		new->new_value = expr(new->e,success);
 		return true;
-	}  
+ 	}  
 	else   return false;
  }
  static void free_wp(WP *wp){
@@ -93,26 +93,26 @@ WP *q;
 WP *p;
 q = head;
 p = head->next;
-if(q->NO == NO){
+ if(q->NO == NO){
 free_wp(head);
 q->old_value = 0;
 q->new_value = 0;
-q->e = NULL;
+q->e[0] = '\0';
 head = p;
 }
 while(p){
 	if(p->NO == NO) break;
 	p = p->next;
 	q = q->next;
-}
+ }
 if(p->NO == NO){
   free_wp(p);
   p->old_value = 0;
   p->new_value = 0;
-  p->e = NULL;
+  p->e[0] = '\0';
   q->next = p->next;
   return true;
-} 
+}  
 else 
 return false;
 } 
@@ -125,16 +125,16 @@ while(head->next!= NULL){
   free_wp(p);
   p->old_value = 0;
   p->new_value = 0;
-  p->e = NULL;
-   }
-  if(head->next == NULL){
+  p->e[0] = '\0';
+     }
+   if(head->next == NULL){
 	  free_wp(head);
 	 head->old_value = 0;
 	 head->new_value = 0;
-     head->e = NULL;
+     head->e[0] = '\0';
      head = NULL;	 
 	  return true;
-  }
+   }
   else  return false;
 }
 void list_watchpoint(WP* list){
@@ -149,12 +149,12 @@ void list_watchpoint(WP* list){
   while(p  != NULL){
  if(p->e != NULL){
 	// printf("ddddd%syyyy\n",p->e);
-	 if(compare_wp(p)){
+ 	 if(compare_wp(p)){
 		 list_watchpoint(p); 
 		 return true;
  	 }
- }
+ } 
    p = p->next;
-       }
+        }
    return false;
 }

@@ -8,7 +8,7 @@ typedef struct watchpoint {
 	struct watchpoint *next;
     int old_value;
     int new_value;
-    char *e;//expression
+    char e[30];//expression
 	/* TODO: Add more members if necessary */
 
 
