@@ -95,7 +95,9 @@ static int cmd_p(char *args){
 	bool *success=0;
 	char *str;
     str = strtok(NULL," ");
-	expr(str,success);
+//	expr(str,success);
+    int result = expr(str,success);
+	printf("%d",result);
 	return 0;
 }
 static int cmd_si(char *args) {

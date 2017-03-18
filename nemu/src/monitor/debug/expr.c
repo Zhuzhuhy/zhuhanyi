@@ -281,7 +281,7 @@ uint32_t eval(int p,int q){
             if(strcmp(tokens[p].str,"$edi")==0)
 				  return cpu.edi;
   	  }
-	  }
+ 	  }
  	   else if(check_parentheses(p,q)== true){
               	return eval(p +1,q - 1);
    	   } 
@@ -361,7 +361,7 @@ uint32_t eval(int p,int q){
 			break;
  	     	}      	
          	}
-    	}
+     	}
 	 return 0;
 }
 uint32_t expr(char *e, bool *success) {
@@ -369,8 +369,9 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
       	}
-  printf("the expression: %d\n",eval(0,nr_token-1));	
+//  printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
-	return 0;
+    int num = eval(0,nr_token-1);   
+	return num;
 }
