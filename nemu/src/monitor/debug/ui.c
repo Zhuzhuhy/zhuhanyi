@@ -10,6 +10,7 @@ void cpu_exec(uint32_t);
 int set_watchpoint(char *e);
 bool delete_watchpoint(int NO);
 bool scan_watchpoint();
+bool scan_watchpoint_all();
 bool delete_all();
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
@@ -123,8 +124,8 @@ static int cmd_info(char *args) {
 	printf("eip :%08x %d \n",cpu.eip,cpu.eip);
      	}
  	else if(strcmp(ch,"w")==0) {
-		          if(scan_watchpoint()) printf("print success\n");
-	              else printf("Error\n");
+		          if(scan_watchpoint_all()) printf("print success\n");
+	              else printf("NO WATCHPOINT!\n");
 	}
 	else printf("Error\n");
 	return 0;

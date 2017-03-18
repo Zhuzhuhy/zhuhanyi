@@ -155,3 +155,17 @@ void list_watchpoint(WP* list){
         }
    return false;
 }
+bool scan_watchpoint_all(){
+WP *p;
+p = head;
+if(p!=NULL){
+    while(p!=NULL){
+        list_watchpoint(p);
+        p = p->next;
+	}
+		return true;
+  }
+else
+ return false;
+
+}
