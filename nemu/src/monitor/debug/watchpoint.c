@@ -144,8 +144,7 @@ void list_watchpoint(WP* list){
  bool scan_watchpoint(){
  WP* p;
  p = head;
-if(head == NULL) printf("yuio");
- printf("\n%s",head->e);
+ printf("ssdff%s",head->e);
   while(p){
  if(p->e != NULL)
 	 if(compare_wp(p)){
