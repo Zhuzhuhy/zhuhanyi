@@ -71,7 +71,6 @@ void cpu_exec(volatile uint32_t n) {
 			printf("%s\n", asm_buf);
 		}
 #endif
-         printf("cpu-eeeeeeee");
 		/* TODO: check watchpoints here. */
         if(scan_watchpoint()) {
 			printf("TOUCH WATCHPOINT!\n");
