@@ -61,6 +61,7 @@ if(q->next == NULL){
 }
 } 
   printf("WATCHPOINT!\n");
+  printf("%s",head->e);
   return 0;
 }
 
