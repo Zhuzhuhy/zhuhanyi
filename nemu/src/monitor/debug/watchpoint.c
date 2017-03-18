@@ -66,7 +66,6 @@ if(q->next == NULL){
 bool compare_wp(WP* new){
 	bool *success = 0 ;
 	new->new_value = expr(new->e,success);
-    printf("%d %d\n",new->old_value,new->new_value);	
 	if(new->old_value != new->new_value) {
 		list_watchpoint(new);
 		new->old_value = new->new_value;
@@ -138,6 +137,7 @@ while(head->next!= NULL){
 }
 void list_watchpoint(WP* list){
    printf("watchpoint NO:%d\t old_value:%d\t new_value:%d\t expression:%s\n",list->NO,list->old_value,list->new_value,list->e);
+   printf("\n");
 } 
 
 
