@@ -7,6 +7,7 @@ void cpu_exec();
 void ui_mainloop();
 static WP* new_wp();
 
+void list_watchpoint(WP* list);
 static void free_wp(WP *wp);
 static WP wp_list[NR_WP];
 static WP *head, *free_;
@@ -67,6 +68,7 @@ bool compare_wp(WP* new){
 	new->new_value = expr(new->e,success);
     printf("%d %d\n",new->old_value,new->new_value);	
 	if(new->old_value != new->new_value) {
+		list_watchpoint(new);
 		new->old_value = new->new_value;
 		return true;
  	}  
@@ -142,12 +144,10 @@ void list_watchpoint(WP* list){
  bool scan_watchpoint(){
  WP* p;
  p = head;
-  while(p  != NULL){
+   while(p  != NULL){
  if(p->e != NULL){
- 	 if(compare_wp(p)){
-		 list_watchpoint(p); 
+  	 if(compare_wp(p))
 		 return true;
- 	 }
  } 
    p = p->next;
         }
