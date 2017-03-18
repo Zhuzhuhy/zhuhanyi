@@ -92,11 +92,12 @@ WP *p;
 q = head;
 p = head->next;
  if(q->NO == NO){
-free_wp(head);
+free_wp(q);
 q->old_value = 0;
 q->new_value = 0;
 q->e[0] = '\0';
 head = p;
+return true;
 }
 while(p){
 	if(p->NO == NO) break;
@@ -111,8 +112,7 @@ if(p->NO == NO){
   q->next = p->next;
   return true;
 }  
-else 
-return false;
+else return false;
 } 
 
  bool delete_all(){
