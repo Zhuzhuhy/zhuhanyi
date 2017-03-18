@@ -372,6 +372,7 @@ uint32_t expr(char *e, bool *success) {
 //  printf("the expression: %d\n",eval(0,nr_token-1));	
  	/* TODO: Insert codes to evaluate the expression. */
  // panic("please implement me");
-    int num = eval(0,nr_token-1);   
+    int num = eval(0,nr_token-1);  
+    *success = true;	
 	return num;
 }
