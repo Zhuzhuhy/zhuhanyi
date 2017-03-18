@@ -50,7 +50,7 @@ if(head == NULL)
 else 
 {
 WP *q;
-q = head->next;
+q = head;
   while(q->next){
      if(q->next == NULL) break;
      q = q->next;
