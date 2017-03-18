@@ -38,11 +38,9 @@ return p;
 }
 
 int set_watchpoint(char *e){
-if(head == NULL)
-	init_wp_list();
 WP *new;
 new = new_wp();
-new->e = e;
+strcmp(new->e, e);
 if(head == NULL)
 {
    	head = new;
