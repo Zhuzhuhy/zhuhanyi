@@ -47,17 +47,18 @@ if(head == NULL)
    	head = new;
 	new->next = NULL;
     }
-else {
+else 
+{
 WP *q;
 q = head->next;
-while(q){
-  if(q->next == NULL) break;
-  q = q->next;
- }
-if(q->next == NULL){
-   q->next = new;
-   new->next = NULL;
-} 
+  while(q->next){
+     if(q->next == NULL) break;
+     q = q->next;
+    }
+  if(q->next == NULL){
+     q->next = new;
+     new->next = NULL;
+    } 
 }  
   printf("WATCHPOINT!\n");
   return 0;
