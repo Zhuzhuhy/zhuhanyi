@@ -39,8 +39,7 @@ return p;
 
 int set_watchpoint(char *e){
 if(head == NULL){
-	init_wp_list();
-	printf("NULLLLLLLLLLLL");
+	init_wp_list();printf("ssssssssss");
 }
 WP *new;
 new = new_wp();
