@@ -45,13 +45,14 @@ bool *success = 0;
 new = new_wp();
 strcpy(new->e,e);
 new->old_value = expr(new->e,success);
+printf("%s : %d",new->e,new->old_value);
 if(head == NULL)
 {
    	head = new;
 	new->next = NULL;
-     }
+      }
 else 
-{
+{ 
 WP *q;
 q = head;
   while(q->next){
