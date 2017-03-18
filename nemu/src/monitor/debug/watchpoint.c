@@ -13,7 +13,7 @@ static WP *head, *free_;
 
 void init_wp_list() {
 	int i;
- 	for(i = 0; i < NR_WP; i ++) {
+  	for(i = 0; i < NR_WP; i ++) {
 		wp_list[i].NO = i;
 		wp_list[i].old_value = 0;
 		wp_list[i].new_value = 0;
@@ -38,13 +38,14 @@ return p;
 }
 
 int set_watchpoint(char *e){
+if(head == NULL)init_wp_list();
 WP *new;
 new = new_wp();
 new->e = e;
 if(head == NULL)
 {
    	head = new;
-	new->next = NULL;
+	head->next = NULL;
  }
 else {
 WP *q;
