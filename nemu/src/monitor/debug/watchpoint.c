@@ -41,8 +41,10 @@ return p;
 
 int set_watchpoint(char *e){
 WP *new;
+bool *success = 0;
 new = new_wp();
 strcpy(new->e,e);
+new->old_value = expr(new->e,success);
 if(head == NULL)
 {
    	head = new;
