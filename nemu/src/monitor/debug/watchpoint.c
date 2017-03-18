@@ -66,7 +66,7 @@ if(q->next == NULL){
 
 bool compare_wp(WP* new){
 	bool *success = 0 ;
-	printf("ffffffff%sggggggggggg%s0",new->e,head->e);
+	printf("ffffffff%dggggggggggg%s0\n",new->NO,head->e);
 	new->old_value = expr(new->e,success);
 	new->new_value = expr(new->e,success);	
 	if(new->old_value != new->new_value) {
