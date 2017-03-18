@@ -74,7 +74,7 @@ bool compare_wp(WP* new){
 		list_watchpoint(new);
 		new->old_value = new->new_value;
 		return true;
-  	}  
+  	}
 	else   return false;
  }
  static void free_wp(WP *wp){
