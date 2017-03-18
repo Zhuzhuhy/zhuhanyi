@@ -149,7 +149,7 @@ void list_watchpoint(WP* list){
  p = head;
   while(p  != NULL){
  if(p->e != NULL){
-	 printf("dddddddddddd%d%syyyyyyyyyyy\n",p->NO,p->e);
+	 printf("dddddddddddd%dhh%syyyyyyyyyyy\n",p->NO,p->e);
 	 if(compare_wp(p)){
 		 list_watchpoint(p); 
 		 return true;
