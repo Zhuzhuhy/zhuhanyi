@@ -57,7 +57,7 @@ if(q->next == NULL){
    q->next = new;
    new->next = NULL;
 }
-} printf("%s",head->e);
+} 
   printf("WATCHPOINT!\n");
   return 0;
 }
@@ -144,14 +144,15 @@ void list_watchpoint(WP* list){
  bool scan_watchpoint(){
  WP* p;
  p = head;
+ printf("yuio");
  printf("\n%s",head->e);
   while(p){
  if(p->e != NULL)
 	 if(compare_wp(p)){
 		 list_watchpoint(p); 
 		 return true;
-	 }
+ 	 }
    p = p->next;
-      }
+       }
    return false;
 }
