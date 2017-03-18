@@ -12,7 +12,7 @@ static void free_wp(WP *wp);
 static WP wp_list[NR_WP];
 static WP *head, *free_;
 
-void init_wp_list() {
+ void init_wp_list() {
 	int i;
   	for(i = 0; i < NR_WP; i ++) {
 		wp_list[i].NO = i;
@@ -62,7 +62,7 @@ q = head;
 }  
   printf("WATCHPOINT!\n");
   return 0;
-}
+} 
 
 bool compare_wp(WP* new){
 	bool *success = 0 ;
@@ -169,3 +169,30 @@ else
  return false;
 
 }
+
+int set_breakpoint(char *e){
+WP *new;
+new = new_wp();
+strcpy(new->e,e);
+if(head == NULL)
+{
+   	head = new;
+	new->next = NULL;
+    }
+else 
+{
+WP *q;
+q = head;
+  while(q->next){
+     if(q->next == NULL) break;
+     q = q->next;
+    }
+  if(q->next == NULL){
+     q->next = new;
+     new->next = NULL;
+    } 
+}  
+  printf("BREAKPOINT!\n");
+  return 0;
+} 
+

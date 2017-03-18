@@ -8,6 +8,7 @@
 #include <readline/history.h>
 void cpu_exec(uint32_t);
 int set_watchpoint(char *e);
+int set_breakpoint(char *e);
 bool delete_watchpoint(int NO);
 bool scan_watchpoint();
 bool scan_watchpoint_all();
@@ -46,6 +47,7 @@ static int cmd_help(char *args);
 static int cmd_p(char *args);
 static int cmd_w(char *args);
 static int cmd_d(char *args);
+static int cmd_b(char *args);
 
 static struct {
 	char *name;
@@ -61,6 +63,7 @@ static struct {
 	{ "p","Expression evaluation",cmd_p },
 	{ "w","Set a watchpoint",cmd_w},
 	{ "d","Delete a watchpoint",cmd_d},
+	{ "b","Set a breakpoint",cmd_b},
 	/* TODO: Add more commands */
 };
 
@@ -70,6 +73,13 @@ static int cmd_w(char *arge){
 	char *str;
 	str = strtok(NULL," ");
 	if(set_watchpoint(str) == 0)  printf("set success\n");
+	else      printf("Error\n");
+	return 0;
+}
+static int cmd_b(char *arge){
+	char *str;
+	str = strtok(NULL," ");
+	if(set_breakpoint(str) == 0)  printf("set success\n");
 	else      printf("Error\n");
 	return 0;
 }
