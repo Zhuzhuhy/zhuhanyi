@@ -98,8 +98,9 @@ q->new_value = 0;
 q->e[0] = '\0';
 head = p;
 return true;
-}
-while(p){
+ }
+else{
+	while(p){
 	if(p->NO == NO) break;
 	p = p->next;
 	q = q->next;
@@ -114,7 +115,7 @@ if(p->NO == NO){
 }  
 else return false;
 } 
-
+}
  bool delete_all(){
   WP* p;
 while(head->next!= NULL){
