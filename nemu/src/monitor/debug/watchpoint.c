@@ -68,7 +68,6 @@ bool compare_wp(WP* new){
     printf("%d %d\n",new->old_value,new->new_value);	
 	if(new->old_value != new->new_value) {
 		new->old_value = new->new_value;
-		new->new_value = expr(new->e,success);
 		return true;
  	}  
 	else   return false;
