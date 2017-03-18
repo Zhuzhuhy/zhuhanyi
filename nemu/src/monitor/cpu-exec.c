@@ -76,7 +76,6 @@ void cpu_exec(volatile uint32_t n) {
 			printf("TOUCH WATCHPOINT!\n");
 			nemu_state = STOP;  
 		}	
-        
 		if(nemu_state != RUNNING) { return; }
 	}
 

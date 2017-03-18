@@ -6,8 +6,8 @@
 typedef struct watchpoint {
 	int NO;
 	struct watchpoint *next;
-    int old_value;
-    int new_value;
+    int old_value, new_value;
+	int breakpoint;//1 is breaking
     char e[30];//expression
 	/* TODO: Add more members if necessary */
 

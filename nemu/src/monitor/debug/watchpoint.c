@@ -18,6 +18,7 @@ static WP *head, *free_;
 		wp_list[i].NO = i;
 		wp_list[i].old_value = 0;
 		wp_list[i].new_value = 0;
+		wp_list[i].breakpoint = 0;
 		wp_list[i].e[0] = '\0' ;
 		wp_list[i].next = &wp_list[i + 1];
   	}
@@ -46,7 +47,7 @@ if(head == NULL)
 {
    	head = new;
 	new->next = NULL;
-    }
+     }
 else 
 {
 WP *q;
@@ -54,12 +55,12 @@ q = head;
   while(q->next){
      if(q->next == NULL) break;
      q = q->next;
-    }
+     }
   if(q->next == NULL){
      q->next = new;
      new->next = NULL;
-    } 
-}  
+     } 
+ }  
   printf("WATCHPOINT!\n");
   return 0;
 } 
@@ -71,7 +72,7 @@ bool compare_wp(WP* new){
 		list_watchpoint(new);
 		new->old_value = new->new_value;
 		return true;
- 	}  
+  	}  
 	else   return false;
  }
  static void free_wp(WP *wp){
@@ -80,8 +81,8 @@ p = free_;
 while(p->next){
  if(p->next == NULL) break;
  p = p->next;
- }  
-if (p->next == NULL){
+  }  
+ if (p->next == NULL){
  p->next = wp;
 wp->next = NULL;
 }
@@ -96,26 +97,28 @@ p = head->next;
 free_wp(q);
 q->old_value = 0;
 q->new_value = 0;
+q->breakpoint = 0;
 q->e[0] = '\0';
 head = p;
 return true;
- }
+  }
 else{
 	while(p){
 	if(p->NO == NO) break;
 	p = p->next;
 	q = q->next;
- }
+  }
 if(p->NO == NO){
   free_wp(p);
   p->old_value = 0;
   p->new_value = 0;
+  p->breakpoint = 0;
   p->e[0] = '\0';
   q->next = p->next;
   return true;
-}  
+}   
 else return false;
-} 
+}  
 }
  bool delete_all(){
   WP* p;
@@ -125,12 +128,14 @@ while(head->next!= NULL){
   free_wp(p);
   p->old_value = 0;
   p->new_value = 0;
+  p->breakpoint = 0;
   p->e[0] = '\0';
      }
-   if(head->next == NULL){
+   if( head->next == NULL){
 	  free_wp(head);
 	 head->old_value = 0;
 	 head->new_value = 0;
+	 head->breakpoint = 0;
      head->e[0] = '\0';
      head = NULL;	 
 	  return true;
@@ -146,20 +151,21 @@ void list_watchpoint(WP* list){
  bool scan_watchpoint(){
  WP* p;
  p = head;
-   while(p  != NULL){
+    while(p  != NULL){
  if(p->e != NULL){
-  	 if(compare_wp(p))
+  	 if(compare_wp(p) || p->breakpoint == 1)
 		 return true;
- } 
+ }  
    p = p->next;
         }
    return false;
 }
+
 bool scan_watchpoint_all(){
 WP *p;
 p = head;
 if(p!=NULL){
-    while(p!=NULL){
+      while(p!=NULL){
         list_watchpoint(p);
         p = p->next;
 	}
@@ -174,24 +180,25 @@ int set_breakpoint(char *e){
 WP *new;
 new = new_wp();
 strcpy(new->e,e);
+new->breakpoint = 1;
 if(head == NULL)
-{
+ { 
    	head = new;
 	new->next = NULL;
     }
 else 
-{
+{ 
 WP *q;
 q = head;
-  while(q->next){
+   while(q->next){
      if(q->next == NULL) break;
      q = q->next;
-    }
-  if(q->next == NULL){
+     }
+    if(q->next == NULL){
      q->next = new;
      new->next = NULL;
     } 
-}  
+ }  
   printf("BREAKPOINT!\n");
   return 0;
 } 
