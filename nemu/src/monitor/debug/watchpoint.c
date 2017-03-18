@@ -144,6 +144,7 @@ void list_watchpoint(WP* list){
 
 
  bool scan_watchpoint(){
+	 printf("%s",head->e);
  WP* p;
  p = head;
   while(p  != NULL){
