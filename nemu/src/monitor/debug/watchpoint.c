@@ -145,6 +145,11 @@ while(head->next!= NULL){
   else  return false;
 }
 void list_watchpoint(WP* list){
+	if(list->old_value == list->new_value){
+	bool *success = 0;
+	list->old_value = expr(list->e,success);
+	list->new_value = expr(list->e,success);
+	}
    printf("watchpoint NO:%d\t old_value:%d\t new_value:%d\t expression:%s\n",list->NO,list->old_value,list->new_value,list->e);
    printf("\n");
 } 
