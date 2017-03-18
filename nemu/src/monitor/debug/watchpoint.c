@@ -50,8 +50,8 @@ if(head == NULL)
  }
 else {
 WP *q;
-q = head;
-while(q->next){
+q = head->next;
+while(q){
   if(q->next == NULL) break;
   q = q->next;
 }
@@ -61,13 +61,12 @@ if(q->next == NULL){
 }
 } 
   printf("WATCHPOINT!\n");
-  printf("%s\n",head->e);
   return 0;
 }
 
 bool compare_wp(WP* new){
 	bool *success = 0 ;
-	printf("%s",head->e);
+	printf("ffffffff%sggggggggggg%s0",new->e,head->e);
 	new->old_value = expr(new->e,success);
 	new->new_value = expr(new->e,success);	
 	if(new->old_value != new->new_value) {
@@ -149,7 +148,7 @@ void list_watchpoint(WP* list){
  p = head;
   while(p  != NULL){
  if(p->e != NULL){
-	 printf("ddddd%syyyy\n",p->e);
+	// printf("ddddd%syyyy\n",p->e);
 	 if(compare_wp(p)){
 		 list_watchpoint(p); 
 		 return true;
