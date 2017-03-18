@@ -97,7 +97,7 @@ static int cmd_p(char *args){
     str = strtok(NULL," ");
 //	expr(str,success);
     int result = expr(str,success);
-	printf("%d",result);
+	printf("the result:%d\n",result);
 	return 0;
 }
 static int cmd_si(char *args) {
