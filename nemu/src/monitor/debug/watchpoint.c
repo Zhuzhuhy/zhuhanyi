@@ -40,12 +40,12 @@ return p;
 int set_watchpoint(char *e){
 WP *new;
 new = new_wp();
-strcpy(new->e, e);
+new->e = e;
 if(head == NULL)
 {
    	head = new;
 	new->next = NULL;
- }
+  }
 else {
 WP *q;
 q = head->next;
