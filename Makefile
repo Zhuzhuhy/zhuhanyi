@@ -50,9 +50,8 @@ clean: clean-cpp
 	-rm -f *log.txt entry $(FLOAT) 2> /dev/null
 
 
-##### some convinient rules #####
-
-USERPROG := obj/testcase/mov
+##### some convinient rules ####
+USERPROG = obj/testcase/mov
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
