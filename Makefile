@@ -51,7 +51,7 @@ clean: clean-cpp
 
 
 ##### some convinient rules ####
-USERPROG = obj/testcase/mov
+USERPROG = obj/testcase/mov-c
 ENTRY := $(USERPROG)
 
 entry: $(ENTRY)
@@ -69,3 +69,4 @@ test: $(nemu_BIN) $(testcase_BIN) entry
 
 submit: clean
 	cd .. && tar cvj $(shell pwd | grep -o '[^/]*$$') > $(STU_ID).tar.bz2
+
