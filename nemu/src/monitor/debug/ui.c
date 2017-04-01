@@ -41,7 +41,7 @@ static int cmd_q(char *args) {
 	return -1;
 }
 static int cmd_si(char *args);
-//static int cmd_info(char *args); 
+static int cmd_info(char *args); 
 static int cmd_x(char *args);
 static int cmd_help(char *args);
 static int cmd_p(char *args);
@@ -58,7 +58,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si","Step Mode Execution",cmd_si },
-//	{ "info","Print",cmd_info },
+	{ "info","Print",cmd_info },
 	{ "x","Memory scan",cmd_x },
 	{ "p","Expression evaluation",cmd_p },
 	{ "w","Set a watchpoint",cmd_w},
@@ -122,7 +122,7 @@ static int cmd_si(char *args) {
 	else  cpu_exec(num);
 	return 0;
 }
-/*
+
 static int cmd_info(char *args) {
 	char *ch;
 	int i = 0;
@@ -141,7 +141,7 @@ static int cmd_info(char *args) {
 	else printf("Error\n");
 	return 0;
 }
-*/
+
 static int cmd_x(char *args){
      char *locate_start,*locate_len;
 	 int  num, num_s,count = 0,locate;
