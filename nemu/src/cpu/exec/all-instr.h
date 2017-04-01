@@ -6,6 +6,7 @@
 #include "data-sub/call.h"
 #include "data-sub/cmp.h"
 #include "data-mov/push.h"
+#include "data-mov/test.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
