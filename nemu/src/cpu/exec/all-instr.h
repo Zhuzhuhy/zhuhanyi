@@ -3,6 +3,9 @@
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
 #include "data-sub/sub.h"
+#include "data-sub/call.h"
+#include "data-sub/cmp.h"
+#include "data-mov/push.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"

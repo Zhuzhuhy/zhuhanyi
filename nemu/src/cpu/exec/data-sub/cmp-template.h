@@ -1,6 +1,6 @@
 #include "cpu/exec/template-start.h"
 
-#define instr sub
+#define instr cmp
 static void do_execute(){
   DATA_TYPE val;
   val = op_dest->val-op_src->val;
@@ -31,9 +31,6 @@ static void do_execute(){
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
   
-
-  OPERAND_W(op_dest, val);
-  print_asm_template2();
 }
 make_instr_helper(si2rm)
 
