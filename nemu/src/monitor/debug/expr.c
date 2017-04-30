@@ -257,9 +257,9 @@ uint32_t eval(int p,int q){
       	}
   	  else if(p == q){
   		  if(tokens[p].type == Identify){
-		      int n;
-			  n=check_identify(tokens[p].str);
-			  return n;
+		   //   int n;
+			 // n=check_identify(tokens[p].str);
+			  return 10114;
 		  }
   		  if(tokens[p].type == dec){
 			  int n;
