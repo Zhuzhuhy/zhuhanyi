@@ -48,6 +48,7 @@ static int cmd_p(char *args);
 static int cmd_w(char *args);
 static int cmd_d(char *args);
 static int cmd_b(char *args);
+//static int cmd_bt()
 
 static struct {
 	char *name;

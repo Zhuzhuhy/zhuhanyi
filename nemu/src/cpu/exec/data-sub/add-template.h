@@ -1,11 +1,11 @@
 #include "cpu/exec/template-start.h"
 
-#define instr cmp
+#define instr add
 static void do_execute(){
   DATA_TYPE val;
-  val = op_dest->val-op_src->val;
-
-  if(op_dest->val < op_src->val) 
+  val = op_dest->val+op_src->val;
+/*
+  if(val < op_dest->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
 
@@ -30,10 +30,26 @@ static void do_execute(){
   }  
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
-  
-}
-make_instr_helper(si2rm)
-make_instr_helper(r2rm)
-make_instr_helper(rm2r)
+ */
+ int len=(DATA_BYTE<<3)-1;
+ int s1,s2;
+ cpu.EFLAGS.CF=(val<op_dest->val);
+ cpu.EFLAGS.SF=val>>len;
+ s1=op_dest->val>>len;
+ s2=op_src->val>>len;
+ cpu.EFLAGS.OF=(s1==s2&&s1!=cpu.EFLAGS.SF);
+ cpu.EFLAGS.ZF=!val;
+ val^=val>>4;
+ val^=val>>2;
+ val^=val>>1;
+ cpu.EFLAGS.PF=!(val&1);
 
+
+  OPERAND_W(op_dest, val);
+  print_asm_template2();
+}
+//#if DATA_TYPE==2||DATA_TYPE==4
+make_instr_helper(si2rm)
+//#endif
+make_instr_helper(r2rm)
 #include "cpu/exec/template-end.h"
