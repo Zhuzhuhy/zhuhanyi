@@ -22,12 +22,13 @@ for(j=0;j<nr_symtab_entry;j++)
 	if(eip>=symtab[j].st_value && eip<=(symtab[j].st_value+symtab[j].st_size))
 		if(ELF32_ST_TYPE(symtab[j].st_info)==STT_FUNC){
 			printf("%s",strtab+symtab[j].st_name);
-            
+/*            
         	printf("%x	",swaddr_read(ebp+8,4));
         	printf("%x	",swaddr_read(ebp+12,4));
         	printf("%x	",swaddr_read(ebp+16,4));
-        	printf("%x	",swaddr_read(ebp+20,4));
- 		}
+    		printf("%x	",swaddr_read(ebp+20,4));
+ 	*/
+			}
 }
 swaddr_t check_identify(char *identify){
 int i;

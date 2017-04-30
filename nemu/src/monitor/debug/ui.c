@@ -80,7 +80,13 @@ static int cmd_bt(char *grge){
 	findname(eip,ebp);
 	eip=swaddr_read(cpu.ebp,4);
 	ebp=swaddr_read(cpu.ebp+4,4);
-	}
+            
+        	printf("%x	",swaddr_read(ebp+8,4));
+        	printf("%x	",swaddr_read(ebp+12,4));
+        	printf("%x	",swaddr_read(ebp+16,4));
+        	printf("%x	",swaddr_read(ebp+20,4));
+ 		}
+	
     return 0;
 }
 
