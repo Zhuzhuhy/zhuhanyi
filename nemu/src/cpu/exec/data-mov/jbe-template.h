@@ -2,14 +2,14 @@
 
 #define instr jbe
 
-make_helper(concat(jbe_i_,SUFFIX)) {
-	swaddr_t addr = instr_fetch(cpu.eip+1,1);
+static void do_execute() {
+
     if(cpu.EFLAGS.ZF == 1||cpu.EFLAGS.CF==1) 
-		cpu.eip = cpu.eip + addr;
-
-     return 2;
+		cpu.eip = cpu.eip + op_src->val;;
+    print_asm_template1();
+        
 }
-
+make_instr_helper(i);
 
 
 #include "cpu/exec/template-end.h"
