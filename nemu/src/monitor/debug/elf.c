@@ -2,15 +2,33 @@
 #include <stdlib.h>
 #include <elf.h>
 
+typedef struct{
+swaddr_t prev_ebp;
+swaddr_t ret_addr;
+uint32_t args[4];
+}P;
+
 char *exec_file = NULL;
 
 static char *strtab = NULL;
 static Elf32_Sym *symtab = NULL;
 static int nr_symtab_entry;
 
-//void findname(uint_32 eip,uint_32 ebp){
-     
-//}
+void findname(uint32_t eip,uint32_t ebp){
+//P.pre_ebp = ebp;
+//P.ret_addr = eip;
+int j =0;
+for(j=0;j<nr_symtab_entry;j++)
+	if(eip>=symtab[j].st_value && eip<=(symtab[j].st_value+symtab[j].st_size))
+		if(ELF32_ST_TYPE(symtab[j].st_info)==STT_FUNC){
+			printf("%s",strtab+symtab[j].st_name);
+            
+        	printf("%x	",swaddr_read(ebp+8,4));
+        	printf("%x	",swaddr_read(ebp+12,4));
+        	printf("%x	",swaddr_read(ebp+16,4));
+        	printf("%x	",swaddr_read(ebp+20,4));
+ 		}
+}
 swaddr_t check_identify(char *identify){
 int i;
 for(i=0;i<nr_symtab_entry;i++){

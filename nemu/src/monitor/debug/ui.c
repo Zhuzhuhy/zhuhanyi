@@ -13,7 +13,7 @@ bool delete_watchpoint(int NO);
 bool scan_watchpoint();
 bool scan_watchpoint_all();
 bool delete_all();
-
+void findname(uint32_t eip,uint32_t ebp);
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -48,7 +48,7 @@ static int cmd_p(char *args);
 static int cmd_w(char *args);
 static int cmd_d(char *args);
 static int cmd_b(char *args);
-//static int cmd_bt();
+static int cmd_bt();
 
 static struct {
 	char *name;
@@ -65,23 +65,25 @@ static struct {
 	{ "w","Set a watchpoint",cmd_w},
 	{ "d","Delete a watchpoint",cmd_d},
 	{ "b","Set a breakpoint",cmd_b},
-//	{"bt","Print Stack",cmd_bt},
+	{"bt","Print Stack",cmd_bt},
 	/* TODO: Add more commands */
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
-/*static int cmd_bt(char *grge){
+static int cmd_bt(char *grge){
 	uint32_t eip=cpu.eip;
 	uint32_t ebp=cpu.ebp;
-	int i =1;
-	while(ebp!=0)
+	while(1)
 	{
-	printf("%x",);
-	
+	if(ebp==0) break;
+	printf("%x",eip);
+	findname(eip,ebp);
+	eip=swaddr_read(cpu.ebp,4);
+	ebp=swaddr_read(cpu.ebp+4,4);
 	}
-
+    return 0;
 }
-*/
+
 static int cmd_w(char *arge){
 	char *str;
 	str = strtok(NULL," ");
