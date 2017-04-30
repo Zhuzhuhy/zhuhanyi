@@ -2,14 +2,16 @@
 
 #define instr je
 
-make_helper(concat(je_i_,SUFFIX)) {
-	swaddr_t addr = instr_fetch(cpu.eip+1,1);
+//make_helper(concat(je_i_,SUFFIX)) {
+
+static void do_execute(){
+   
     if(cpu.EFLAGS.ZF == 1) 
-		cpu.eip = cpu.eip + addr;
-
-     return 2;
+		cpu.eip = cpu.eip + op_src->val;
+    print_asm("je %x",cpu.eip+1+DATA_BYTE);
+    
 }
-
+make_instr_helper(i);
 
 
 #include "cpu/exec/template-end.h"
