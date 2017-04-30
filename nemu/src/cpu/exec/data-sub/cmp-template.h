@@ -33,11 +33,11 @@ static void do_execute(){
  */
  int len=(DATA_BYTE<<3)-1;
  int s1,s2;
- cpu.EFLAGS.CF=op_src->val<op_dest->val;
+ cpu.EFLAGS.CF=op_dest->val<op_src->val;
  cpu.EFLAGS.SF=val>>len;
  s1=op_dest->val>>len;
  s2=op_src->val>>len;
- cpu.EFLAGS.OF=(s1==s2&&s1!=cpu.EFLAGS.SF);
+ cpu.EFLAGS.OF=(s1!=s2&&s2==cpu.EFLAGS.SF);
  cpu.EFLAGS.ZF=!val;
  val^=val>>4;
  val^=val>>2;
