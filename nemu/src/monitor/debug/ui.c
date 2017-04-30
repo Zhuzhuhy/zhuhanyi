@@ -48,7 +48,7 @@ static int cmd_p(char *args);
 static int cmd_w(char *args);
 static int cmd_d(char *args);
 static int cmd_b(char *args);
-//static int cmd_bt()
+//static int cmd_bt();
 
 static struct {
 	char *name;
@@ -65,11 +65,23 @@ static struct {
 	{ "w","Set a watchpoint",cmd_w},
 	{ "d","Delete a watchpoint",cmd_d},
 	{ "b","Set a breakpoint",cmd_b},
+//	{"bt","Print Stack",cmd_bt},
 	/* TODO: Add more commands */
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
+/*static int cmd_bt(char *grge){
+	uint32_t eip=cpu.eip;
+	uint32_t ebp=cpu.ebp;
+	int i =1;
+	while(ebp!=0)
+	{
+	printf("%x",);
+	
+	}
 
+}
+*/
 static int cmd_w(char *arge){
 	char *str;
 	str = strtok(NULL," ");

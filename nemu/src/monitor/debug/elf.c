@@ -11,7 +11,15 @@ static int nr_symtab_entry;
 //void findname(uint_32 eip,uint_32 ebp){
      
 //}
-
+swaddr_t check_identify(char *identify){
+int i;
+for(i=0;i<nr_symtab_entry;i++){
+	if(symtab[i].st_info==STT_OBJECT)
+		if(strcmp(strtab+symtab[i].st_name,identify)==0)
+			break;
+}
+return symtab[i].st_value;
+}
 void load_elf_tables(int argc, char *argv[]) {
 	int ret;
 	Assert(argc == 2, "run NEMU with format 'nemu [program]'");

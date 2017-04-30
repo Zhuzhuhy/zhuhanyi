@@ -5,7 +5,7 @@
  //Type 'man regex' for more information about POSIX regex functions.
 #include <sys/types.h>
 #include <regex.h>
-
+swaddr_t check_identify(char *identify);
 enum {
 	NOTYPE = 256, 
 	EQ = 257,
@@ -20,6 +20,7 @@ enum {
 	NE = 269,
 	DEREF = 267,
 	REG = 268,
+	Identify=270,
 	/* TODO: Add more token types */
 
 };
@@ -56,7 +57,7 @@ static struct rule {
 	{"0x[0-9a-fA-F]{1,8}",hex},
     {"[0-9]{1,10}",dec},                  // decimalist        // hex
 	{"\\$[a-z]{2,3}",REG},
-
+    {"\\w+$",Identify},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -142,6 +143,11 @@ static bool make_token(char *e) {
 					nr_token++;
 	            	break;
 					case REG:
+					  tokens[nr_token].type = rules[i].token_type;
+					  strcpy(tokens[nr_token].str,substr_start);
+					  nr_token++;
+					  break;
+					case Identify:
 					  tokens[nr_token].type = rules[i].token_type;
 					  strcpy(tokens[nr_token].str,substr_start);
 					  nr_token++;
@@ -250,6 +256,11 @@ uint32_t eval(int p,int q){
 		return 0;
       	}
   	  else if(p == q){
+  		  if(tokens[p].type == Identify){
+		      int n;
+			  n=check_identify(tokens[p].str);
+			  return n;
+		  }
   		  if(tokens[p].type == dec){
 			  int n;
 			  n = atoi(tokens[p].str);
@@ -261,6 +272,7 @@ uint32_t eval(int p,int q){
 		  return hexnum;
    		  }
  		  if(tokens[p].type == REG){
+		    	  
             if(strcmp(tokens[p].str,"$eip")==0)
 				  return cpu.eip;
 		    	  
