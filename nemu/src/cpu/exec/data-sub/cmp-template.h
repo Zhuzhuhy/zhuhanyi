@@ -4,7 +4,7 @@
 static void do_execute(){
   DATA_TYPE val;
   val = op_dest->val-op_src->val;
- /*
+ 
   if(val < op_dest->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
@@ -30,7 +30,7 @@ static void do_execute(){
   }  
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
- */
+ /*
  int len=(DATA_BYTE<<3)-1;
  int s1,s2;
  cpu.EFLAGS.CF=op_dest->val<op_src->val;
@@ -44,7 +44,7 @@ static void do_execute(){
  val^=val>>1;
  cpu.EFLAGS.PF=!(val&1);
 
-
+*/
  // OPERAND_W(op_dest, val);
   print_asm_template2();
 }
