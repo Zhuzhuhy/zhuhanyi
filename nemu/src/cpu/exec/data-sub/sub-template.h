@@ -2,9 +2,9 @@
 
 #define instr sub
 static void do_execute(){
-  DATA_TYPE result;
-  result = op_dest->val-op_src->val;
-  cpu.EFLAGS.CF=op_dest->val<op_src->val;
+  DATA_TYPE val;
+  val = op_dest->val-op_src->val;
+  /*cpu.EFLAGS.CF=op_dest->val<op_src->val;
   cpu.EFLAGS.SF=(result>>31)&1;
   int i,count=0,flag;
   uint32_t p=(result&255);
@@ -17,7 +17,7 @@ static void do_execute(){
   cpu.EFLAGS.PF=(count%2==0);
   cpu.EFLAGS.ZF=(result==0);
   
-/*
+*/
   if(op_dest->val < op_src->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
@@ -43,9 +43,9 @@ static void do_execute(){
   }  
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
- */ 
+ 
 
-  OPERAND_W(op_dest, result);
+  OPERAND_W(op_dest, val);
   print_asm_template2();
 }
 make_instr_helper(si2rm)
