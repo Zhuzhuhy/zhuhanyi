@@ -179,3 +179,35 @@ put lw.txt
 ls
 psftp>put zhy.txt
 sudo poweroff
+sudo mount -t cifs//192.168.56.101/share /mnt/windata
+sudo mount -t cifs //192.168.56.101/share /mnt/windata
+ls
+sudo ifconfig eth1
+sudo mount -t cifs //192.168.56.101/share /mnt/windata
+sudo mount -t cifs /192.168.56.101/share /mnt/windata
+sudo mount -t cifs //192.168.56.101/share /mnt/windata
+ifconfig -a
+si
+su
+ifconfig -a
+sudo ifconfig -a
+sudo ifconfig 
+sudo poweroff
+ls
+sudo ifconfig
+sudo ifconfig eth0:1 192.168.56.1 network 255.255.255.0
+sudo ifconfig eth0 192.168.56.1 network 255.255.255.0
+sudo ifconfig eth0 192.168.56.1 network 255.255.255.0 up
+sudo ifconfig
+ping 192.168.56.1
+sudo ifconfig
+sudo ifconfig eth0 192.168.56.1 network 255.255.255.0 up
+ls
+sudo ifconfig
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+vim /etc/ssh/sshed_config
+vim /etc/ssh/sshd_config
+service sshd restart
+sudo service sshd restart
+sudo poweroff
