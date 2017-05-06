@@ -13,7 +13,7 @@ static void do_execute() {
 //	uint32_t val=s;
 	swaddr_write(cpu.esp,4,op_src->val);
 	}
-	print_asm_template2();
+	print_asm_template1();
 }
 
 make_instr_helper(i)
