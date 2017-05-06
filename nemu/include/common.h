@@ -20,7 +20,7 @@ typedef uint8_t bool;
 typedef uint32_t hwaddr_t;
 typedef uint32_t lnaddr_t;
 typedef uint32_t swaddr_t;
-volatile static int dummy;
+//volatile static int dummy=0;
 typedef uint16_t ioaddr_t;
 
 #pragma pack (1)
