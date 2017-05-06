@@ -18,10 +18,10 @@ static void do_execute(){
   cpu.EFLAGS.ZF=(result==0);
   
 */ 
-  if(op_dest->val < op_src->val) 
+/*  if(op_dest->val < op_src->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
-
+*/
   if(op_dest->val == op_src->val)
 	  cpu.EFLAGS.ZF = 1;
   else cpu.EFLAGS.ZF = 0;
