@@ -21,7 +21,7 @@ uint32_t loader() {
 	Elf32_Phdr *ph = NULL;
 
 	uint8_t buf[4096];
-
+    uint8_t s[4096];
 #ifdef HAS_DEVICE
 	ide_read(buf, ELF_OFFSET_IN_DISK, 4096);
 #else
@@ -31,26 +31,37 @@ uint32_t loader() {
 	elf = (void*)buf;
 
 	/* TODO: fix the magic number with the correct one */
-	const uint32_t elf_magic = 0xBadC0de;
+	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
 
 	/* Load each program segment */
-	panic("please implement me");
-	for(; true; ) {
+	//panic("please implement me");
+#ifdef HAS_DEVICE
+	ide_read(s,elf->e_phoff,elf->e_phentisize*elf->e_phnum);
+#else
+    ramdisk_read(s,elf->e_phoff,elf->e_phentsize*elf->e_phnum);
+#endif
+	ph=(void*)s;
+	int j;
+	for(j=0;j<elf->e_phnum;j++ ) {
+
 		/* Scan the program header table, load each segment into memory */
-		if(ph->p_type == PT_LOAD) {
+		if(ph[j]->p_type == PT_LOAD) {
 
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
-			 */
-			 
+			 */ 
+		#ifdef HAS_DEVICE
+		ide_read((void*)ph[j].p_vaddr,ph[j].p_offset,ph[j].p_filesz);
+        #else
+		ramdisk_read((void*)ph[j].p_vaddr,ph[j].p_offset,ph[i].p_filesz);
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
-			 */
+			 */ 
 
-
+         memset((void*)(ph[j].p_vaddr+ph[j].p_filesz),0,(ph[j].p_memsz-ph[j].p_filesz));
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
