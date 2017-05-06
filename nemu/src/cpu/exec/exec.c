@@ -88,7 +88,7 @@ make_group(group6,
 
 make_group(group7,
 	inv, inv, inv, inv, 
-	inv, inv, push_rm_v, inv)
+	inv, inv, push_r_v, inv)
 
 
 /* TODO: Add more instructions!!! */
