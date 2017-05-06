@@ -13,7 +13,7 @@ static void do_execute(){
    if(flag==1)count++;
    p=p>>1;
   }
-  */
+   */
   cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&((op_dest->val>>31)^(result>>31))&1;
   uint32_t pf=(result&255);
   pf=(pf>>4)&pf;
@@ -56,6 +56,7 @@ static void do_execute(){
   OPERAND_W(op_dest, result);
   print_asm_template2();
 }
+//#if DATA_BYTE||DATA_BYTE==4
 make_instr_helper(si2rm)
-
+//#endif
 #include "cpu/exec/template-end.h"
