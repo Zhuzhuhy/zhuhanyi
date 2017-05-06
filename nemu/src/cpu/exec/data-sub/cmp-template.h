@@ -2,34 +2,33 @@
 
 #define instr cmp
 static void do_execute(){
-  DATA_TYPE val;
-  val = op_dest->val - op_src->val;
-  /*cpu.EFLAGS.CF=op_dest->val<op_src->val;
+  uint32_t result;
+  result = op_dest->val - op_src->val;
+  cpu.EFLAGS.CF=op_dest->val<op_src->val;
   cpu.EFLAGS.SF=(result>>31)&1;
-  int i,count=0,flag;
-  uint32_t p=(result&255);
-  for(i=0;i<8;i++){
-   flag=p&1;
-   if(flag==1)count++;
-   p=p>>1;
-  }
-  cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&&(!((result>>31)^(op_src->val>>31)));
-  cpu.EFLAGS.PF=(count%2==0);
+
+  cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&((op_dest->val>>31)^(result>>31))&1;
+  uint32_t pf=(result&255);
+  pf=(pf>>4)&pf;
+  pf=(pf>>2)&pf;
+  pf=(pf>>1)&pf;
+
+  cpu.EFLAGS.PF=(pf&1);
   cpu.EFLAGS.ZF=(result==0);
   
-*/ 
+
 /*  if(op_dest->val < op_src->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
-*/
-  if(op_dest->val == op_src->val)
+*/  
+ /* if(op_dest->val == op_src->val)
 	  cpu.EFLAGS.ZF = 1;
   else cpu.EFLAGS.ZF = 0;
 
-  /*if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
+  if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
 	  cpu.EFLAGS.OF = 1;
   else cpu.EFLAGS.OF=0;
-*/
+
   cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&&(!((val>>31)^(op_src->val>>31)));
 //  cpu.EFLAGS.PF=(count%2==0);
   if(val<0)
@@ -46,7 +45,7 @@ static void do_execute(){
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
  
-
+*/
  // OPERAND_W(op_dest, val);
   print_asm_template2();
 }
