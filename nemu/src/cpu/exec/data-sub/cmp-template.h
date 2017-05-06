@@ -13,10 +13,12 @@ static void do_execute(){
 	  cpu.EFLAGS.ZF = 1;
   else cpu.EFLAGS.ZF = 0;
 
+  cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&&(!((val>>31)^(op_src->val>>31)));
+  /*cpu.EFLAGS.PF=(count%2==0);
   if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
 	  cpu.EFLAGS.OF = 1;
   else cpu.EFLAGS.OF=0;
-
+*/
   if(val<0)
 	  cpu.EFLAGS.SF=1;
   else cpu.EFLAGS.SF = 0;

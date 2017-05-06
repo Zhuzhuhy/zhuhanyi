@@ -3,7 +3,7 @@
 #define instr sub
 static void do_execute(){
   DATA_TYPE val;
-  val = op_dest->val-op_src->val;
+  val = op_dest->val - op_src->val;
   /*cpu.EFLAGS.CF=op_dest->val<op_src->val;
   cpu.EFLAGS.SF=(result>>31)&1;
   int i,count=0,flag;
@@ -17,7 +17,7 @@ static void do_execute(){
   cpu.EFLAGS.PF=(count%2==0);
   cpu.EFLAGS.ZF=(result==0);
   
-*/
+*/ 
   if(op_dest->val < op_src->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
@@ -26,10 +26,12 @@ static void do_execute(){
 	  cpu.EFLAGS.ZF = 1;
   else cpu.EFLAGS.ZF = 0;
 
-  if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
+  /*if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
 	  cpu.EFLAGS.OF = 1;
   else cpu.EFLAGS.OF=0;
-
+*/
+  cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&&(!((val>>31)^(op_src->val>>31)));
+//  cpu.EFLAGS.PF=(count%2==0);
   if(val<0)
 	  cpu.EFLAGS.SF=1;
   else cpu.EFLAGS.SF = 0;
