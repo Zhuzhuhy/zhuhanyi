@@ -31,18 +31,23 @@ static void do_execute(){
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
  */
- int len=(DATA_BYTE<<3)-1;
- int s1,s2;
- cpu.EFLAGS.CF=(val<op_dest->val);
- cpu.EFLAGS.SF=val>>len;
- s1=op_dest->val>>len;
- s2=op_src->val>>len;
- cpu.EFLAGS.OF=(s1==s2&&s1!=cpu.EFLAGS.SF);
- cpu.EFLAGS.ZF=!val;
- val^=val>>4;
- val^=val>>2;
- val^=val>>1;
- cpu.EFLAGS.PF=!(val&1);
+// int len=(DATA_BYTE<<3)-1;
+// int s1,s2;
+ if(((op_src->val>>31)&(op_dest->val>>31))==1)
+  cpu.EFLAGS.CF=1;
+ else if((((op_src->val>>31)^(op_dest->val>>31))==1)&&((val>>31)==0))
+	 cpu.EFLAGS.CF=1;
+ else cpu.EFLAGS.CF=0;
+ cpu.EFLAGS.SF=(val>>31)&1;
+// s1=op_dest->val>>len;
+// s2=op_src->val>>len;
+ cpu.EFLAGS.OF=(!((op_dest->val>>31)^(op_src->val>>31)))&&((op_dest->val>>31)^(val>>31))&1;
+ cpu.EFLAGS.ZF=(val==0);
+ uint32_t pf=(val&255);
+ pf^=pf>>4;
+ pf^=pf>>2;
+ pf^=pf>>1;
+ cpu.EFLAGS.PF=(pf&1);
 
 
   OPERAND_W(op_dest, val);
