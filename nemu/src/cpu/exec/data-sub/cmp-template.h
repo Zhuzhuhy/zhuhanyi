@@ -4,8 +4,8 @@
 static void do_execute(){
   DATA_TYPE val;
   val = op_dest->val-op_src->val;
- /*
-  if(val < op_dest->val) 
+ 
+  if(op_dest->val < op_dest->val) 
 	  cpu.EFLAGS.CF = 1;
   else cpu.EFLAGS.CF = 0;
 
@@ -15,9 +15,9 @@ static void do_execute(){
 
   cpu.EFLAGS.OF=((op_dest->val>>31)^(op_src->val>>31))&&(!((val>>31)^(op_src->val>>31)));
    //cpu.EFLAGS.PF=(count%2==0);
-  if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
-	  cpu.EFLAGS.OF = 1;
-  else cpu.EFLAGS.OF=0;
+ // if(op_dest->val*op_src->val <0 && op_src->val*val>=0)
+//	  cpu.EFLAGS.OF = 1;
+ // else cpu.EFLAGS.OF=0;
 //
   if(val<0)
 	  cpu.EFLAGS.SF=1;
@@ -32,8 +32,8 @@ static void do_execute(){
   }  
   if(j%2==0) cpu.EFLAGS.PF = 1;
   else cpu.EFLAGS.PF = 0;
- */
- int len=(DATA_BYTE<<3)-1;
+ 
+/* int len=(DATA_BYTE<<3)-1;
  int s1,s2;
  cpu.EFLAGS.CF=op_dest->val<op_src->val;
  cpu.EFLAGS.SF=val>>len;
@@ -45,7 +45,7 @@ static void do_execute(){
  val^=val>>2;
  val^=val>>1;
  cpu.EFLAGS.PF=!(val&1);
-
+*/
 
  // OPERAND_W(op_dest, val);
   print_asm_template2();
