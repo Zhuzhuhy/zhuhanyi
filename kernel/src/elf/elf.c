@@ -47,7 +47,7 @@ uint32_t loader() {
 	for(j=0;j<elf->e_phnum;j++ ) {
 
 		/* Scan the program header table, load each segment into memory */
-		if(ph[j]->p_type == PT_LOAD) {
+		if(ph[j].p_type == PT_LOAD) {
 
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
@@ -55,11 +55,11 @@ uint32_t loader() {
 		#ifdef HAS_DEVICE
 		ide_read((void*)ph[j].p_vaddr,ph[j].p_offset,ph[j].p_filesz);
         #else
-		ramdisk_read((void*)ph[j].p_vaddr,ph[j].p_offset,ph[i].p_filesz);
-			 
+		ramdisk_read((void*)ph[j].p_vaddr,ph[j].p_offset,ph[j].p_filesz);
+        #endif
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
-			 */ 
+			 */  
 
          memset((void*)(ph[j].p_vaddr+ph[j].p_filesz),0,(ph[j].p_memsz-ph[j].p_filesz));
 #ifdef IA32_PAGE
