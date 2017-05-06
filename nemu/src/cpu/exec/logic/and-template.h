@@ -15,7 +15,7 @@ static void do_execute () {
     result^=(result>>4);
     result^=(result>>2);
     result^=(result>>1);
-	cpu.EFLAGS.PF=!(result&1);
+	cpu.EFLAGS.PF=!(result&0x1);
 
 	print_asm_template2();
 }
