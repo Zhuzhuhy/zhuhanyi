@@ -84,18 +84,19 @@ $
 	p=
 
 # File marks:
-'0  1  9  ~/test/zhy.txt
-'1  55  1  ~/ICS/Makefile
-'2  10  0  ~/ICS/testcase/Makefile.part
-'3  12  0  ~/ICS/testcase/src
-'4  56  1  ~/ICS/Makefile
-'5  23  1  ~/ICS/nemu/include/common.h
-'6  8  1  ~/ICS/nemu/include/debug.h
-'7  1  0  ~/ICS/nemu/include/cpu/common.h
-'8  1  0  ~/ICS/nemu/include/cpu/helper.h
-'9  1  39  ~/ICS/.git/COMMIT_EDITMSG
+'0  1  16  ~/test/zht.txt
+'1  1  9  ~/test/zhy.txt
+'2  55  1  ~/ICS/Makefile
+'3  10  0  ~/ICS/testcase/Makefile.part
+'4  12  0  ~/ICS/testcase/src
+'5  56  1  ~/ICS/Makefile
+'6  23  1  ~/ICS/nemu/include/common.h
+'7  8  1  ~/ICS/nemu/include/debug.h
+'8  1  0  ~/ICS/nemu/include/cpu/common.h
+'9  1  0  ~/ICS/nemu/include/cpu/helper.h
 
 # Jumplist (newest first):
+-'  1  16  ~/test/zht.txt
 -'  1  9  ~/test/zhy.txt
 -'  55  1  ~/ICS/Makefile
 -'  1  0  ~/ICS/Makefile
@@ -193,9 +194,14 @@ $
 -'  1  0  ~/ICS/obj/testcase/hello-str
 -'  71  0  ~/ICS/obj/testcase/add.txt
 -'  150  0  ~/ICS/obj/testcase
--'  292  0  ~/ICS/obj/testcase
 
 # History of marks within files (newest to oldest):
+
+> ~/test/zht.txt
+	"	1	16
+	^	1	17
+	.	1	16
+	+	1	16
 
 > ~/test/zhy.txt
 	"	1	9
@@ -1751,49 +1757,3 @@ $
 
 > ~/ICS/nemu/src/cpu/exec/data-sub/cmp.
 	"	1	0
-
-> ~/ICS/nemu/src/cpu/exec/data-mov/test-template.h
-	"	12	0
-	^	19	9
-	.	19	8
-	+	31	0
-	+	30	0
-	+	3	17
-	+	29	21
-	+	6	44
-	+	25	26
-	+	7	22
-	+	10	26
-	+	11	32
-	+	13	27
-	+	23	0
-	+	13	8
-	+	15	14
-	+	19	3
-	+	6	28
-	+	19	4
-	+	16	15
-	+	19	14
-	+	20	15
-	+	13	11
-	+	17	4
-	+	22	4
-	+	13	28
-	+	21	0
-	+	13	10
-	+	21	12
-	+	13	27
-	+	21	4
-	+	18	9
-	+	14	0
-	+	18	10
-	+	24	18
-	+	13	8
-	+	15	6
-	+	19	6
-	+	10	19
-	+	15	13
-	+	19	20
-	+	10	27
-	+	15	8
-	+	19	8
