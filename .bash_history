@@ -211,3 +211,384 @@ vim /etc/ssh/sshd_config
 service sshd restart
 sudo service sshd restart
 sudo poweroff
+cd ICS
+make test
+vim Makefile
+make run
+cd obj/testcase
+ls
+readelf -a hello-str
+vim -b hello-str
+objdump -d hello-str
+cd 
+cd ICS
+cd nemu/include/cpu/helper.h
+vim nemu/include/cpu/helper.h
+make run
+vim nemu/include/cpu/helper.h
+make run
+vim nemu/include/cpu/helper.h
+make run
+vim nemu/include/cpu/helper.h
+make run
+vim nemu/include/cpu/helper.h
+make run
+vim nemu/include/cpu/helper.h
+make run
+make
+cd nemu/src/monitor
+ls
+cd debug
+ls
+vim ui.c
+cd ~
+git log
+git add .
+git commit --allow-empty
+git log
+cd nemu/src/monitor
+cd ICS/nemu/src/monitor
+cd debug
+cd ui.c
+vim ui.c
+cd
+cd ICS
+make run
+vim Makefile
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+ls
+vim sub-template.h
+vim cmp-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+vim sub-template.h
+vim cmp-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+vim exec.c
+cd
+cd ICS
+cd obj/testcase
+ls
+vim add.txt
+cd
+cd ICS
+vim Makefile
+cd testcase/src
+ls
+cd ..
+ls
+vim Makefile.part
+cd 
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+vim com-template.h
+vim cmp-template.h
+vim sub-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+vim cmp-template.h
+vim cmp.h
+vim cmp.c
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-jbe
+cd data-mov
+
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+ls
+vim je-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim je-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+vim add-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+vim add-template.h
+cd ~
+cd ICS
+make run
+vim add-template.h
+cd nemu/src/cpu/exec
+cd data-sub
+vim add-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-sub
+vim add-template.h
+cd ~
+cd ICS
+make run
+vim Makefile
+make run
+cd obj/testcase
+ls
+vim fact.txt
+cd
+cd ICS
+make run
+cd nemu/src/cpu/exec
+ls
+cd logic
+ls
+vim and-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push-template.h
+vim push.h
+vim push.c
+vim exec.c
+cd ..
+vim ex
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+vim exec.c
+cd data-mov
+vim push-template.h
+vim push.h
+vim push-template.h
+vim push.c
+cd ..
+vim exec.c
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push.c
+vim push-template.h
+vim push.h
+vim push.c
+cd ..
+vim exec.c
+cd !
+cd 
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push.c
+cd ..
+vim exec.c
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+vim exec.c
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+vim push.c
+cd data-mov
+vim push-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push-template.h
+vim push.c
+vim push.h
+vim push-template.h
+cd ..
+vim exec.c
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+
+cd data-mov
+vim push.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+ls
+cd logic
+vim and-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+vim push.h
+cd logic
+cd ..
+cd data-mov
+vim push.c
+vim push.h
+vim push-temaplate.h
+vim push-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push-temaplate.h
+vim push-template.h
+vim push.h
+cd ..
+vim exec.c
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim push.c
+vim push.h
+vim push-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+cd ..
+vim exeec.c
+vim exec.c
+cd ~
+cd ICS
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim Makefile
+make run
+vim obj/testcase
+cd obj/testcase
+ls
+vim sum.txt
+cd `
+
+q
+cd
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+ls
+vim je-template.h
+vim jle-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim jle-template.h
+cd ~
+cd ICS
+make run
+cd nemu/src/cpu/exec
+cd data-mov
+vim jle-template.h
+vim je-template.h
+vim jle-template.h
+vim jmp-template.h
+cd ..
+cd data-con
+ls
+vim jmp-template.h
+cd ~
+cd ICS
+make run
+vim Makefile
+cd testcase
+vim Makefile.part
+cd ~
+make clean
+cd ICS
+make clean
+make test
+make run
+vim Makefile
+make run
+git add .c
+git add .
+git commit --allow-empty
+git log
+vim nemu/include/cpu/helper.h
+vim nemu/include/cpu/common.h
+vim nemu/include/common.h
+make run
+vim nemu/include/debug.h
+make run
+vim nemu/include/debug.h
+vim nemu/include/common.h
+make run
+vim nemu/include/debug.h
+vim nemu/include/common.h
+make run
+git log
+vim Makefile
+vim testcase/src
+cd testcase
+vim Makefile.part
+cd ~
+cd ICS
+make run
+cd testcase
+vim Makefile.part
+cd ..
+vim Makefile
+make run
+sudo poweroff
