@@ -102,7 +102,7 @@ static int cmd_cache(char *arge){
 	addr=strtok(NULL," ");
 	//if(addr==)
 	_addr=expr(addr,&f);
-	if(f==false) return 0;
+//	if(f==false) return 0;
 	printf("0x%x:\t",_addr);
 	if(shot(_addr,&cb)==true){
 	      uint8_t data;
