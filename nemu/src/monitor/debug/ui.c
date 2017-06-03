@@ -2,6 +2,8 @@
 #include "monitor/expr.h"
 #include "monitor/watchpoint.h"
 #include "nemu.h"
+#include "memory/Cache.h"
+#include "memory/Cache2.h"
 
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -17,8 +19,8 @@ void findname(uint32_t eip,uint32_t ebp);
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
-
-	if (line_read) {
+ 
+ 	if (line_read) {
 		free(line_read);
 		line_read = NULL;
 	}
@@ -49,6 +51,7 @@ static int cmd_w(char *args);
 static int cmd_d(char *args);
 static int cmd_b(char *args);
 static int cmd_bt();
+static int cmd_cache(char *args);
 
 static struct {
 	char *name;
@@ -66,6 +69,7 @@ static struct {
 	{ "d","Delete a watchpoint",cmd_d},
 	{ "b","Set a breakpoint",cmd_b},
 	{"bt","Print Stack",cmd_bt},
+	{"cache","Print cache",cmd_cache},
 	/* TODO: Add more commands */
 };
 
@@ -89,7 +93,44 @@ static int cmd_bt(char *grge){
 	
     return 0;
 }
+static int cmd_cache(char *arge){
+    char *addr;
+	swaddr_t _addr;
+	CacheBlock *cb=NULL;
+	L2CacheBlock *c=NULL;
+	bool f;
+	addr=strtok(NULL," ");
+	//if(addr==)
+	_addr=expr(addr,&f);
+	if(f==false) return 0;
+	printf("0x%x:\t",_addr);
+	if(shot(_addr,&cb)==true){
+	      uint8_t data;
+		  CacheReadByte(_addr,&data);
+		  printf("L1 SHOT CACHE!\n");
+		  printf("valid:%d\t",cb->valid);
+		  printf("tag:0x%x\t",cb->tag);
+		  printf("index:0x%x\t",INDEX(_addr));
+		  printf("offset:0x%x\n",ADDR(_addr));
+	}
 
+	else printf("L1 SHOT FAIL!\n");
+
+
+	printf("0x%x:\t",_addr);
+	if(L2shot(_addr,&c)==true){
+	      uint8_t data1;
+		  L2CacheReadByte(_addr,&data1);
+		  printf("L2 SHOT CACHE!\n");
+		  printf("valid:%d\t",c->valid);
+		  printf("tag:0x%x\t",c->tag);
+		  printf("dirty:0x%x\t",c->dirty);
+		  printf("index:0x%x\t",INDEX(_addr));
+		  printf("offset:0x%x\n",ADDR(_addr));
+	}
+	else printf("L2 SHOT FAIL!\n");
+	return 0;
+}
 static int cmd_w(char *arge){
 	char *str;
 	str = strtok(NULL," ");

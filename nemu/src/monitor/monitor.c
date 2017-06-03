@@ -10,6 +10,8 @@ void load_elf_tables(int, char *[]);
 void init_regex();
 void init_wp_list();
 void init_ddr3();
+void init_cache();
+void init_L2cache();
 
 FILE *log_fp = NULL;
 
@@ -60,6 +62,14 @@ static void init_ramdisk() {
 }
 #endif
 
+/*static void init_cache(){//cache
+ int i;
+ for(i=0;i<ROW;i++)
+//	 for(j=0;j<Pre_block;j++)
+		 cache[i].valid = 0;
+}
+*/
+
 static void load_entry() {
 	int ret;
 	FILE *fp = fopen("entry", "rb");
@@ -90,4 +100,7 @@ void restart() {
 
 	/* Initialize DRAM. */
 	init_ddr3();
+	
+	init_cache();
+	init_L2cache();
 }

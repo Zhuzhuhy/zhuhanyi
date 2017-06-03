@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/zhy/ICS/nemu/src/cpu/exec/data-con'
+let g:netrw_dirhist_2='/home/zhy/ICS/nemu/src/cpu/exec/data-mov'
+let g:netrw_dirhist_3='/home/zhy/ICS/obj/testcase'
+let g:netrw_dirhist_4='/home/zhy/ICS/testcase/src'

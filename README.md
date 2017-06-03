@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NUAA ICS Programming Assignment
 
 This project is the programming assignment of the class ICS(Introduction to Computer System) in Department of Computer Science and Technology, NanJing University.
@@ -69,3 +70,7 @@ This is a fork of Wei Mingzhi's SDLPAL(https://github.com/CecilHarvey/sdlpal). I
 # PA1.1
 # PA1.1
 # PA1.1
+=======
+# PA1.1
+# zhuhanyi
+>>>>>>> 591b7f067b7e7e5265471b34f6dbf00d913799ce
