@@ -106,6 +106,7 @@ static int cmd_cache(char *arge){
 	printf("0x%x:\t",_addr);
 	if(shot(_addr,&cb)==true){
 	      uint8_t data;
+		  printf("L1 SHOT CACHE!\n");
 		  CacheReadByte(_addr,&data);
 		  printf("L1 SHOT CACHE!\n");
 		  printf("valid:%d\t",cb->valid);
