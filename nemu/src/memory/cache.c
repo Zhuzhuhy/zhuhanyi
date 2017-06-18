@@ -23,7 +23,7 @@ bool shot(hwaddr_t addr, CacheBlock **cb){
 	*cb = (CacheBlock *)GPADDR(addr);
 	for(i = 0; i < ROWNUM; i ++, (*cb) += 1){
 		if((*cb) -> valid == true && (*cb) -> tag == tag) return true;
-	}
+ 	}
 	cb = NULL;
 	return false;
 }
@@ -37,15 +37,14 @@ CacheBlock * CopyToCache(hwaddr_t addr){
 	int i = 0, index;
 	hwaddr_t baddr = addr & 0xffffffc0;
 	uint8_t data;
-	// 如果cache未满
 	for(i = 0; i < ROWNUM; i ++){
-		if((cb + i) -> valid == false){
+ 		if((cb + i) -> valid == false){
 			index = i;
 		}
 	}
-	if(i == ROWNUM) index = RDNUM();	//如果cache满，随机替换
+	if(i == ROWNUM) index = RDNUM();	
 
-	for(i = 0; i < CacheBlockSize; i++){
+	for(i = 0; i < CacheBlockSize; i++){ 
 		//(cb + index) -> data[i] = dram_read(baddr + i,1);
 		L2CacheReadByte(baddr + i,&data);
 		(cb + index) -> data[i] = data;
@@ -87,7 +86,7 @@ void CacheReadByte(hwaddr_t addr, uint8_t *data){
 		px+=200;
 		cb = CopyToCache(addr);
 		*data = cb -> data[offset];
-	}
+ 	}
 	//printf("---------read addr = 0x%x data = 0x%x\n", addr, *data);
 
 }

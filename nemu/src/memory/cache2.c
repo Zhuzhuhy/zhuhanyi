@@ -37,7 +37,6 @@ L2CacheBlock * L2CopyToCache(hwaddr_t addr){
 	L2CacheBlock *cb = L2GPADDR(addr);
 	int i = 0, index;
 	hwaddr_t baddr;
-	// 如果cache未满
 	for(i = 0; i < L2ROWNUM; i ++){
 		if((cb + i) -> valid == false){
 			index = i;
