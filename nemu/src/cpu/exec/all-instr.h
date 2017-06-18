@@ -16,6 +16,7 @@
 #include "data-mov/leave.h"
 #include "data-mov/pop.h"
 #include "data-con/ret.h"
+#include "data-con/lgdt.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"

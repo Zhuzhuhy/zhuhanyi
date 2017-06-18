@@ -7,6 +7,7 @@
 #define decode_i concat(decode_i_, SUFFIX)
 #define decode_a concat(decode_a_, SUFFIX)
 #define decode_r2rm concat(decode_r2rm_, SUFFIX)
+#define decode_m concat(decode_m_, SUFFIX)
 
 /* Ib, Iv */
 make_helper(concat(decode_i_, SUFFIX)) {
@@ -32,7 +33,7 @@ make_helper(concat(decode_si_, SUFFIX)) {
 	 * it to op_src->simm.
 	 *
 	op_src->simm = ???
-	 */
+ 	 */
 //	panic("please implement me");
 
 	op_src->val = op_src->simm;
@@ -93,6 +94,9 @@ make_helper(concat(decode_rm2r_, SUFFIX)) {
 	return decode_rm_internal(eip, op_src, op_dest);
 }
 
+make_helper(concat(decode_m_, SUFFIX)) {
+	return decode_rm_internal(eip, op_src, op_dest);
+}
 
 /* AL <- Ib
  * eAX <- Iv

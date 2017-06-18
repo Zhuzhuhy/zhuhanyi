@@ -3,22 +3,27 @@
 
 #include "nemu.h"
 #include "cpu/decode/operand.h"
+//#include "cpu/decode/decode.h"
 
 /* All function defined with 'make_helper' return the length of the operation. */
 #define make_helper(name) int name(swaddr_t eip)
 
+
 static inline uint32_t instr_fetch(swaddr_t addr, size_t len) {
+    current_sreg = cpu.CS;
 	return swaddr_read(addr, len);
 }
 
 /* Instruction Decode and EXecute */
-static inline int idex(swaddr_t eip, int (*decode)(swaddr_t), void (*execute) (void)) {
-	/* eip is pointing to the opcode */
+
+ static inline int idex(swaddr_t eip, int (*decode)(swaddr_t), void (*execute) (void)) {
+//	eip is pointing to the opcode //
 	int len = decode(eip + 1);
 	execute();
-	return len + 1;	// "1" for opcode
+	len=len+1;
+	return len;	// "1" for opcode
 }
-
+///*/
 /* shared by all helper function */
 extern Operands ops_decoded;
 

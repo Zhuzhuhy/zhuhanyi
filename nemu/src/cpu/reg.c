@@ -1,8 +1,11 @@
 #include "nemu.h"
 #include <stdlib.h>
 #include <time.h>
+#include "../../lib-common/x86-inc/mmu.h"
 
 CPU_state cpu;
+SELECTOR current_sreg;
+uint32_t SegDesc_index;
 
 const char *regsl[] = {"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"};
 const char *regsw[] = {"ax", "cx", "dx", "bx", "sp", "bp", "si", "di"};
@@ -41,4 +44,19 @@ void reg_test() {
 
 	assert(eip_sample == cpu.eip);
 }
+void insertSegDesc(uint32_t base,uint32_t limit){
+    data *r;
+	SegDesc sd;
+	sd.limit_15_0 = limit & 0xffff;
+	sd.limit_19_16 = (limit>>16)&0xf;
+	sd.base_15_0 = base & 0xffff;
+	sd.base_23_16 = (base>>16)& 0xff;
+	sd.base_31_24 = (base>>24)&0xff;
+
+	r=(data *)(&sd);
+	lnaddr_write(cpu.GDTR.base+SegDesc_index*64,4,r->low);
+	lnaddr_write(cpu.GDTR.base+SegDesc_index*64+4,4,r->high);
+    SegDesc_index++;
+}
+
 

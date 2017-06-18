@@ -2,6 +2,8 @@
 #include "monitor/expr.h"
 #include "monitor/watchpoint.h"
 #include "nemu.h"
+#include "memory/cache.h"
+//#include "memory/cache2.h"
 
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -21,7 +23,7 @@ char* rl_gets() {
 	if (line_read) {
 		free(line_read);
 		line_read = NULL;
-	}
+ 	}
 
 	line_read = readline("(nemu) ");
 
@@ -49,6 +51,7 @@ static int cmd_w(char *args);
 static int cmd_d(char *args);
 static int cmd_b(char *args);
 static int cmd_bt();
+static int cmd_cache(char *args);
 
 static struct {
 	char *name;
@@ -66,6 +69,7 @@ static struct {
 	{ "d","Delete a watchpoint",cmd_d},
 	{ "b","Set a breakpoint",cmd_b},
 	{"bt","Print Stack",cmd_bt},
+	{"cache","Print Cache",cmd_cache}
 	/* TODO: Add more commands */
 };
 
@@ -89,7 +93,27 @@ static int cmd_bt(char *grge){
 	
     return 0;
 }
+static int cmd_cache(char *args){
+  char *addr;
+  swaddr_t _addr;
+  CacheBlock *cb=NULL;
+  bool f;
+  addr=strtok(NULL," ");
+  _addr = expr(addr,&f);
+  printf("0x%x\t",_addr);
+  if(shot(_addr,&cb)==true){
+     uint8_t data;
+	 CacheReadByte(_addr,&data);
+	 printf("shot cache!\n:0x%x\t",data);
+	 printf("tag:0x%x\t",cb->tag);
+	 printf("valid:%d\t",cb->valid);
+	 printf("offset:0x%x\t",ADDR(_addr));
+	 printf("index:0x%x\n",INDEX(_addr));
+   }
+  else printf("shot fail!\n");
+  return 0;
 
+}
 static int cmd_w(char *arge){
 	char *str;
 	str = strtok(NULL," ");

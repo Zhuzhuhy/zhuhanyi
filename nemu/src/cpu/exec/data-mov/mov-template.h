@@ -27,5 +27,46 @@ make_helper(concat(mov_moffs2a_, SUFFIX)) {
 	print_asm("mov" str(SUFFIX) " 0x%x,%%%s", addr, REG_NAME(R_EAX));
 	return 5;
 }
+#if DATA_BYTE ==4
+make_helper(mov_r2cr_l){
+  int l=decode_r2rm_l(eip+1);
+  cpu.cr0.val=op_src->val;
+  print_asm("movl %s, %%cr0",op_src->str);
+  return l+1;
+}
 
+make_helper(mov_cr2r_l){
+  int l=decode_rm2r_l(eip+1);
+  OPERAND_W(op_dest,cpu.cr0.val);
+  print_asm("movl %%cr0,%s",op_dest->str);
+  return l+1;
+
+}
+#endif
+
+#if DATA_BYTE==2
+make_helper(mov_rm2sreg_w){
+  decode_rm2r_w(eip+1);
+
+  uint8_t op= instr_fetch(eip+1,1);
+  switch((op>>3)&0x7){
+	  case 0: cpu.ES.val =op_src->val;
+			  print_asm("mov %s,%%es",op_src->str);
+			  break;
+
+	  case 1: cpu.CS.val =op_src->val;
+			  print_asm("mov %s,%%cs",op_src->str);
+			  break;
+
+	  case 2: cpu.SS.val =op_src->val;
+			  print_asm("mov %s,%%ss",op_src->str);
+			  break;
+
+	  case 3: cpu.DS.val =op_src->val;
+			  print_asm("mov %s,%%ds",op_src->str);
+			  break;
+  }
+  return 2;
+}
+#endif
 #include "cpu/exec/template-end.h"
