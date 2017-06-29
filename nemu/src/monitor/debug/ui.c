@@ -16,6 +16,8 @@ bool scan_watchpoint();
 bool scan_watchpoint_all();
 bool delete_all();
 void findname(uint32_t eip,uint32_t ebp);
+void page_debug(lnaddr_t);
+lnaddr_t seg_translate(swaddr_t addr,uint16_t sreg);
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -23,7 +25,7 @@ char* rl_gets() {
 	if (line_read) {
 		free(line_read);
 		line_read = NULL;
- 	}
+  	}
 
 	line_read = readline("(nemu) ");
 
@@ -52,7 +54,7 @@ static int cmd_d(char *args);
 static int cmd_b(char *args);
 static int cmd_bt();
 static int cmd_cache(char *args);
-
+static int cmd_page(char *arges);
 static struct {
 	char *name;
 	char *description;
@@ -69,7 +71,8 @@ static struct {
 	{ "d","Delete a watchpoint",cmd_d},
 	{ "b","Set a breakpoint",cmd_b},
 	{"bt","Print Stack",cmd_bt},
-	{"cache","Print Cache",cmd_cache}
+	{"cache","Print Cache",cmd_cache},
+    {"page","Page Addr",cmd_page}
 	/* TODO: Add more commands */
 };
 
@@ -92,6 +95,24 @@ static int cmd_bt(char *grge){
  		}
 	
     return 0;
+}
+static int cmd_page(char *args){
+	//lnaddr seg_translate(swaddddr_t addr,uint8_t sreg);
+  if(args==NULL){
+	  printf("error\n");
+	  return 0;
+  }
+  char expre[32];
+  sscanf(args,"%s",expre);
+ swaddr_t addr=0;
+// uint8_t ss;
+ bool success=true;
+addr=expr(expre,&success);
+if(success==false) return 0;
+lnaddr_t lnaddr = seg_translate(addr,cpu.SS.val);
+printf("lnaddr=0x%x\n",lnaddr);
+page_debug(lnaddr);
+return 0;
 }
 static int cmd_cache(char *args){
   char *addr;

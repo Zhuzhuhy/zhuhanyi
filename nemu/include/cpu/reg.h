@@ -70,6 +70,7 @@ struct{
 } ;
 
  CR0 cr0;
+ CR3 cr3;
  SELECTOR CS,DS,SS,ES;
 
  struct{
